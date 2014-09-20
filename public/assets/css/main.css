@@ -1,0 +1,128 @@
+/*
+/* GLOBALS
+*/
+body {
+	color: #a0a0a0;
+}
+.br-none {
+	border-radius: 0;
+}
+.pr-none {
+	padding-right: 0;
+}
+.things{
+	padding-left: 0;
+	height: 400px;
+}
+
+/*
+** Sign in / Sign up
+*/
+.modal-signup-content {
+	min-height: 514px;
+	/*border: 4px solid #2a9fd6;*/
+}
+.modal-signin-content {
+	min-height: 441px;
+	/*border: 4px solid #2a9fd6;*/
+}
+.social-signin {
+	padding: 20px;
+	margin: 0;
+}
+.social-signin li {
+	display: block;
+	padding: 10px 0;
+}
+.signin-form-container, .signup-form-container {
+	padding: 20px;
+}
+.form-error-message {
+	font-weight: bold;
+}
+.form-required {
+	color:#2a9fd6;
+}
+.btn-facebook-signin 			{ background: #4C67A1; }
+.btn-twitter-signin				{ background: #00ACED; } 
+.btn-google-signin 				{ background: #DB4A37; }
+.btn-twitch-signin 				{ background: #7550BA; }
+
+.btn-facebook-signin:hover 		{ background-color: #3C5C8D; }
+.btn-twitter-signin:hover 		{ background-color: #3689C8; }
+.btn-google-signin:hover 		{ background-color: #BE2F1F; }
+.btn-twitch-signin:hover 		{ background-color: #6441A5; }
+
+/*.btn-facebook-signin,
+.btn-twitter-signin,
+.btn-google-signin,
+.btn-twitch-signin { 
+	-webkit-transition: background-color .3s ease-out;
+	-moz-transition: background-color .3s ease-out;
+	-o-transition: background-color .3s ease-out;
+	transition: background-color .3s ease-out;
+}*/
+
+/*
+** ADS
+*/
+.ad-leaderboard-top {
+	margin-bottom: 20px;
+	width: 728px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*
+/* NAVBAR
+*/
+.navbar {
+	margin: 0;
+	border-bottom: 2px #444444 solid;
+}
+.navbar-logo {
+	padding: 10px 10px;
+}
+.nav-hidden-container {
+	background: #181818;
+	padding: 5px 0;
+}
+
+.nav-hidden-left ul {
+	padding: 0;
+	float: left;
+	margin: 0;
+}
+.nav-hidden-left ul li {
+	display: inline-block;
+	margin-left: 10px;
+}
+.nav-hidden-left ul li:first-child {
+	margin-left: 0;
+}
+.nav-hidden-left ul li a {
+	color: #a0a0a0;
+}
+.nav-hidden-left ul li a:hover {
+	color: #2a9fd6;
+	text-decoration: none;
+}
+.nav-hidden-right ul {
+	padding: 0;
+	float: right;
+	margin: 0;
+}
+.nav-hidden-right ul li {
+	display: inline-block;
+	margin-right: 10px;
+}
+.nav-hidden-right ul li:last-child {
+	margin-left: 0;
+}
+.nav-hidden-right ul li a {
+	color: #a0a0a0;
+}
+.nav-hidden-right ul li:hover, .nav-hidden-right ul li a:hover {
+	color: #2a9fd6;
+	text-decoration: none;
+}
