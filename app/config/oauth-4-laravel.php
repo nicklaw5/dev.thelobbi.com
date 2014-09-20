@@ -39,8 +39,9 @@ return array(
          * Twitter sign in
          */
         'Twitter' => array(
-            'client_id'     => '2499955794-fl4n4tKRtFzCk7J8TCij4aWitTRrss0l9dh6yRd',
-            'client_secret' => 'j4Tn5xmb6ueBhIuN9uUXQl0oIcFcwnyMcXdQ9Ard5H8Hl',
+            'client_id'     => '4ov17xxju5ZB5jKc6jE7vq8nh',
+            'client_secret' => 'opTuvKpQ2lWUFUni0tJImam7wu5tHPWXwB2asvoToCTM6gDITM',
+            'scope'         => array(),
             // No scope - oauth1 doesn't need scope
         ),  
     )
