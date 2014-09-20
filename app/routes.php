@@ -10,9 +10,6 @@ Route::get('/', function()
 
 Route::get('/facebook-signin', 'SessionsController@loginWithFacebook');
 Route::get('/google-signin', 'SessionsController@loginWithGoogle');
-
-Route::get('/oauth2callback', function() {
-	return;
-});
+Route::get('/oauth2callback', 'SessionsController@loginWithGoogle');
 
 Route::resource('sessions', 'SessionsController');
