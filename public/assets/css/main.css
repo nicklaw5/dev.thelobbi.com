@@ -44,12 +44,12 @@ body {
 	color:#2a9fd6;
 }
 .btn-facebook-signin 			{ background: #4C67A1; }
-.btn-twitter-signin				{ background: #00ACED; } 
+.btn-twitter-signin				{ background: #00b0eb; } 
 .btn-google-signin 				{ background: #DB4A37; }
 .btn-twitch-signin 				{ background: #7550BA; }
 
 .btn-facebook-signin:hover 		{ background-color: #3C5C8D; }
-.btn-twitter-signin:hover 		{ background-color: #3689C8; }
+.btn-twitter-signin:hover 		{ background-color: #0096C8; }
 .btn-google-signin:hover 		{ background-color: #BE2F1F; }
 .btn-twitch-signin:hover 		{ background-color: #6441A5; }
 
