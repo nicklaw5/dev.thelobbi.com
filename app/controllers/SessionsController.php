@@ -107,7 +107,8 @@ class SessionsController extends BaseController {
 	    $code = Input::get( 'code' );
 
 	    // get google service
-	    $googleService = OAuth::consumer( 'Google' );
+	    //$googleService = OAuth::consumer( 'Google' );
+	    $googleService = OAuth::consumer('Google', 'http://dev.thelobbi.com/oauth2callback');
 
 	    // check if code is valid
 
