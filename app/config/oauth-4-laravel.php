@@ -39,8 +39,8 @@ return array(
          * Twitter sign in
          */
         'Twitter' => array(
-            'client_id'     => 'Your Twitter client ID',
-            'client_secret' => 'Your Twitter Client Secret',
+            'client_id'     => '2499955794-fl4n4tKRtFzCk7J8TCij4aWitTRrss0l9dh6yRd',
+            'client_secret' => 'j4Tn5xmb6ueBhIuN9uUXQl0oIcFcwnyMcXdQ9Ard5H8Hl',
             // No scope - oauth1 doesn't need scope
         ),  
     )
