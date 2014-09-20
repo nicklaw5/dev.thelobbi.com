@@ -30,8 +30,8 @@ return array(
          * Google sign in
          */
         'Google' => array(
-            'client_id'     => 'Your Google client ID',
-            'client_secret' => 'Your Google Client Secret',
+            'client_id'     => '129498997419-9go19qo6j7hcigc9tf4u4ad09g1eutam.apps.googleusercontent.com',
+            'client_secret' => 'rrXY9GUOhVo1LDwmTVdI78se',
             'scope'         => array('userinfo_email', 'userinfo_profile'),
         ),
 
