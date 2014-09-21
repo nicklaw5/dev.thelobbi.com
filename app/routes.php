@@ -3,9 +3,15 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('home');
 });
 
+/**
+* VIDEO TEMPLATE
+*/
+Route::get('/video-template', function(){
+	return View::make('video-template');
+});
 
 
 Route::get('/facebook-signin', 'SessionsController@loginWithFacebook');
@@ -14,3 +20,4 @@ Route::get('/twitter-signin', 'SessionsController@loginWithTwitter');
 Route::get('/twitch-signin', 'SessionsController@loginWithTwitch');
 
 Route::resource('sessions', 'SessionsController');
+Route::resource('videos', 'VideosController');

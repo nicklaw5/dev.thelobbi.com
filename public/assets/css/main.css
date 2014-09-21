@@ -10,14 +10,24 @@ body {
 .pr-none {
 	padding-right: 0;
 }
+.image {
+	border: 3px solid #060606;
+}
+.text-shadow {
+	text-shadow: 2px 1px #060606;	
+}
+.content-wrapper {
+	margin-top: 20px;
+}
 
 
 /**
 ** Home Page
 */
 .item {
-	padding: 0px 10px 10px 10px; 
+	padding: 0px 10px 30px 10px;
 	height: 400px;
+	overflow: hidden;
 }
 
 /*
@@ -68,18 +78,21 @@ body {
 	transition: background-color .3s ease-out;
 }*/
 
-/*
-** ADS
+/**
+* ADS
 */
 .ad-leaderboard-top {
-	margin-bottom: 20px;
 	margin-top: 20px;
 	width: 728px;
 	margin-left: auto;
 	margin-right: auto;
 }
+.ad-medium-rectangle {
+	width: 300px;
+	margin: 0 auto;
+}
 
-/*
+/**
 /* NAVBAR
 */
 .navbar {
@@ -132,3 +145,125 @@ body {
 	color: #2a9fd6;
 	text-decoration: none;
 }
+
+/**
+* TOP GAMES LIST
+*/
+.top-games-list {
+	padding: 0;
+	margin: 0;
+}
+.top-games-list li {
+	display: block;
+	margin-bottom: 15px;
+}
+.top-games-list li:last-child {
+	margin-bottom: 0px;	
+}
+.top-games-list table {
+	background: #222222;
+	font-size: 12.5px;
+}
+.top-games-list-tr {
+	margin-bottom: 5px;
+}
+
+/**
+* VIDEO
+*/
+.video-container {
+	margin: 0 0 20px 0;
+	
+	clear: both;
+	border-width: 3px;
+	background: #222222;
+	border-color: #060606;
+}
+.video-player-meta {
+	clear: both;
+}
+.video-player-meta small {
+	margin-bottom: 10px;
+}
+.video-playlist {
+ 	padding: 0;
+}
+.video-playlist-header {
+	border-left: 3px solid #5a5a5a;
+	border-top: 3px solid #5a5a5a;
+	margin-top: 0;
+	padding: 10px;
+}
+.video-playlist-hr {
+	margin: 20px 0;
+	height: 2px;
+	border:none;
+	color:#5a5a5a;
+	background-color:#5a5a5a;
+	box-shadow: 0px 1px 0px #060606;
+}
+.video-playlist ul {
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
+.video-playlist ul li {
+	display: block;
+	margin-bottom: 17px;
+}
+.video-playlist ul li a {
+	color: #fff;
+	-webkit-transition: color .1s ease-out;
+	-moz-transition: color .1s ease-out;
+	-o-transition: color .1s ease-out;
+	transition: color .1s ease-out;
+}
+.video-playlist ul li a:hover {
+	color: #2a9fd6;
+	text-decoration: none;
+}
+.video-playlist ul li:last-child {
+	margin: 0;
+}
+.video-playlist ul li h6 {
+	padding-top: 10px;
+}
+
+@media all and (max-width: 991px) {
+	#playertqLUYHhEYkVv {
+		min-height: 399px;
+	}
+}
+@media all and (max-width: 1199px) {
+	#playertqLUYHhEYkVv {
+		min-height: 324px;
+	}
+}
+
+@media all and (max-width: 991px) {
+  	.video-player {
+  		padding: 0;
+  	}
+  	.video-playlist-header {
+  		border-left: none;
+  	}
+}
+
+
+/**
+* COMMENTS
+*/
+#comments {
+	padding-left: 0;
+}
+.comments-header {
+		
+}
+.c-item {
+	border-bottom: 1px solid #5a5a5a;
+	margin-bottom: 20px;
+}
+.c-depth-2  { padding-left: 32px; }
+.c-depth-3  { padding-left: 64px; }
+.c-depth-4  { padding-left: 96px; }
+.c-depth-5  { padding-left: 128px; }

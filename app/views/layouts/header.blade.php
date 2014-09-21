@@ -10,6 +10,9 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/assets/css/main.css" rel="stylesheet">
 
+    <!-- JW PLAYER -->
+    <script src="http://jwpsrv.com/library/mliT_EEUEeSFvyIAC0MJiQ.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
