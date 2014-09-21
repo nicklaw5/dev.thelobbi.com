@@ -16,7 +16,7 @@
                             width: '100%',
                             aspectratio: '16:9',
                             autostart: 'false',
-                            primary: 'html5'
+                            primary: 'flash'
                         });
                     </script>
                     <div class="video-player-meta">
