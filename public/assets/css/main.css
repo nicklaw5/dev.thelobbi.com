@@ -229,14 +229,19 @@ body {
 	padding-top: 10px;
 }
 
+@media all and (max-width: 767px) {
+	#playertqLUYHhEYkVv {
+		
+	}
+}
 @media all and (max-width: 991px) {
 	#playertqLUYHhEYkVv {
-		min-height: 399px;
+		
 	}
 }
 @media all and (max-width: 1199px) {
 	#playertqLUYHhEYkVv {
-		min-height: 324px;
+		
 	}
 }
 
