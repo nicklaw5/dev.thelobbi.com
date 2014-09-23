@@ -83,7 +83,7 @@ class SessionsController extends BaseController {
 			  // 'verified' => boolean true
 
 	        // Check if user already exists
-	        $user_id = $this->getUserId('facebook_id', $result['id']);
+	        $user_id = $this->getUserId('facebook_id', (string)$result['id']);
 
 	        if($user_id) {
 
@@ -110,7 +110,7 @@ class SessionsController extends BaseController {
 
 		        // Sign in new user
 		        $user_id = $this->getUserId('facebook_id', (string)$result['id']);
-		        Auth::login((int)$user_id);
+		        Auth::login($user_id);
 		        return Redirect::to('/');
 		    }
 	        
@@ -219,7 +219,7 @@ class SessionsController extends BaseController {
 			  // 'locale' => string 'en-GB' (length=5)
 
 	        //Check if user already exists
-	        $user_id = $this->getUserId('google_id', $result['id']);
+	        $user_id = $this->getUserId('google_id', (string)$result['id']);
 
 	        if($user_id) {
 
@@ -235,17 +235,17 @@ class SessionsController extends BaseController {
 			} else {
 
 				// Register new user
-				$this->user->google_id 			= $result['id'];
-		        $this->user->email 				= $result['email'];
-		        $this->user->username 			= 'nick';
-		        $this->user->password 			= Hash::make('nl511988');
-		        $this->user->email_verified 	= 1;
-		        $this->user->gender 			= $result['gender'];
-		        $this->user->active 			= 1;
+				$this->user->google_id 			= (string)$result['id'];
+		        $this->user->email 				= (string)$result['email'];
+		        $this->user->username 			= (string)'nick';
+		        $this->user->password 			= (string)Hash::make('nl511988');
+		        $this->user->email_verified 	= (int)1;
+		        $this->user->gender 			= (string)$result['gender'];
+		        $this->user->active 			= (int)1;
 		        $this->user->save();
 
 		        //Sign in new user
-		        $user_id = $this->getUserId('google_id', $result['id']);
+		        $user_id = $this->getUserId('google_id', (string)$result['id']);
 		        Auth::login($user_id);
 		        return Redirect::to('/');
 		    }
