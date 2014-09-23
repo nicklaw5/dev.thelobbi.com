@@ -7,6 +7,18 @@ class SessionsController extends BaseController {
 	function __construct(User $user) {
 		$this->user = $user;
 	}
+
+	public function create() {
+		return View::make('sessions.create');
+	}
+
+	public function store($social_id = NULL) {
+
+	}
+
+	public function destroy() {
+		Auth::logout();
+	}
 	
 	/**
 	 * Login user with Facebook
@@ -49,17 +61,35 @@ class SessionsController extends BaseController {
 			  // 'updated_time' => string '2014-09-16T23:09:58+0000' (length=24)
 			  // 'verified' => boolean true
 
-	        $this->user->facebook_id = $result['id'];
-	        $this->user->email = $result['email'];
-	        $this->user->username = 'nick';
-	        $this->user->password = Hash::make('nl511988');
-	        $this->user->email_verified = 1;
-	        $this->user->gender = $result['gender'];
-	        $this->user->active = 1;
+	        //Check if user already exists
+	        //$count = User::where('facebook_id', '=', $result['id'])->count();
 
-	        $this->user->save();
+	        $user_id = User::where('facebook_id', '=', $result['id'])->first();
 
-	        return Redirect::to('/');
+	        if($user_id) {
+
+	        	Auth::login($user_id);
+				return Auth::user();	        	
+
+	        // User already exists, sign them in
+	        //if(Auth::attempt($result['id'])) {
+
+	        //	return Auth::user();
+
+			} else {
+
+				$this->user->facebook_id = $result['id'];
+		        $this->user->email = $result['email'];
+		        $this->user->username = 'nick';
+		        $this->user->password = Hash::make('nl511988');
+		        $this->user->email_verified = 1;
+		        $this->user->gender = $result['gender'];
+		        $this->user->active = 1;
+
+		        $this->user->save();
+
+		        return Redirect::to('/');
+		    }
 	        
 	        //Var_dump
 	        //display whole array().
