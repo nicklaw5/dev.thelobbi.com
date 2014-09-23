@@ -20,7 +20,7 @@ class SessionsController extends BaseController {
 
 	public function destroy() {
 		Auth::logout();
-		Redirect::to('/');
+		return Redirect::to('/');
 	}
 	
 	/**
