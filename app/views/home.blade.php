@@ -1,8 +1,8 @@
 @extends('layouts.default')
     @section('content')
-        <!--<div style="border: 2px solid #080808; background: #222222; height: 420px; max-width:1170px" class="feature-content">
+        <div style="border: 2px solid #080808; background: #222222; height: 420px; max-width:1170px" class="feature-content">
             <h1 style="padding-top:150px; text-align: center">Feature Content</h1>
-        </div>-->
+        </div>
 
         @include('ads.leaderboard')
 
