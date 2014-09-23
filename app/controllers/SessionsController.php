@@ -4,6 +4,8 @@ class SessionsController extends BaseController {
 	
 	protected $user;
 
+	private $allowableSocialAuths = ['facebook_id', 'google_id', 'twitter_id', 'twitch_id'];
+
 	function __construct(User $user) {
 		$this->user = $user;
 	}
@@ -18,8 +20,27 @@ class SessionsController extends BaseController {
 
 	public function destroy() {
 		Auth::logout();
+		Redirect::to('/');
 	}
 	
+	/**
+	 * This function checks to see if we are able
+	 * sign in the user using a specified social network.
+	 * The user's 'user_id' is returned if possible.
+	 * False otherwise.
+	 */
+	private function getUserId($field, $value) {
+		if(! in_array($field, $allowableSocialAuths))
+			return false;
+
+		$user_id = User::where($field, '=', $value)->first();
+		
+		if($user_id)
+			return $user_id;
+
+		return false;
+	}
+
 	/**
 	 * Login user with Facebook
 	 *
@@ -61,15 +82,14 @@ class SessionsController extends BaseController {
 			  // 'updated_time' => string '2014-09-16T23:09:58+0000' (length=24)
 			  // 'verified' => boolean true
 
-	        //Check if user already exists
-	        //$count = User::where('facebook_id', '=', $result['id'])->count();
-
-	        $user_id = User::where('facebook_id', '=', $result['id'])->first();
+	        // Check if user already exists
+	        $user_id = $this->getUserId('facebook_id', $result['id']);
 
 	        if($user_id) {
 
 	        	Auth::login($user_id);
-				return Auth::user();        	
+				//return Auth::user();        	
+				return Redirect::to('/');
 
 	        // User already exists, sign them in
 	        //if(Auth::attempt($result['id'])) {
@@ -78,6 +98,7 @@ class SessionsController extends BaseController {
 
 			} else {
 
+				// Register new user
 				$this->user->facebook_id = $result['id'];
 		        $this->user->email = $result['email'];
 		        $this->user->username = 'nick';
@@ -85,9 +106,11 @@ class SessionsController extends BaseController {
 		        $this->user->email_verified = 1;
 		        $this->user->gender = $result['gender'];
 		        $this->user->active = 1;
-
 		        $this->user->save();
 
+		        // Sign in new user
+		        $user_id = $this->getUserId('google_id', $result['id']);
+		        Auth::login($user_id);
 		        return Redirect::to('/');
 		    }
 	        
@@ -180,12 +203,56 @@ class SessionsController extends BaseController {
 	        // Send a request with it
 	        $result = json_decode( $googleService->request( 'https://www.googleapis.com/oauth2/v1/userinfo' ), true );
 
-	        $message = 'Your unique Google user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-	        echo $message. "<br/>";
+	        //$message = 'Your unique Google user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
+	        //echo $message. "<br/>";
+
+	    //     array (size=10)
+			  // 'id' => string '108170707386043389590' (length=21)
+			  // 'email' => string 'practicalprogrammingdotnet@gmail.com' (length=36)
+			  // 'verified_email' => boolean true
+			  // 'name' => string 'Nicholas Law' (length=12)
+			  // 'given_name' => string 'Nicholas' (length=8)
+			  // 'family_name' => string 'Law' (length=3)
+			  // 'link' => string 'https://plus.google.com/108170707386043389590' (length=45)
+			  // 'picture' => string 'https://lh4.googleusercontent.com/-OUDVnZ8U6fc/AAAAAAAAAAI/AAAAAAAAADI/KasU61wNQwY/photo.jpg' (length=92)
+			  // 'gender' => string 'male' (length=4)
+			  // 'locale' => string 'en-GB' (length=5)
+
+	        //Check if user already exists
+	        $user_id = $this->getUserId('google_id', $result['id']);
+
+	        if($user_id) {
+
+	        	Auth::login($user_id);
+				//return Auth::user();        	
+				return Redirect::to('/');
+
+	        // User already exists, sign them in
+	        //if(Auth::attempt($result['id'])) {
+
+	        //	return Auth::user();
+
+			} else {
+
+				// Register new user
+				$this->user->google_id 			= $result['id'];
+		        $this->user->email 				= $result['email'];
+		        $this->user->username 			= 'nick';
+		        $this->user->password 			= Hash::make('nl511988');
+		        $this->user->email_verified 	= 1;
+		        $this->user->gender 			= $result['gender'];
+		        $this->user->active 			= 1;
+		        $this->user->save();
+
+		        //Sign in new user
+		        $user_id = $this->getUserId('google_id', $result['id']);
+		        Auth::login($user_id);
+		        return Redirect::to('/');
+		    }
 
 	        //Var_dump
 	        //display whole array().
-	        dd($result);
+	        //dd($result);
 
 	    }
 	    // if not ask for permission first
