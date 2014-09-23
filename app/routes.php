@@ -12,11 +12,11 @@ Route::get('/video-template', function(){
 	return View::make('video-template');
 });
 
-
 Route::get('/facebook-signin', 'SessionsController@loginWithFacebook');
 Route::get('/google-signin', 'SessionsController@loginWithGoogle');
 Route::get('/twitter-signin', 'SessionsController@loginWithTwitter');
 Route::get('/twitch-signin', 'SessionsController@loginWithTwitch');
+Route::get('/logout', 'SessionsController@destroy');
 
 Route::get('/articles/{year}/{month}/{day}/{title}', 'ArticlesController@showDatedArticle');
 
