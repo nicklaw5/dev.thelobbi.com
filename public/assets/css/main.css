@@ -57,6 +57,17 @@ body {
 /*
 ** Sign in / Sign up
 */
+.form-control { 
+	background: #181818;
+	border: 1px solid #282828;
+  	outline: none;
+    -webkit-box-shadow: none !important;
+  	-moz-box-shadow: none !important;
+  	box-shadow: none !important;
+}
+.form-control:focus {
+	border: 1px solid #2a9fd6;
+}
 .modal-signup-content {
 	min-height: 514px;
 	/*border: 4px solid #2a9fd6;*/
@@ -207,7 +218,6 @@ body {
 	}
 }
 
-
 /**
 /* NAVBAR
 */
@@ -220,9 +230,10 @@ body {
 	margin: 12px 0;
 }
 .navbar-search {
-	border-color: #080808;
+	background: #181818;
+	border-color: #282828;
 	border-radius: 20px;
-	padding-left: 35px;
+	padding: 1px 1px 1px 35px;	
 	height: 26px;
 }
 .nav-search-icon {
@@ -301,6 +312,19 @@ body {
 }
 .top-games-list-tr {
 	margin-bottom: 5px;
+}
+.top-games .media {
+	padding-left: 10px;
+	padding-right: 0;
+	margin: 0 0 20px 0;
+}
+.top-games .media-img {
+	width: 350px;
+}
+.top-games h4 {
+	margin-top: 0;
+	padding-top: 5px;
+	border-top: 2px solid #5a5a5a;
 }
 
 /**
@@ -381,6 +405,9 @@ body {
 }
 .comments-header {
 		
+}
+.comment .by {
+	padding-bottom: 10px;
 }
 .c-item {
 	border-bottom: 1px solid #5a5a5a;

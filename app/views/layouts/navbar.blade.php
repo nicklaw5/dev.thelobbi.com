@@ -19,8 +19,8 @@
         <li><a target="_blank" href="https://plus.google.com/+thelobbi/posts"><i class="fa fa-google-plus-square"></i> Google Plus</a></li>
         <li><a target="_blank" href="https://twitter.com/thelobbi"><i class="fa fa-twitter-square"></i> Twitter</a></li>
         <li><a target="_blank" href="https://www.facebook.com/thelobbi"><i class="fa fa-facebook-square"></i> Facebook</a></li>
-        <li><a data-toggle="modal" data-target=".bs-modal-signin" href="#"><i class="fa fa-user"></i> Sign In</a></li> 
-        <li><a data-toggle="modal" data-target=".bs-modal-signup" href="#"><i class="fa fa-users"></i> Join</a></li>
+        <li><a data-toggle="modal" data-target=".bs-modal-signin" href="#"><i class="fa fa-user"></i> SIGN IN</a></li>
+        <li><a data-toggle="modal" data-target=".bs-modal-signup" href="#"><i class="fa fa-users"></i> JOIN</a></li>
       </ul>
     </div>
   </div>

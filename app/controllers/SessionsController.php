@@ -2,7 +2,11 @@
 
 class SessionsController extends BaseController {
 	
-	function __construct() {}
+	protected $user;
+
+	function __construct(User $user) {
+		$this->user = $user;
+	}
 	
 	/**
 	 * Login user with Facebook
@@ -29,12 +33,35 @@ class SessionsController extends BaseController {
 	        // Send a request with it
 	        $result = json_decode($fb->request('/me'), true);
 
-	        $message = 'Your unique facebook user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-	        echo $message. "<br/>";
+	        //$message = 'Your unique facebook user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
+	        //echo $message. "<br/>";
 
+	    //     array (size=11)
+			  // 'id' => string '10152691339070739' (length=17)
+			  // 'email' => string 'nick_law@tpg.com.au' (length=19)
+			  // 'first_name' => string 'Nicholas' (length=8)
+			  // 'gender' => string 'male' (length=4)
+			  // 'last_name' => string 'Law' (length=3)
+			  // 'link' => string 'https://www.facebook.com/app_scoped_user_id/10152691339070739/' (length=62)
+			  // 'locale' => string 'en_US' (length=5)
+			  // 'name' => string 'Nicholas Law' (length=12)
+			  // 'timezone' => int 10
+			  // 'updated_time' => string '2014-09-16T23:09:58+0000' (length=24)
+			  // 'verified' => boolean true
+
+	        $this->user->facebook_id = $result['id'];
+	        $this->user->email = $result['email'];
+	        $this->user->username = 'nick';
+	        $this->user->password = Hash::make('nl511988');
+	        $this->user->email_verified = 1;
+	        $this->user->gender = $result['gender'];
+	        $this->user->active = 1;
+
+	        return Redirect::to('/');
+	        
 	        //Var_dump
 	        //display whole array().
-	        dd($result);
+	        //dd($result);
 
 	    }
 	    // if not ask for permission first

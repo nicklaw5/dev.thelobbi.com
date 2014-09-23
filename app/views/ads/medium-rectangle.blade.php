@@ -1,3 +1,3 @@
-<div class="ad-medium-rectangle">
-	<img src="http://placehold.it/300x250&text=Medium%20Rectangle%20Ad">
+<div style="border: 2px solid #080808; background: #222222; height: 250px; width: 300px" class="ad-medium-rectangle">
+	<p style="padding-top: 105px; text-align:center">Medium Rectangle Ad</p>
 </div>

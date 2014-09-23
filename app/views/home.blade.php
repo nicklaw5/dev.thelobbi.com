@@ -1,8 +1,8 @@
 @extends('layouts.default')
     @section('content')
-        <div class="feature-content">
-            <img class="img-responsive" src="http://placehold.it/1170x420&text=Feature%20Content">
-        </div>
+        <!--<div style="border: 2px solid #080808; background: #222222; height: 420px; max-width:1170px" class="feature-content">
+            <h1 style="padding-top:150px; text-align: center">Feature Content</h1>
+        </div>-->
 
         @include('ads.leaderboard')
 
@@ -106,7 +106,7 @@
             <!-- .six-items -->
 
             <!-- TOP GAMES UNIT -->
-            <div style="margin-bottom:30px;" class="">
+            <div class="top-games">
                 
                 <div style="padding-left: 10px; float: left; border-width: 3px; background: #222222; border-color: #060606" class="col-md-4 well br-none">
                     <div style="">
@@ -128,15 +128,15 @@
                                                 <td>Win, 360, PS3, Wii U, PS4, Xbox One</td>
                                             </tr>
                                             <tr>
-                                                <td width="100px">Developer:</td>
+                                                <td>Developer:</td>
                                                 <td>Ubisoft Montreal</td>
                                             </tr>
                                             <tr>
-                                                <td width="100px">Publisher:</td>
+                                                <td>Publisher:</td>
                                                 <td>Ubisoft</td>
                                             </tr>
                                             <tr>
-                                                <td width="100px">Release Date:</td>
+                                                <td>Release Date:</td>
                                                 <td>2014-05-27</td>
                                             </tr>
                                         </table>
@@ -266,8 +266,53 @@
                     </div>
                 </div>
                 
-                <div style="padding: 0 0 15px 10px; float:left; height: 300px; overflow:hidden" class="col-md-8">
-                    <img style="float:left" class="image" src="http://placehold.it/420x236">
+                <div class="media col-md-8">
+                    <a class="pull-left" href="#">
+                        <img class="media-img img-b img-responsive" src="/assets/images/bman420x236.jpg" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                        <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                        <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                    </div>
+                </div>
+
+                <div class="media col-md-8">
+                    <a class="pull-left" href="#">
+                        <img class="media-img img-b img-responsive" src="/assets/images/bman420x236.jpg" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                        <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                        <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                    </div>
+                </div>
+
+                <div class="media col-md-8">
+                    <a class="pull-left" href="#">
+                        <img class="media-img img-b img-responsive" src="/assets/images/bman420x236.jpg" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                        <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                        <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                    </div>
+                </div>
+
+                <div class="media col-md-8">
+                    <a class="pull-left" href="#">
+                        <img class="media-img img-b img-responsive" src="/assets/images/bman420x236.jpg" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                        <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                        <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                    </div>
+                </div>
+
+
+                <!--<div style="padding: 0 0 15px 10px; float:left; height: 300px; overflow:hidden" class="col-md-8">
+                    <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
                     <div style="margin-left: 440px; height: 236px; overflow:hidden">
                         <h4 style="margin-top: 0; padding-top: 10px; font-weight: 600; border-top: 2px solid #5A5A5A">The making of Defense Grid 2: The end</h4>
                         <small>By <a href="#">Nicholas Law</a> on Sep 17, 2014</small>
@@ -277,7 +322,7 @@
                 </div>
 
                 <div style="padding: 0 0 15px 10px; float:left; height: 300px; overflow:hidden" class="col-md-8">
-                    <img style="float:left" class="image" src="http://placehold.it/420x236">
+                    <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
                     <div style="margin-left: 440px; height: 236px; overflow:hidden">
                         <h4 style="margin-top: 0; padding-top: 10px; font-weight: 600; border-top: 2px solid #5A5A5A">The making of Defense Grid 2: The end</h4>
                         <small>By <a href="#">Nicholas Law</a> on Sep 17, 2014</small>
@@ -287,14 +332,14 @@
                 </div>
 
                 <div style="padding: 0 0 15px 10px; float:left; height: 300px; overflow:hidden" class="col-md-8">
-                    <img style="float:left" class="image" src="http://placehold.it/420x236">
+                    <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
                     <div style="margin-left: 440px; height: 236px; overflow:hidden">
                         <h4 style="margin-top: 0; padding-top: 10px; font-weight: 600; border-top: 2px solid #5A5A5A">The making of Defense Grid 2: The end</h4>
                         <small>By <a href="#">Nicholas Law</a> on Sep 17, 2014</small>
                         <p>Bandai Namco's Dragon Ball Xenoverse will give fans of Akira Torayama's manga and anime series the chance to play with their own original, customizable character and "dive into Dragon Ball history" with that day. Bandai Namco's Dragon Ball Xenoverse will give fans of Akira Torayama's manga and anime series the chance to play with their own original, customizable character and "dive into Dragon Ball history" with that Bandai Namco's Dragon Ball.</p>
 
                     </div>
-                </div>
+                </div>-->
 
             </div>
             <!-- END TOP GAMES UNIT -->

@@ -21,7 +21,7 @@
                     </script>
                     <div class="video-player-meta">
                         <h4 class="video-player-meta-title text-shadow">E3 2014: Assassin's Creed: Unity - Revolution Trailer</h4>
-                        <small>Posted: Sept 19, 2014 <span class="pull-right"><i class="fa fa-users"></i> Views: 2,438 | <a href="#comments"><i class="fa fa-comment"></i> Comments: 6</a></span></small>
+                        <p><small>Posted: Sept 19, 2014 <span class="pull-right"><i class="fa fa-users"></i> Views: 2,438 | <a href="#comments"><i class="fa fa-comment"></i> Comments: 6</a></span></small></p>
                         <p>Revolution is in the air in Assassin's Creed: Unity. Are you ready to write history? Revolution is in the air in Assassin's Creed: Unity. Are you ready to write history?</p>
                     </div>
                 </div>
@@ -101,6 +101,7 @@
 						          <img src="http://cdn0.vox-cdn.com/profile_images/806917/etrigan_av_small.jpeg" alt="The_Hyphenator">
 						        </a>
 						    	<a href="http://www.polygon.com/users/The_Hyphenator" class="profile_name">The_Hyphenator</a>
+						    	<i style="float:right; font-size: 20px;" class="fa fa-caret-left"></i>
 						    </div>
 						    <div class="cbody">
 						      	<p>A sassy Latina? Boy, I’ve never heard that one before…</p>

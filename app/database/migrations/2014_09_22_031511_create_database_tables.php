@@ -18,6 +18,7 @@ class CreateDatabaseTables extends Migration {
 	{	
 		// Create 'groups' table
 		Schema::create('groups', function($t) {		//['registered user', 'moderator', 'junior journalist', 'senior journalist', 'junior admin', 'senior admin']
+			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->string('group_name', 50);
 			$t->string('permissions', 500);
@@ -27,8 +28,9 @@ class CreateDatabaseTables extends Migration {
 
 		// Create 'users' table
 		Schema::create('users', function($t) {
+			$t->engine = 'InnoDB';
 			$t->increments('id');
-			$t->integer('group_id')->unsigned();
+			$t->integer('group_id')->unsigned()->default(1);
 			$t->foreign('group_id')->references('id')->on('groups')->onDelete('no action')->onUpdate('cascade');
 			$t->string('facebook_id', 60)->unique()->nullable();
 			$t->string('google_id', 60)->unique()->nullable();
@@ -52,6 +54,7 @@ class CreateDatabaseTables extends Migration {
 
 		// Create 'news' table
 		Schema::create('news', function($t) {
+			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->integer('user_id')->unsigned();
 			$t->foreign('user_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
@@ -69,6 +72,7 @@ class CreateDatabaseTables extends Migration {
 
 		// Create 'video_types' table
 		Schema::create('video_types', function($t) {	//['trailer', 'gameplay', 'interview', 'review', 'previews', 'other']
+			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->string('name', 20);
 			$t->string('description', 250);
@@ -77,6 +81,7 @@ class CreateDatabaseTables extends Migration {
 
 		// Create 'videos' table
 		Schema::create('videos', function($t) {
+			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->integer('video_type');
 			$t->integer('user_id')->unsigned();
@@ -96,6 +101,7 @@ class CreateDatabaseTables extends Migration {
 
 		// Create 'reviews' table
 		Schema::create('reviews', function($t) {
+			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->integer('user_id')->unsigned();
 			$t->foreign('user_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
@@ -117,6 +123,7 @@ class CreateDatabaseTables extends Migration {
 		});
 
 		Schema::create('comments', function($t) {
+			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->integer('parent_id')->nullable();
 			$t->integer('user_id')->unsigned();
@@ -126,6 +133,7 @@ class CreateDatabaseTables extends Migration {
 		});
 
 		Schema::create('flag_types', function($t) {		//['spam', 'abusive', 'innapropriate', 'troll']
+			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->string('flag_type', 30);
 			$t->string('flag_description');
@@ -133,6 +141,7 @@ class CreateDatabaseTables extends Migration {
 		});
 
 		Schema::create('flagged_comments', function($t) {
+			$t->engine = 'InnoDB';
 			$t->increments('flag_id');
 			$t->integer('comment_id')->unsigned();
 			$t->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade')->onUpdate('cascade');
@@ -145,6 +154,7 @@ class CreateDatabaseTables extends Migration {
 		});
 
 		Schema::create('settings', function($t) {
+			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->string('name', 50);
 			$t->string('value', 100);
@@ -153,6 +163,7 @@ class CreateDatabaseTables extends Migration {
 		});
 
 		Schema::create('companies', function($t) {
+			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->string('name');
 			$t->string('description');
@@ -162,6 +173,7 @@ class CreateDatabaseTables extends Migration {
 		});
 
 		Schema::create('games', function($t) {
+			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->string('name', 100);
 			$t->string('box_art', 150)->nullable();
@@ -174,6 +186,7 @@ class CreateDatabaseTables extends Migration {
 		});
 
 		Schema::create('platforms', function($t) {
+			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->integer('developer')->unsigned();
 			$t->foreign('developer')->references('id')->on('companies')->onDelete('no action')->onUpdate('cascade');
@@ -181,10 +194,6 @@ class CreateDatabaseTables extends Migration {
 			$t->string('abreviation', 15)->nullable();
 			$t->string('description', 250)->nullable();
 			$t->timestamps();
-		});
-
-		Schema::create('forums', function($t) {
-
 		});
 
 	}
@@ -246,7 +255,6 @@ class CreateDatabaseTables extends Migration {
 		Schema::drop('companies');
 		Schema::drop('games');
 		Schema::drop('platforms');
-		Schema::drop('forums');
-
+		
 	}
 }
