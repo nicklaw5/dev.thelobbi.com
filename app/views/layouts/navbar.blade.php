@@ -21,8 +21,8 @@
         <li><a target="_blank" href="https://www.facebook.com/thelobbi"><i class="fa fa-facebook-square"></i> Facebook</a></li>
 
       @if(Auth::check())
-        <li>{{ Auth::user()->username; }}</li>
-      @elseif
+        <li>{{ Auth::user()->username }}</li>
+      @else
         <li><a data-toggle="modal" data-target=".bs-modal-signin" href="#"><i class="fa fa-user"></i> SIGN IN</a></li>
         <li><a data-toggle="modal" data-target=".bs-modal-signup" href="#"><i class="fa fa-users"></i> JOIN</a></li>
       @endif
