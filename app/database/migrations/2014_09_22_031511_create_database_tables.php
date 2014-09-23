@@ -49,6 +49,7 @@ class CreateDatabaseTables extends Migration {
 			$t->text('biography')->nullable();
 			$t->string('gender', 6)->nullable();
 			$t->string('country')->nullable();
+			$t->rememberToken();
 			$t->timestamps();
 		});
 
