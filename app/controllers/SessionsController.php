@@ -57,7 +57,7 @@ class SessionsController extends BaseController {
 	        $this->user->gender = $result['gender'];
 	        $this->user->active = 1;
 
-	        $this->user-save();
+	        $this->user->save();
 
 	        return Redirect::to('/');
 	        
