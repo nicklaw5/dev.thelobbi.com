@@ -50,7 +50,10 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
           <form class="navbar-form navbar-left">
-            <input type="text" class="br-none form-control col-lg-8" placeholder="Search">
+            <fieldset>
+              <i class="nav-search-icon fa fa-search"></i>
+              <input type="text" class="navbar-search br-none form-control col-lg-8" placeholder="Search">
+            </fieldset>
           </form>
         </li>
       </ul>

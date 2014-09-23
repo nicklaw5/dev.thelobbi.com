@@ -20,7 +20,7 @@
                         });
                     </script>
                     <div class="video-player-meta">
-                        <h4 class="video-player-meta-title text-shadow">E3 2014: Revolution Trailer</h4>
+                        <h4 class="video-player-meta-title text-shadow">E3 2014: Assassin's Creed: Unity - Revolution Trailer</h4>
                         <small>Posted: Sept 19, 2014 <span class="pull-right"><i class="fa fa-users"></i> Views: 2,438 | <a href="#comments"><i class="fa fa-comment"></i> Comments: 6</a></span></small>
                         <p>Revolution is in the air in Assassin's Creed: Unity. Are you ready to write history? Revolution is in the air in Assassin's Creed: Unity. Are you ready to write history?</p>
                     </div>

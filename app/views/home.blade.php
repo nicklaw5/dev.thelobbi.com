@@ -1,95 +1,109 @@
 @extends('layouts.default')
     @section('content')
-    
-    <div class="content wrapper">
+        <div class="feature-content">
+            <img class="img-responsive" src="http://placehold.it/1170x420&text=Feature%20Content">
+        </div>
 
         @include('ads.leaderboard')
 
-        <div class="container well br-none">
+        <div id="content-wrapper" class="container">
 
             <!-- HERO UNIT -->
-            <div style="margin-bottom:30px; min-height: 600px" class="">
-                
-                <div style="padding-right: 0; max-height: 600px; float: right" class="col-md-2">
-                    <div style="width: 160px; float:right; margin-right: 10px">
-                        <img class="img-responsive" src="http://placehold.it/160x600&text=Large%20Skyscraper%20Ad">
-                    </div>
-                </div>
-                
-                <div style="padding: 0 0 15px 10px; float:left; height: 300px; overflow:hidden" class="col-md-10">
-                    <img style="float:left" class="image" src="http://placehold.it/420x236">
-                    <div style="margin-left: 440px; height: 236px; overflow:hidden">
-                        <h4 style="margin-top: 0; padding-top: 10px; font-weight: 600; border-top: 2px solid #5A5A5A">The making of Defense Grid 2: The end</h4>
-                        <small>By <a href="#">Nicholas Law</a> on Sep 17, 2014</small>
-                        <p>Bandai Namco's Dragon Ball Xenoverse will give fans of Akira Torayama's manga and anime series the chance to play with their own original, customizable character and "dive into Dragon Ball history" with that day. Bandai Namco's Dragon Ball Xenoverse will give fans of Akira Torayama's manga and anime series the chance to play with their own original, customizable character and "dive into Dragon Ball history" with that Bandai Namco's Dragon Ball.</p>
+            <div class="hero-unit row">
 
-                    </div>
+                <div class="col-lg-2 pull-right p-none">
+                    <div class="ad-skyscraper" style="text-align: center; padding:270px 10px 10px 10px">Skyscraper Ad</div>
                 </div>
 
-                <div style="padding: 0 0 15px 10px; float:left; height: 300px; overflow:hidden" class="col-md-10">
-                    <img style="float:left" class="image" src="http://placehold.it/420x236">
-                    <div style="margin-left: 440px; height: 236px; overflow:hidden">
-                        <h4 style="margin-top: 0; padding-top: 10px; font-weight: 600; border-top: 2px solid #5A5A5A">The making of Defense Grid 2: The end</h4>
-                        <small>By <a href="#">Nicholas Law</a> on Sep 17, 2014</small>
-                        <p>Bandai Namco's Dragon Ball Xenoverse will give fans of Akira Torayama's manga and anime series the chance to play with their own original, customizable character and "dive into Dragon Ball history" with that day. Bandai Namco's Dragon Ball Xenoverse will give fans of Akira Torayama's manga and anime series the chance to play with their own original, customizable character and "dive into Dragon Ball history" with that Bandai Namco's Dragon Ball.</p>
+                <div class="hero-unit-items col-md-10 col-sm-12">
+                    <ul class="media-list">
+                        <li class="media media-image">
+                            <a class="pull-left" href="#">
+                                <img class="media-object img-b img-responsive" src="/assets/images/bman420x236.jpg" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                                <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                                <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                            </div>
+                        </li>
+                    </ul>
 
-                    </div>
-                </div>
+                    <ul class="media-list">
+                        <li class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object img-b img-responsive" src="/assets/images/bman420x236.jpg" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                                <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                                <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                            </div>
+                        </li>
+                    </ul>
 
-            </div>
-            <!-- END HERO UNIT -->
-
-            <!-- ITEMS UNIT -->
-            <div style="clear: both" class="items">
-        		
-
-                <div class="col-md-4 col-sm-6 item col-xs-12">
-
-                    <img width="100%" class="image" src="http://placehold.it/384x216">
-
-                    <h4 style="font-weight: 600" class="text-shadow">This is the title</h4>
-
-                    <small>By <a href="#">Nicholas Law</a> on Sep 17, 2014</small>
-                    
-                    <p>Bandai Namco's Dragon Ball Xenoverse will give fans of Akira Torayama's manga and anime series the chance to play with their own original, customizable character and "dive into Dragon Ball history" with that day. Bandai Namco's Dragon Ball Xenoverse will.</p>
-
-                </div>
-
-
-
-                <div class="col-md-4 col-sm-6 col-xs-12 item">
-                    <img width="100%" class="image" src="http://placehold.it/384x216">
-                    <h4 style="font-weight: 600">This is the title</h4>
-                    <small>By <a href="#">Nicholas Law</a> on Sep 17, 2014</small>
-                        <p>Bandai Namco's Dragon Ball Xenoverse will give fans of Akira Torayama's manga and anime series the chance to play with their own original, customizable character and "dive into Dragon Ball history" with that day. Bandai Namco's Dragon Ball Xenoverse will.</p>
-                </div>
-                <div class="col-md-4 col-sm-6 col-sx-12 item">
-                    <img width="100%" class="image" src="http://placehold.it/384x216">
-                    <h4 style="font-weight: 600">This is the title</h4>
-                    <small>By <a href="#">Nicholas Law</a> on Sep 17, 2014</small>
-                        <p>Bandai Namco's Dragon Ball Xenoverse will give fans of Akira Torayama's manga and anime series the chance to play with their own original, customizable character and "dive into Dragon Ball history" with that day. Bandai Namco's Dragon Ball Xenoverse will.</p>
-                </div>
-                <div class="col-md-4 col-sm-6 col-sx-12 item">
-                    <img width="100%" class="image" src="http://placehold.it/384x216">
-                    <h4 style="font-weight: 600">This is the title</h4>
-                    <small>By <a href="#">Nicholas Law</a> on Sep 17, 2014</small>
-                        <p>Bandai Namco's Dragon Ball Xenoverse will give fans of Akira Torayama's manga and anime series the chance to play with their own original, customizable character and "dive into Dragon Ball history" with that day. Bandai Namco's Dragon Ball Xenoverse will.</p>
-                </div>
-                <div class="col-md-4 col-sm-6 col-sx-12 item">
-                    <img width="100%" class="image" src="http://placehold.it/384x216">
-                    <h4 style="font-weight: 600">This is the title</h4>
-                    <small>By <a href="#">Nicholas Law</a> on Sep 17, 2014</small>
-                        <p>Bandai Namco's Dragon Ball Xenoverse will give fans of Akira Torayama's manga and anime series the chance to play with their own original, customizable character and "dive into Dragon Ball history" with that day. Bandai Namco's Dragon Ball Xenoverse will.</p>
-                </div>
-                <div class="col-md-4 col-sm-6 col-sx-12 item">
-                    <img width="100%" class="image" src="http://placehold.it/384x216">
-                    <h4 style="font-weight: 600">This is the title</h4>
-                    <small>By <a href="#">Nicholas Law</a> on Sep 17, 2014</small>
-                        <p>Bandai Namco's Dragon Ball Xenoverse will give fans of Akira Torayama's manga and anime series the chance to play with their own original, customizable character and "dive into Dragon Ball history" with that day. Bandai Namco's Dragon Ball Xenoverse will.</p>
+                    <ul class="media-list">
+                        <li class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object img-b img-responsive" src="/assets/images/bman420x236.jpg" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                                <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                                <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <!-- END ITEMS UNIT -->
+            <!-- END .hero-unit -->
 
+            <!-- SIX ITEMS -->
+            <div class="six-items">
+                <ul class="col-md-4 col-sm-12 six-column six-column-first">
+                    <li>
+                        <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
+                        <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                        <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                        <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                    </li>
+                    <li>
+                        <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>                        
+                        <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                        <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                        <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                    </li>
+                </ul>
+                <ul class="col-md-4 col-sm-6 six-column six-column-middle">
+                    <li>                        
+                        <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
+                        <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                        <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                        <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                    </li>
+                    <li>                        
+                        <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
+                        <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                        <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                        <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                    </li>
+                </ul>
+                <ul class="col-md-4 col-sm-6 six-column six-column-last">
+                    <li>                        
+                        <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
+                        <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                        <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                        <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                    </li>
+                    <li>                        
+                        <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
+                        <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
+                        <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
+                        <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                    </li>
+                </ul>
+            </div>
+            <!-- .six-items -->
 
             <!-- TOP GAMES UNIT -->
             <div style="margin-bottom:30px;" class="">
@@ -308,7 +322,6 @@
             </div>
             <!-- END ITEMS UNIT -->
     	</div>
-    </div>
 
     @stop
 
