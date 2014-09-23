@@ -69,7 +69,7 @@ class SessionsController extends BaseController {
 	        if($user_id) {
 
 	        	Auth::login($user_id);
-				return Auth::user();	        	
+				return Auth::user();        	
 
 	        // User already exists, sign them in
 	        //if(Auth::attempt($result['id'])) {
