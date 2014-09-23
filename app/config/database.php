@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'thelobbi',
-			'username'  => 'thelobbi',
-			'password'  => 'nl511988',
+			'database'  => 'forge',
+			'username'  => 'forge',
+			'password'  => 'YSbYA7kc28Vlm1WDekWL',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
