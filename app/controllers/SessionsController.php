@@ -30,7 +30,7 @@ class SessionsController extends BaseController {
 	 * False otherwise.
 	 */
 	private function getUserId($field, $value) {
-		if(! in_array($field, $allowableSocialAuths))
+		if(! in_array($field, $this->$allowableSocialAuths))
 			return false;
 
 		$user_id = User::where($field, '=', $value)->first();
