@@ -5,8 +5,8 @@
   			<div class="col-md-6 col-md-offset-3">
 
 				<p>You're almost there. Let's create you a new username and password.</p>
-				
-				{{ Form::open(['action' => 'UsersController@store', 'id' => 'new-user-form']) }}
+
+				{{ Form::open(['route' => 'UsersController@store', 'id' => 'new-user-form']) }}
 
 		            <div class="form-group">
 		              {{ Form::label('username', 'Username') }} <span class="text-primary">*</span> <!--<small class="text-danger form-error-message">This is an error.</small>-->
