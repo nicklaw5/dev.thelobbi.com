@@ -93,8 +93,8 @@ class SessionsController extends BaseController {
 			// and password
 			} else {
 
-				Session::put('socialId', $result);
-				return Redirect::to('users.create');
+				//Session::put('socialId', $result);
+				return View::make('users.create')->with($result);
 				/*
 				// Register new user
 				$this->user->facebook_id 			= (string)$result['id'];
