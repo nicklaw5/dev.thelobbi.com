@@ -4,7 +4,8 @@ class SessionsController extends BaseController {
 	
 	protected $user;
 
-	private $allowableSocialAuths = ['facebook_id', 'google_id', 'twitter_id', 'twitch_id'];
+	// An array of acceptable social login methods
+	private $allowableSocialAuths = ['facebook', 'google', 'twitter', 'twitch'];
 
 	function __construct(User $user) {
 		$this->user = $user;
@@ -29,15 +30,12 @@ class SessionsController extends BaseController {
 	 * The user's 'user_id' is returned if possible.
 	 * False otherwise.
 	 */
-	private function getUserId($field, $value) {
+	private function getUserIdGivenSocialId($socialNetwork, $socialNetworkId) {
 		if(! in_array($field, $this->allowableSocialAuths))
 			return false;
-
-		$user_id = User::where($field, '=', $value)->first();
-		
+		$user_id = User::where($field . '_id', '=', $value)->first();
 		if($user_id)
 			return $user_id;
-
 		return false;
 	}
 
@@ -66,10 +64,7 @@ class SessionsController extends BaseController {
 	        // Send a request with it
 	        $result = json_decode($fb->request('/me'), true);
 
-	        //$message = 'Your unique facebook user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-	        //echo $message. "<br/>";
-
-	    //     array (size=11)
+	    	// array (size=11)
 			  // 'id' => string '10152691339070739' (length=17)
 			  // 'email' => string 'nick_law@tpg.com.au' (length=19)
 			  // 'first_name' => string 'Nicholas' (length=8)
@@ -82,22 +77,25 @@ class SessionsController extends BaseController {
 			  // 'updated_time' => string '2014-09-16T23:09:58+0000' (length=24)
 			  // 'verified' => boolean true
 
-	        // Check if user already exists
-	        $user_id = $this->getUserId('facebook_id', (string)$result['id']);
+	        // Check if user has already registered with
+	        // this social network.
+	        $user_id = $this->getUserIdGivenSocialId('facebook', (string)$result['id']);
 
+	        // If they do exist, sign them in and return
+	        // them to the the page they came from.
 	        if($user_id) {
 
-	        	Auth::login($user_id);
-				//return Auth::user();        	
-				return Redirect::to('/');
+	        	Auth::login($user_id);     	
+				return Redirect::back();
 
-	        // User already exists, sign them in
-	        //if(Auth::attempt($result['id'])) {
-
-	        //	return Auth::user();
-
+			// else, store the user's social data in a session
+			// variable and have them create a new username
+			// and password
 			} else {
 
+				Session::put('socialId', $result);
+				return Redirect:to('users.create');
+				/*
 				// Register new user
 				$this->user->facebook_id 			= (string)$result['id'];
 		        $this->user->email 					= (string)$result['email'];
@@ -109,9 +107,10 @@ class SessionsController extends BaseController {
 		        $this->user->save();
 
 		        // Sign in new user
-		        $user_id = $this->getUserId('facebook_id', (string)$result['id']);
+		        $user_id = $this->getUserIdGivenSocialId('facebook', (string)$result['id']);
 		        Auth::login($user_id);
 		        return Redirect::to('/');
+		        */
 		    }
 	        
 	        //Var_dump
@@ -219,7 +218,7 @@ class SessionsController extends BaseController {
 			  // 'locale' => string 'en-GB' (length=5)
 
 	        //Check if user already exists
-	        $user_id = $this->getUserId('google_id', (string)$result['id']);
+	        $user_id = $this->getUserIdGivenSocialId('google', (string)$result['id']);
 
 	        if($user_id) {
 
@@ -245,7 +244,7 @@ class SessionsController extends BaseController {
 		        $this->user->save();
 
 		        //Sign in new user
-		        $user_id = $this->getUserId('google_id', (string)$result['id']);
+		        $user_id = $this->getUserIdGivenSocialId('google', (string)$result['id']);
 		        Auth::login($user_id);
 		        return Redirect::to('/');
 		    }

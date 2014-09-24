@@ -56,6 +56,26 @@ Route::filter('auth.basic', function()
 
 /*
 |--------------------------------------------------------------------------
+| Admin Filter
+|--------------------------------------------------------------------------
+|
+| The "admin" filter works alongside the authentication filters as to make
+| sure that only users with admininstrator permissions are allowed to
+| access specific administrator-only pages.
+|
+*/
+
+Route::filter('admin', function() 
+{
+	//user not logged in or not admin
+	if(!Auth::user() || !Auth::user()->group_id > 1) {
+		return 'You must be an admin to access this page.';
+		//return Redirect::to('/login');
+	}
+});
+
+/*
+|--------------------------------------------------------------------------
 | Guest Filter
 |--------------------------------------------------------------------------
 |

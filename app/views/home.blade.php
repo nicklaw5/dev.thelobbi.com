@@ -1,7 +1,22 @@
 @extends('layouts.default')
     @section('content')
-        <div style="border: 2px solid #080808; background: #222222; height: 420px; max-width:1170px" class="feature-content">
-            <h1 style="padding-top:150px; text-align: center">Feature Content</h1>
+        <div class="feature-container">
+
+            <div class="feature-container-inner">
+                <!--<div class="overlay-left"></div>
+                <!--<div class="overlay-right"></div>        -->
+                <div class="feature-container-inner-major">
+                    <a href="#">
+                    <div>
+                        <span class="text-shadow">Assassin's Creed: Unity</span>
+                        <h4>Bravely Second is More of The Bravely Default We Love - TGS 2014</h4>
+                        <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                    </div>
+                    </a>
+                </div>
+                <div class="feature-container-inner-minor feature-container-inner-minor-top"></div> 
+                <div class="feature-container-inner-minor feature-container-inner-minor-bottom"></div>
+            </div> 
         </div>
 
         @include('ads.leaderboard')
@@ -44,8 +59,15 @@
 
                     <ul class="media-list">
                         <li class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object img-b img-responsive" src="/assets/images/bman420x236.jpg" alt="">
+                            <a href="#" >
+                                <div class="pull-left img-overlay-video" style="width: 320px;
+                                                                        height: 182px;
+                                                                        background: url('/assets/images/Assassins-Creed-Unity-assassination.jpg') no-repeat center center;
+                                                                        background-size: cover;
+                                                                        border: 3px solid #080808;
+                                                                        margin-right: 10px">
+                                    <i class="fa fa-play-circle-o"></i>                                                                        
+                                </div>
                             </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
@@ -62,13 +84,21 @@
             <div class="six-items">
                 <ul class="col-md-4 col-sm-12 six-column six-column-first">
                     <li>
-                        <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
+                        <a href="#" >
+                            <div class="img-overlay-video" style="width: 370px; height: 211px;background: url('/assets/images/bman420x236.jpg') no-repeat; border: 3px solid #080808">
+                                
+                            </div>
+                        </a>
                         <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
                         <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
                         <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
                     </li>
                     <li>
-                        <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>                        
+                        <a href="#" >
+                            <div class="img-overlay-video" style="width: 370px; height: 211px;background: url('/assets/images/bman420x236.jpg') no-repeat; border: 3px solid #080808">
+                                <i class="fa fa-play-circle-o"></i>
+                            </div>
+                        </a>
                         <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
                         <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
                         <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
@@ -76,13 +106,22 @@
                 </ul>
                 <ul class="col-md-4 col-sm-6 six-column six-column-middle">
                     <li>                        
-                        <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
+                        <a href="#" >
+                            <div class="img-overlay-video" style="width: 370px; height: 211px;background: url('/assets/images/bman420x236.jpg') no-repeat; border: 3px solid #080808">
+                                <i class="fa fa-play-circle-o"></i>
+                            </div>
+                        </a>
+                        
                         <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
                         <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
                         <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
                     </li>
                     <li>                        
-                        <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
+                        <a href="#" >
+                            <div class="img-overlay-video" style="width: 370px; height: 211px;background: url('/assets/images/bman420x236.jpg') no-repeat; border: 3px solid #080808">
+                                
+                            </div>
+                        </a>
                         <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
                         <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
                         <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
@@ -90,13 +129,24 @@
                 </ul>
                 <ul class="col-md-4 col-sm-6 six-column six-column-last">
                     <li>                        
-                        <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
+                        <a href="#" >
+                            <div class="img-overlay-video" style="width: 370px;
+                                                                    height: 211px;
+                                                                    background: url('/assets/images/Flagship_feature-resized.jpg') no-repeat center center;
+                                                                    background-size: cover;
+                                                                    border: 3px solid #080808">
+                            </div>
+                        </a>
                         <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
                         <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
                         <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
                     </li>
                     <li>                        
-                        <a href="#"><img class="img-b img-responsive" src="/assets/images/bman420x236.jpg" alt=""></a>
+                        <a href="#" >
+                            <div class="img-overlay-video" style="width: 370px; height: 211px;background: url('/assets/images/bman420x236.jpg') no-repeat; border: 3px solid #080808">
+                                <i class="fa fa-play-circle-o"></i>
+                            </div>
+                        </a>
                         <h4><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
                         <p><small>Posted by <a href="#">Nicholas Law</a> 3 hours ago.</small></p>
                         <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>

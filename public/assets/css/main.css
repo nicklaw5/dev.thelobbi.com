@@ -12,11 +12,26 @@ body {
 	padding: 0;
 }
 
+.img-overlay-video {
+	text-align: center;
+}
+.img-overlay-video i {
+	position: relative;
+	top: 50%;
+	color: #fff;	/*#2a9fd6*/
+	margin-top: -40px;
+	font-size: 80px;
+	cursor: pointer;
+}
+.img-overlay-video:hover {
+	opacity: .8;
+}
+
 .br-none 		{ border-radius: 0; }
 .pr-none 		{ padding-right: 0; }
 .p-none 		{ padding: 0; }
 .img-b 			{ border: 3px solid #080808; }
-.text-shadow 	{text-shadow: 2px 1px #080808; }
+.text-shadow 	{ text-shadow: 2px 1px #080808; }
 
 .text-link {
 	color: #ffffff;
@@ -32,13 +47,88 @@ body {
 /**
 ** Home Page
 */
-.feature-content {
-	margin-top: 20px;
-	height: 420px;
-	width: 1170px;
-	margin-left: auto;
-	margin-right: auto;
+.feature-container {
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	background: #000;
 }
+.feature-container-inner {	
+	width: 85%;
+	height: 420px;
+	margin: 0 auto;
+}
+.overlay-left {
+	position: relative;
+	top: 0;
+	left: 0;
+	background: url('/assets/images/overlay-left.png') repeat-y;
+	height: 420px;
+	width: 280px;
+	z-index: 5;
+}
+/*.overlay-left {
+	position: relative;
+	width: 280px;
+	height: 420px;
+	top: 0;
+	left: 0;
+	float: left;
+	background: url('/assets/images/overlay-left.png');	
+}
+.overlay-right {
+	position: relative;
+	width: 280px;
+	height: 420px;
+	top: 0;
+	right: 0;
+	float: right;
+	background: url('/assets/images/overlay-right.png');	
+}*/
+.feature-container-inner-major {
+	float: left;
+	background: url('/assets/images/Assassins-Creed-Unity-assassination.jpg') no-repeat center center;
+	background-size:cover;
+	width: 60%;
+	height: 420px;
+	margin: 0 auto;	
+	border-right: 1px #000 solid;
+}
+.feature-container-inner-major div {
+	padding-top: 200px;
+	padding-left: 20px;
+    width: 60%;
+}
+.feature-container-inner-major span {
+	text-transform: uppercase;
+	font-size: 12px;
+}
+.feature-container-inner-major h4 {
+	margin-top: 10px;
+}
+.feature-container-inner-major p {
+	color: #fff;
+}
+.feature-container-inner-minor {
+	float: right;
+	width: 40%;
+	height: 210px;
+	margin: 0 auto;
+}
+.feature-container-inner-minor-top {
+	border-bottom: 1px #000 solid;
+	border-left: 1px #000 solid;
+	background: url('/assets/images/bman420x236.jpg') no-repeat center center;
+	background-size:cover;
+}
+.feature-container-inner-minor-bottom {
+	border-top: 1px #000 solid;
+	border-left: 1px #000 solid;
+	background: url('/assets/images/Flagship_feature-resized.jpg') no-repeat center center;
+	background-size:cover;
+}
+
+
 .item {
 	/*padding: 0 0 0 0;
 	width: 330px !important; 
