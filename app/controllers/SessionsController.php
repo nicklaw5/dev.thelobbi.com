@@ -94,7 +94,7 @@ class SessionsController extends BaseController {
 			} else {
 
 				//Session::put('socialId', $result);
-				return View::make('users.create')->with($result);
+				return View::make('users.create')->with('result',  $result);
 				/*
 				// Register new user
 				$this->user->facebook_id 			= (string)$result['id'];
