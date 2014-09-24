@@ -33,7 +33,7 @@ class SessionsController extends BaseController {
 	private function getUserIdGivenSocialId($socialNetwork, $socialNetworkId) {
 		if(! in_array($field, $this->allowableSocialAuths))
 			return false;
-		$user_id = User::where($field . '_id', '=', $value)->first();
+		$user_id = User::where($socialNetwork . '_id', '=', $socialNetworkId)->first();
 		if($user_id)
 			return $user_id;
 		return false;
