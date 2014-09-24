@@ -1,3 +1,4 @@
+<?php
 @include('layouts.header')
 
 	@if(isset($result))
