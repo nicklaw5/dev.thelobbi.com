@@ -1,8 +1,8 @@
 @include('layouts.header')
 
-	@if(isset(Session::has('socialId')))
+	@if(isset($result))
 		<pre>
-			dd(Session::get('socialId'));
+			dd($result);
 		</pre>
 	@endif
 
