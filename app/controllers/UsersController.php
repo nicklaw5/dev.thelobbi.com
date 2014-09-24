@@ -6,7 +6,12 @@ class UsersController extends BaseController {
 		$this->user = $user;
 	}
 
+
+	public function create() {
+		return View::make('users.create');
+	}
+
 	public function store() {
-		
+
 	}
 }

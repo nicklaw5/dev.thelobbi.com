@@ -2,7 +2,7 @@
 	
 	<div class="container">
 		<div class="row">
-  			<div class="col-md-4 col-md-offset-4">
+  			<div class="col-md-4 col-md-offset-4 new-user-form-container">
 
 				<p>You're almost there. Let's create you a new username and password.</p>
 
@@ -23,7 +23,7 @@
 		              {{ Form::password('confirm-password', ['class' => 'form-control br-none', 'placeholder' => 'Confirm Password', 'autocomplete' => 'off', 'required']) }}
 		            </div>
 
-		            {{ Form::submit('Continue', ['class' => 'btn btn-default btn-lg btn-block br-none']) }}
+		            {{ Form::submit('Create Account', ['class' => 'btn btn-default btn-lg btn-block br-none']) }}
 
 		        {{ Form::close() }}
 
