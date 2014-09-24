@@ -1,9 +1,7 @@
 @include('layouts.header')
 
 	@if(isset($result))
-		<pre>
-			dd($result);
-		</pre>
+		dd($result);
 	@endif
 
 @include('layouts.footer')
