@@ -2,7 +2,7 @@
 	
 	<div class="container">
 		<div class="row">
-  			<div class="col-md-6 col-md-offset-3">
+  			<div class="col-md-4 col-md-offset-4">
 
 				<p>You're almost there. Let's create you a new username and password.</p>
 
