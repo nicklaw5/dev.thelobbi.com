@@ -34,6 +34,7 @@ Route::when('admin/*', 'admin');
 
 
 //Route::resource('users', 'AdminController@users', array('before'=>'auth'));
+Route::resource('users', 'UsersController');
 Route::resource('sessions', 'SessionsController');
 Route::resource('videos', 'VideosController');
 Route::resource('articles', 'ArticlesController');
