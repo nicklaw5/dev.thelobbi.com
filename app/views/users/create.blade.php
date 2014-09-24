@@ -1,10 +1,9 @@
-@include(layouts.header)
-	@if(isset($result))
+@include('layouts.header')
+
+	@if(isset(Session::has('socialId')))
 		<pre>
-			dd($result);
-			<!-- dd(Session::get('socialId'));
-			Session::forget('socialId'); -->
+			dd(Session::get('socialId'));
 		</pre>
 	@endif
 
-@include(layouts.footer)
+@include('layouts.footer')
