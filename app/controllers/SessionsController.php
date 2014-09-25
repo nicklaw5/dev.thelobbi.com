@@ -339,9 +339,9 @@ class SessionsController extends BaseController {
 
 		    //dd($user);
 
-		    Session::forget('socialId');
-			Session::put('socialId', $user);
-			return View::make('users.create');
+		 	// Session::forget('socialId');
+			// Session::put('socialId', $user);
+			return View::make('users.create')->with('socialData', $user);
 
 	    } else {
 	    	
