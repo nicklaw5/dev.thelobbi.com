@@ -36,6 +36,14 @@
         </div>
 	</div>
 	<!-- END .container -->
+	
+	@if(isset($display_name))
+		<script type="text/javascript">
+		$function() {
+			checkIfUsernameAvailable( {{ $display_name }} );
+		}
+		</script>
+	@endif
 
 	<script  type="text/javascript">
 		$(function() {
@@ -54,6 +62,21 @@
 			var gotIt = check_icon + 'You got it!';
 			var allyours = check_icon + 'It\'s all yours!';
 
+			function checkIfUsernameAvailable(username) {
+				$.post(postUrl, { username: username }, function(resp) {
+					console.log('request sent');
+					if(resp === 'exists') {
+						$('#username-error').html(remove_icon + 'Username already in use.').css("color", dangerColor);
+						$('#username').css("border-color", dangerColor);
+					} else {
+						$('#username-error').html(check_icon + 'Username is available!').css("color", successColor);
+						$('#username').css("border-color", successColor);
+					}
+				});				
+			}
+
+			
+
 			$('#username').keyup(function() {
 				var username = $(this).val();
 
@@ -70,18 +93,10 @@
 				}
 				else {
 					//check if username already taken (AJAX)
-					$.post(postUrl, { username: username }, function(resp) {
-						console.log('request sent');
-						if(resp === 'exists') {
-							$('#username-error').html(remove_icon + 'Username already in use.').css("color", dangerColor);
-							$('#username').css("border-color", dangerColor);
-						} else {
-							$('#username-error').html(check_icon + 'It\'s all yours!').css("color", successColor);
-							$('#username').css("border-color", successColor);
-						}
-					});
+					checkIfUsernameAvailable(username);
 				}
 			});
+			
 			
 			
 			$('#password').keyup(function() {
