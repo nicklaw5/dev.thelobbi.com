@@ -30,7 +30,7 @@ class SessionsController extends BaseController {
 	private function packSocialData($social_provider, $social_id, $social_username = null, 
 										$social_email, $social_gender = null, $user_active) {
 		$socialData = array(
-		  	'provider' 			=> (string)$social_network,			//  'facebook', 'twitch', 'twitter' or 'google'
+		  	'provider' 			=> (string)$social_provider,			//  'facebook', 'twitch', 'twitter' or 'google'
 		  	'id' 				=> (string)$social_id,				//  '453546'
 		  	'username'			=> (string)$social_username,		//	'my_username'
 		  	'email' 			=> (string)$social_email,			//	'my_username@example.com'
