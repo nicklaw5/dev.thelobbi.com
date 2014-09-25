@@ -88,7 +88,7 @@ class SessionsController extends BaseController {
 
 	        // Check if user has already registered with
 	        // this social network.
-	        $user_id = $this->getUserIdGivenSocialId('facebook', (string)$result['id']);
+	        $user_id = $this->getUserIdGivenSocialId('facebook', (string)$response['id']);
 
 	        // If they do exist, sign them in and return
 	        // them to the the page they came from.
