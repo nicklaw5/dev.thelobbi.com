@@ -345,7 +345,6 @@ class SessionsController extends BaseController {
 
 	    } else {
 	    	
-
 	    	//request permission
 			$request_url = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=' . $client_id . '&redirect_uri=' . $return_url . '&scope=user_read';
 			return Redirect::to($request_url);
