@@ -72,10 +72,10 @@
 				});				
 			}
 
-			//@if(isset($display_name))
-				//var display_name = (string){{ $display_name }};
+			@if(isset($display_name))
+				var display_name = <?php echo $display_name; ?>;
 				checkIfUsernameAvailable({{ $display_name }});
-			//@endif
+			@endif
 			
 
 			$('#username').keyup(function() {
