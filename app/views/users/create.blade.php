@@ -39,9 +39,9 @@
 	
 	@if(isset($display_name))
 		<script type="text/javascript">
-		$function() {
+		$(function() {
 			checkIfUsernameAvailable( {{ $display_name }} );
-		}
+		});
 		</script>
 	@endif
 
