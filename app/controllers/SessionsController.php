@@ -321,7 +321,7 @@ class SessionsController extends BaseController {
 			    ));
 		    $user = json_decode(curl_exec ($curl), true);
 		    curl_close ($curl);
-		    return $user['id'];
+		    dd($user);
 			
 
 	    	//https://api.twitch.tv/kraken/oauth2/token
