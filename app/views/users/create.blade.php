@@ -74,7 +74,7 @@
 
 			//@if(isset($display_name))
 				//var display_name = (string){{ $display_name }};
-				checkIfUsernameAvailable('nick');
+				checkIfUsernameAvailable({{ $display_name }});
 			//@endif
 			
 
