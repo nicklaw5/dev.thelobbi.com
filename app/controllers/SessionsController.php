@@ -317,7 +317,7 @@ class SessionsController extends BaseController {
 		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 			    'Accept: application/vnd.twitchtv.v3+json',
-			    'Authorization: OAuth ' . $result['access_token'];
+			    'Authorization: OAuth ' . $result['access_token']
 			    ));
 		    $user = curl_exec ($curl);
 		    curl_close ($curl);
