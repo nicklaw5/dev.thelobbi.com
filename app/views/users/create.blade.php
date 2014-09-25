@@ -122,7 +122,10 @@
 			$('#new-user-form').on("submit", function(evt) {
 				evt.preventDefault();
 				
-				$(this).submit();
+				var username = $('#username').val();
+				var password = $('#password').val();
+
+				$.post( postUrl, { username: username, password: password } );
 			})
 
 		});
