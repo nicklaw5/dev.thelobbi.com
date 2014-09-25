@@ -319,7 +319,7 @@ class SessionsController extends BaseController {
 			    'Accept: application/vnd.twitchtv.v3+json',
 			    'Authorization: OAuth ' . $result['access_token']
 			    ));
-		    $user = json_decode(curl_exec ($curl), true);
+		    $user = curl_exec ($curl);
 		    curl_close ($curl);
 		    return $user['id'];
 			
