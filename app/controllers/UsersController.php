@@ -18,7 +18,7 @@ class UsersController extends BaseController {
 				
 		//check if username already exists
 		if(Request::ajax())	{
-			if(isset(Input::get('checkUsername')) && Input::get('checkUsername') === '') {
+			if(isset(Input::get('checkUsername'))) {
 				$username = (string)Input::get('username');
 				$usernameFound = User::where('username', '=', $username)->first();
 				if($usernameFound) {
