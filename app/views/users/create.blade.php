@@ -5,7 +5,7 @@
 
   			<div class="col-md-4 col-md-offset-4" id="new-user-form-container">
   				
-  				<h4>CREATE NEW ACCOUNT - {{ $display_name }}</h4>
+  				<h4>CREATE NEW ACCOUNT</h4>
   				<hr>
 				<p>Looks like you're new here. Let's create you a username and password.</p>
 
@@ -67,12 +67,13 @@
 						$('#username-error').html(check_icon + 'Username is available!').css("color", successColor);
 						$('#username').css("border-color", successColor);
 					}
-				});				
+				});
 			}
 
-
+			// If username input field already populated,
+			// check if username is available.
 			if($('#username').val() !== '') {
-				checkIfUsernameAvailable($('#username').val());
+				checkIfUsernameAvailable('nick');
 			}
 			
 
@@ -91,7 +92,7 @@
 					$('#username').css("border-color", dangerColor);
 				}
 				else {
-					//check if username already taken (AJAX)
+					//check if username already taken
 					checkIfUsernameAvailable(username);
 				}
 			});

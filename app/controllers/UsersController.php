@@ -20,15 +20,12 @@ class UsersController extends BaseController {
 
 		//check if username already exists
 		if(Request::ajax())	{
-			
 			$usernameFound = User::where('username', '=', $username)->first();
-
 			if($usernameFound) {
 				return 'exists';
 			} else {
 				return 'available';
-			}
-			
+			}	
 		}
 	}
 
