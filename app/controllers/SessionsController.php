@@ -103,7 +103,7 @@ class SessionsController extends BaseController {
 			// and password
 			} else {
 				// create session variable
-				$socialData = $this->packSocialData('facebook', $response['id'], null, $response['email'], $response['gender'], 1);
+				$this->packSocialData('facebook', $response['id'], null, $response['email'], $response['gender'], 1);
 				return View::make('users.create');
 		    }
 	        
@@ -308,7 +308,7 @@ class SessionsController extends BaseController {
 			    'Accept: application/vnd.twitchtv.v3+json',
 			    'Authorization: OAuth ' . $result['access_token']
 			    ));
-		    $user = json_decode(curl_exec ($curl), true);
+		    $response = json_decode(curl_exec ($curl), true);
 		    curl_close ($curl);
 
 		   //  array (size=11)
@@ -330,7 +330,8 @@ class SessionsController extends BaseController {
 
 		 	// Session::forget('socialId');
 			// Session::put('socialId', $user);
-			return View::make('users.create')->with('display_name', $user['display_name']);
+			$this->packSocialData('twitch', $response['_id'], $response['display_name'], $response['email'], null, 1);
+			return View::make('users.create');
 
 	    } else {
 	    	
