@@ -37,12 +37,12 @@ class UsersController extends BaseController {
 
 			// Register new user
 
-			'provider' 			=> (string)$social_provider,		//  'facebook', 'twitch', 'twitter', 'google' or null
-		  	'id' 				=> (string)$social_id,				//  '453546'
-		  	'username'			=> (string)$social_username,		//	'my_username'
-		  	'email' 			=> (string)$social_email,			//	'my_username@example.com'
-		  	'gender' 			=> (string)$social_gender,			//	'male', 'female' or null
-		  	'active'			=> (int)$user_active				// 	 1 (true) or 0 (false)
+			// 'provider' 			=> (string)$social_provider,		//  'facebook', 'twitch', 'twitter', 'google' or null
+		 //  	'id' 				=> (string)$social_id,				//  '453546'
+		 //  	'username'			=> (string)$social_username,		//	'my_username'
+		 //  	'email' 			=> (string)$social_email,			//	'my_username@example.com'
+		 //  	'gender' 			=> (string)$social_gender,			//	'male', 'female' or null
+		 //  	'active'			=> (int)$user_active				// 	 1 (true) or 0 (false)
 
 			$socialData = Session::get('socialData');
 
@@ -68,7 +68,7 @@ class UsersController extends BaseController {
 		    $this->user->email 				= $socialData['email'];
 	        $this->user->username 			= Input::get('username');
 	        $this->user->password 			= Hash::make(Input::get('password'));
-	        $this->user->email_verified		= (! is_null($socialData['provider'))? (int)1 : int(0);
+	        $this->user->email_verified		= (! is_null($socialData['provider']))? (int)1 : (int)0;
 	        $this->user->gender 			= $socialData['gender'];
 	        $this->user->active 			= ($socialData['active'] === 1)? (int)1 : (int)0;
 
