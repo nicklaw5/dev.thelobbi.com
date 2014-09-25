@@ -44,14 +44,14 @@
 			
 			// Password strength: 6 characters, at least one upper and
 			// lowercase letter, and one digit
-			var remove_icon = '<i class="fa fa-remove"></i> ';
-			var check_icon = '<i class="fa fa-check"></i> ';
+			var remove_icon = '&lt;i class=&quot;fa fa-remove&quot;&gt;&lt;/i&gt; ';
+			var check_icon = '&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt; ';
 			var postUrl = $('#new-user-form').attr('action');
 			var passwordStrengthRegex = /^((?=.*[0-9])(?=.*[a-zA-Z]).{6,})$/g;
 			var usernameRegex = /^[a-zA-Z0-9_-]{4,25}$/;
 			var dangerColor = '#cc0000';
 			var successColor = '#77b300';
-			var passRules = remove_icon + 'Rules: 6 characters (incl. numbers and letters)';
+			var passRules = remove_icon + 'Min. 6 characters (incl. numbers and letters)';
 			var passMatch = remove_icon + 'Passwords don\'t match.';
 			var gotIt = check_icon + 'You got it!';
 			var allyours = check_icon + 'It\'s all yours!';
