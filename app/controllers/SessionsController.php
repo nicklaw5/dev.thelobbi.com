@@ -302,7 +302,27 @@ class SessionsController extends BaseController {
 			$context  = stream_context_create($options);
 			$result = json_decode(file_get_contents($url, false, $context), true);
 
-			dd($result);
+			//dd($result);
+
+			//$access_request = 'https://[your registered redirect URI]/#access_token=[an access token]&scope=[authorized scopes]'
+
+
+			// curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <access_token>' \
+			// -X GET https://api.twitch.tv/kraken/user
+
+
+			// create a new cURL resource
+			$curl = curl_init();
+		    curl_setopt($curl, CURLOPT_URL,"https://api.twitch.tv/kraken/user");
+		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+			    'Accept: application/vnd.twitchtv.v3+json',
+			    'Authorization: OAuth ' . $result['access_token'];
+			    ));
+		    $user = curl_exec ($curl);
+		    curl_close ($curl);
+		    dd($user);
+			
 
 	    	//https://api.twitch.tv/kraken/oauth2/token
 
