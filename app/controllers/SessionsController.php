@@ -314,7 +314,7 @@ class SessionsController extends BaseController {
 			// create a new cURL resource
 			$curl = curl_init();
 		    curl_setopt($curl, CURLOPT_URL,"https://api.twitch.tv/kraken/user");
-		    //curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 			    'Accept: application/vnd.twitchtv.v3+json',
 			    'Authorization: OAuth ' . $result['access_token']
