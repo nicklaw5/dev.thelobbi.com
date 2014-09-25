@@ -276,9 +276,6 @@ class SessionsController extends BaseController {
 		$client_id = 'nsvagmf9u0fw2pquajzkd1cxa0fbc6b';
 		$client_secret = 'rl40owzw5nhhv66oqzj7ibdtj5as7xa';
 
-
-
-
 		// get data from input
 	    $code = Input::get( 'code' );
 
@@ -322,7 +319,7 @@ class SessionsController extends BaseController {
 
 	    	//request permission
 			$request_url = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=' . $client_id . '&redirect_uri=' . $return_url . '&scope=user_read';
-			Redirect::to($request_url);
+			return Redirect::to($request_url);
 
 	    }
 
