@@ -92,9 +92,9 @@ class SessionsController extends BaseController {
 			// variable and have them create a new username
 			// and password
 			} else {
-
-				//Session::put('socialId', $result);
-				return View::make('users.create')->with('result',  $result);
+				Session::forget('socialId');
+				Session::put('socialId', $result);
+				return View::make('users.create');	
 				/*
 				// Register new user
 				$this->user->facebook_id 			= (string)$result['id'];
@@ -262,6 +262,45 @@ class SessionsController extends BaseController {
 	        // return to google login url
 	        return Redirect::to( (string)$url );
 	    }
+	}
+
+
+	/**
+	 * Login user with Google
+	 *
+	 * @return void
+	 */
+	public function loginWithTwitch() {
+		
+		$return_url = 'http://dev.thelobbi.com/twitch-signin';
+		$client_id = 'nsvagmf9u0fw2pquajzkd1cxa0fbc6b';
+		$client_secret = 'rl40owzw5nhhv66oqzj7ibdtj5as7xa';
+
+		// get data from input
+	    $code = Input::get( 'code' );
+
+	    if ( !empty( $code ) ) {
+
+	    	Redirect::to('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=' . $client_secret . '&grant_type=authorization_code&redirect_uri=' . $return_url . '&code=' . $code);
+
+	    	//https://api.twitch.tv/kraken/oauth2/token
+
+			// POST Body (URL-encoded)
+
+			// client_id=[your client ID]
+			// &client_secret=[your client secret]
+			// &grant_type=authorization_code
+			// &redirect_uri=[your registered redirect URI]
+			// &code=[code received from redirect URI]
+
+	    } else {
+	    	return 'code not set';
+	    }
+
+
+
+	    https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=nsvagmf9u0fw2pquajzkd1cxa0fbc6b&redirect_uri=http://dev.thelobbi.com/twitch-signin&scope=user_read
+
 	}
 
 }

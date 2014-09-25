@@ -43,7 +43,7 @@ return array(
             'client_secret' => 'opTuvKpQ2lWUFUni0tJImam7wu5tHPWXwB2asvoToCTM6gDITM',
             'scope'         => array(),
             // No scope - oauth1 doesn't need scope
-        ),  
+        ), 
     )
 
 );
