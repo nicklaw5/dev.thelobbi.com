@@ -13,7 +13,7 @@
 
 		            <div class="form-group">
 		              {{ Form::label('username', 'Username') }} <span class="text-primary">*</span> <small id="username-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::text('username', $display_name, ['id' => 'username', 'class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}
+		              {{ Form::text('username', Session::get('socialData')['username'], ['id' => 'username', 'class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}
 		            </div>
 
 		            <div class="form-group">
@@ -73,7 +73,7 @@
 			// If username input field already populated,
 			// check if username is available.
 			if($('#username').val() !== '') {
-				checkIfUsernameAvailable('nick');
+				checkIfUsernameAvailable($('#username').val());
 			}
 			
 

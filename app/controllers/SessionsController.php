@@ -3,7 +3,7 @@
 class SessionsController extends BaseController {
 	
 	protected $user;
-
+	
 	// An array of acceptable social login methods
 	private $allowableSocialAuths = ['facebook', 'google', 'twitter', 'twitch'];
 
@@ -24,6 +24,31 @@ class SessionsController extends BaseController {
 		return Redirect::to('/');
 	}
 	
+	/**
+	 * Pack social data into a session variable.
+	 */
+	private function packSocialData($social_provider, $social_id, $social_username = null, 
+										$social_email, $social_gender = null, $user_active) {
+		$socialData = array(
+		  	'provider' 			=> (string)$social_network,			//  'facebook', 'twitch', 'twitter' or 'google'
+		  	'id' 				=> (string)$social_id,				//  '453546'
+		  	'username'			=> (string)$social_username,		//	'my_username'
+		  	'email' 			=> (string)$social_email,			//	'my_username@example.com'
+		  	'social_gender' 	=> (string)$social_gender,			//	'male', 'female' or null
+		  	'active'			=> (int)$user_active				// 	 1 (true) or 0 (false)
+		);
+
+		//set session
+		Session::put('socialData', $socialData);
+
+		// make sure the session data has been set
+		if(Session::has('socialData') && count(Session::has('socialData')) === 6) {
+			return true;		
+		}
+		return false;
+	}
+
+
 	/**
 	 * This function checks to see if we are able
 	 * sign in the user using a specified social network.
@@ -51,9 +76,6 @@ class SessionsController extends BaseController {
 
 	    // get fb service
 	    $fb = OAuth::consumer('Facebook');
-	    //$fb = OAuth::consumer('Facebook','http://url.to.redirect.to');
-
-	    // check if code is valid
 
 	    // if code is provided get user data and sign in
 	    if ( !empty($code) ) {
@@ -62,20 +84,7 @@ class SessionsController extends BaseController {
 	        $token = $fb->requestAccessToken($code);
 
 	        // Send a request with it
-	        $result = json_decode($fb->request('/me'), true);
-
-	    	// array (size=11)
-			  // 'id' => string '10152691339070739' (length=17)
-			  // 'email' => string 'nick_law@tpg.com.au' (length=19)
-			  // 'first_name' => string 'Nicholas' (length=8)
-			  // 'gender' => string 'male' (length=4)
-			  // 'last_name' => string 'Law' (length=3)
-			  // 'link' => string 'https://www.facebook.com/app_scoped_user_id/10152691339070739/' (length=62)
-			  // 'locale' => string 'en_US' (length=5)
-			  // 'name' => string 'Nicholas Law' (length=12)
-			  // 'timezone' => int 10
-			  // 'updated_time' => string '2014-09-16T23:09:58+0000' (length=24)
-			  // 'verified' => boolean true
+	        $response = json_decode($fb->request('/me'), true);
 
 	        // Check if user has already registered with
 	        // this social network.
@@ -85,38 +94,18 @@ class SessionsController extends BaseController {
 	        // them to the the page they came from.
 	        if($user_id) {
 
-	        	Auth::login($user_id);     	
+	        	Auth::login($user_id);   	
 				return Redirect::back();
 
 			// else, store the user's social data in a session
 			// variable and have them create a new username
 			// and password
 			} else {
-				Session::forget('socialId');
-				Session::put('socialId', $result);
+				// create session variable
+				$socialData = packSocialData('facebook', $response['id'], null, $response['email'], $response['gender'], 1);
 				return View::make('users.create');
-				/*
-				// Register new user
-				$this->user->facebook_id 			= (string)$result['id'];
-		        $this->user->email 					= (string)$result['email'];
-		        $this->user->username 				= (string)'nick';
-		        $this->user->password 				= (string)Hash::make('nl511988');
-		        $this->user->email_verified 		= (int)1;
-		        $this->user->gender 				= (string)$result['gender'];
-		        $this->user->active 				= (int)1;
-		        $this->user->save();
-
-		        // Sign in new user
-		        $user_id = $this->getUserIdGivenSocialId('facebook', (string)$result['id']);
-		        Auth::login($user_id);
-		        return Redirect::to('/');
-		        */
 		    }
 	        
-	        //Var_dump
-	        //display whole array().
-	        //dd($result);
-
 	    }
 	    // if not ask for permission first
 	    else {
@@ -126,7 +115,6 @@ class SessionsController extends BaseController {
 	        // return to facebook login url
 	         return Redirect::to((string)$url);
 	    }
-
 	}
 
 
