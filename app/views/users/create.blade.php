@@ -37,13 +37,6 @@
 	</div>
 	<!-- END .container -->
 	
-	@if(isset($display_name))
-		<script type="text/javascript">
-		$(function() {
-			checkIfUsernameAvailable( {{ $display_name }} );
-		});
-		</script>
-	@endif
 
 	<script  type="text/javascript">
 		$(function() {
@@ -128,5 +121,12 @@
 
 		});
 	</script>
+	@if(isset($display_name))
+		<script type="text/javascript">
+		$(function() {
+			checkIfUsernameAvailable( {{ $display_name }} );
+		});
+		</script>
+	@endif
 
 @include('layouts.footer')
