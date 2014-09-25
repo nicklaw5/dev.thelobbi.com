@@ -57,9 +57,6 @@
 			var allyours = check_icon + 'It\'s all yours!';
 
 			function checkIfUsernameAvailable(username) {
-
-				var username = username;
-
 				$.post(postUrl, { username: username }, function(resp) {
 					console.log('request sent');
 					if(resp === 'exists') {
@@ -72,12 +69,12 @@
 				});				
 			}
 
-			@if(isset($display_name))
-				var display_name = <?php echo $display_name; ?>;
-				checkIfUsernameAvailable({{ $display_name }});
-			@endif
-			
 
+			if(! $('#username').val()) {
+				checkIfUsernameAvailable($('#username'));
+			}
+			
+			
 			$('#username').keyup(function() {
 				var username = $(this).val();
 
@@ -97,8 +94,7 @@
 					checkIfUsernameAvailable(username);
 				}
 			});
-			
-			
+		
 			
 			$('#password').keyup(function() {
 				if(!$(this).val().match(passwordStrengthRegex)) {
