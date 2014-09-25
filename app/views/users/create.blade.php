@@ -5,7 +5,7 @@
 
   			<div class="col-md-4 col-md-offset-4" id="new-user-form-container">
   				
-  				<h4>CREATE NEW ACCOUNT - {{ print_r($user) }}</h4>
+  				<h4>CREATE NEW ACCOUNT - {{ $display_name }}</h4>
   				<hr>
 				<p>Looks like you're new here. Let's create you a username and password.</p>
 
@@ -13,7 +13,7 @@
 
 		            <div class="form-group">
 		              {{ Form::label('username', 'Username') }} <span class="text-primary">*</span> <small id="username-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::text('username', '', ['id' => 'username', 'value' => $user['name'], 'class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}
+		              {{ Form::text('username', '', ['id' => 'username', 'value' => $display_name, 'class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}
 		            </div>
 
 		            <div class="form-group">
