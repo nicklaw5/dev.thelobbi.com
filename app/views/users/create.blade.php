@@ -1,45 +1,6 @@
 @include('layouts.header')
 	
-	<div class="container">
-		<div class="row">
-
-  			<div class="col-md-4 col-md-offset-4" id="new-user-form-container">
-  				
-  				<h4>CREATE NEW ACCOUNT</h4>
-  				<hr>
-				<p>Looks like you're new here. Let's create you a username and password.</p>
-
-				{{ Form::open(['action' => 'UsersController@store', 'id' => 'new-user-form']) }}
-
-		            <div class="form-group">
-		              {{ Form::label('username', 'Username') }} <span class="text-primary">*</span> <small id="username-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::text('username', Session::get('socialData')['username'], ['id' => 'username', 'class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}
-		            </div>
-
-		            <div class="form-group">
-		              {{ Form::label('password', 'Password') }} <span class="text-primary">*</span> <small id="password-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::password('password', ['onkeyup' => 'checkPass()', 'id' => 'password', 'class' => 'form-control br-none', 'placeholder' => 'Password', 'autocomplete' => 'off', 'required']) }}
-		            </div>
-
-		            <div class="form-group">
-		              {{ Form::label('confirm-password', 'Confirm Password') }} <span class="text-primary">*</span> <small id="confirm-password-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::password('confirm-password', ['id' => 'confirm-password', 'class' => 'form-control br-none', 'placeholder' => 'Confirm Password', 'autocomplete' => 'off', 'required']) }}
-		            </div>
-
-		            {{ Form::submit('Create Account', ['id' => 'submit-btn', 'class' => 'btn btn-default btn-lg btn-block br-none']) }}
-
-		        {{ Form::close() }}
-
-		        <p>Already have an account? <a href=""><i class="fa fa-sign-in"></i> Sign in</a></p>
-
-		    </div>
-        </div>
-	</div>
-	<!-- END .container -->
-	
-	
-
-	<script  type="text/javascript">
+<script  type="text/javascript">
 		$(function() {
 			
 			// Password strength: 6 characters, at least one upper and
@@ -129,5 +90,46 @@
 
 		});
 	</script>
+	
+	<div class="container">
+		<div class="row">
+
+  			<div class="col-md-4 col-md-offset-4" id="new-user-form-container">
+  				
+  				<h4>CREATE NEW ACCOUNT</h4>
+  				<hr>
+				<p>Looks like you're new here. Let's create you a username and password.</p>
+
+				{{ Form::open(['action' => 'UsersController@store', 'id' => 'new-user-form']) }}
+
+		            <div class="form-group">
+		              {{ Form::label('username', 'Username') }} <span class="text-primary">*</span> <small id="username-error" class="text-danger form-error-message pull-right"></small>
+		              {{ Form::text('username', Session::get('socialData')['username'], ['id' => 'username', 'class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}
+		            </div>
+
+		            <div class="form-group">
+		              {{ Form::label('password', 'Password') }} <span class="text-primary">*</span> <small id="password-error" class="text-danger form-error-message pull-right"></small>
+		              {{ Form::password('password', ['onkeyup' => 'checkPass()', 'id' => 'password', 'class' => 'form-control br-none', 'placeholder' => 'Password', 'autocomplete' => 'off', 'required']) }}
+		            </div>
+
+		            <div class="form-group">
+		              {{ Form::label('confirm-password', 'Confirm Password') }} <span class="text-primary">*</span> <small id="confirm-password-error" class="text-danger form-error-message pull-right"></small>
+		              {{ Form::password('confirm-password', ['id' => 'confirm-password', 'class' => 'form-control br-none', 'placeholder' => 'Confirm Password', 'autocomplete' => 'off', 'required']) }}
+		            </div>
+
+		            {{ Form::submit('Create Account', ['id' => 'submit-btn', 'class' => 'btn btn-default btn-lg btn-block br-none']) }}
+
+		        {{ Form::close() }}
+
+		        <p>Already have an account? <a href=""><i class="fa fa-sign-in"></i> Sign in</a></p>
+
+		    </div>
+        </div>
+	</div>
+	<!-- END .container -->
+	
+	
+
+	
 
 @include('layouts.footer')
