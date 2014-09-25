@@ -102,7 +102,7 @@ class SessionsController extends BaseController {
 			// and password
 			} else {
 				// create session variable
-				$socialData = packSocialData('facebook', $response['id'], null, $response['email'], $response['gender'], 1);
+				$socialData = $this->packSocialData('facebook', $response['id'], null, $response['email'], $response['gender'], 1);
 				return View::make('users.create');
 		    }
 	        
