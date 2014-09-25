@@ -37,6 +37,7 @@
 	</div>
 	<!-- END .container -->
 	
+	
 
 	<script  type="text/javascript">
 		$(function() {
@@ -68,6 +69,9 @@
 				});				
 			}
 
+			@if(isset($display_name))
+					checkIfUsernameAvailable( {{ $display_name }} );
+			@endif
 			
 
 			$('#username').keyup(function() {
@@ -121,12 +125,5 @@
 
 		});
 	</script>
-	@if(isset($display_name))
-		<script type="text/javascript">
-		$(function() {
-			checkIfUsernameAvailable( {{ $display_name }} );
-		});
-		</script>
-	@endif
 
 @include('layouts.footer')
