@@ -85,7 +85,6 @@ class UsersController extends BaseController {
 
 			
 		} else {
-
 			return 'nothing';
 		}
 
