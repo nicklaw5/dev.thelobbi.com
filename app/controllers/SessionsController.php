@@ -276,12 +276,36 @@ class SessionsController extends BaseController {
 		$client_id = 'nsvagmf9u0fw2pquajzkd1cxa0fbc6b';
 		$client_secret = 'rl40owzw5nhhv66oqzj7ibdtj5as7xa';
 
+
+
+
 		// get data from input
 	    $code = Input::get( 'code' );
 
 	    if ( !empty( $code ) ) {
 
-	    	Redirect::to('https://api.twitch.tv/kraken/oauth2/token?client_id=' . $client_id . '&client_secret=' . $client_secret . '&grant_type=authorization_code&redirect_uri=' . $return_url . '&code=' . $code);
+	    	//get token
+	    	$url = 'https://api.twitch.tv/kraken/oauth2/token';
+	    	$data = array(
+				'client_id' => $client_id, 
+				'client_secret' => $client_secret,
+				'grant_type' => 'authorization_code',
+				'redirect_uri' => $return_url,
+				'code' => $code
+				);
+
+			// use key 'http' even if you send the request to https://...
+			$options = array(
+			    'http' => array(
+			        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+			        'method'  => 'POST',
+			        'content' => http_build_query($data),
+			    ),
+			);
+			$context  = stream_context_create($options);
+			$result = json_decode(file_get_contents($url, false, $context), true);
+
+			dd($result);
 
 	    	//https://api.twitch.tv/kraken/oauth2/token
 
@@ -294,12 +318,17 @@ class SessionsController extends BaseController {
 			// &code=[code received from redirect URI]
 
 	    } else {
-	    	return 'code not set';
+	    	
+
+	    	//request permission
+			$request_url = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=' . $client_id . '&redirect_uri=' . $return_url . '&scope=user_read';
+			Redirect::to($request_url);
+
 	    }
 
 
 
-	    https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=nsvagmf9u0fw2pquajzkd1cxa0fbc6b&redirect_uri=http://dev.thelobbi.com/twitch-signin&scope=user_read
+	    
 
 	}
 
