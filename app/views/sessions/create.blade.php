@@ -1,6 +1,6 @@
 @extends('layouts.default')
 	@section('content')
-		<div class="modal fade bs-modal-signin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		
 		  <div class="modal-dialog modal-lg">
 		    <div class="br-none modal-signin-content modal-content">
 		      
@@ -44,5 +44,5 @@
 
 		    </div>
 		  </div>
-		</div>
+		
 	@stop

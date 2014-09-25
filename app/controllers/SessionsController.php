@@ -27,18 +27,19 @@ class SessionsController extends BaseController {
 	/**
 	 * Pack social data into a session variable.
 	 */
-	private function packSocialData($social_provider, $social_id, $social_username = null, 
+	private function packSocialData($social_provider = null, $social_id, $social_username = null, 
 										$social_email, $social_gender = null, $user_active) {
 		$socialData = array(
-		  	'provider' 			=> (string)$social_provider,			//  'facebook', 'twitch', 'twitter' or 'google'
+		  	'provider' 			=> (string)$social_provider,		//  'facebook', 'twitch', 'twitter', 'google' or null
 		  	'id' 				=> (string)$social_id,				//  '453546'
-		  	'username'			=> (string)$social_username,		//	'my_username'
+		  	'username'			=> (string)$social_username,		//	'my_username' or null
 		  	'email' 			=> (string)$social_email,			//	'my_username@example.com'
-		  	'social_gender' 	=> (string)$social_gender,			//	'male', 'female' or null
+		  	'gender' 			=> (string)$social_gender,			//	'male', 'female' or null
 		  	'active'			=> (int)$user_active				// 	 1 (true) or 0 (false)
 		);
 
 		//set session
+		Session::forget('socialData');
 		Session::put('socialData', $socialData);
 
 		// make sure the session data has been set
@@ -334,9 +335,11 @@ class SessionsController extends BaseController {
 	    } else {
 	    	
 	    	//request permission
-			$request_url = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=' . $client_id . '&redirect_uri=' . $return_url . '&scope=user_read';
+			$request_url = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=code
+								&client_id=' . $client_id . 
+								'&redirect_uri=' . $return_url . 
+								'&scope=user_read';
 			return Redirect::to($request_url);
-
 	    }	    
 
 	}

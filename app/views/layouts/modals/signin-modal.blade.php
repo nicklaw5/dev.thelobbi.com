@@ -18,7 +18,7 @@
         <div class="col-sm-6 signin-form-container">
           <p>Sign in to your account.</p>
 
-          {{ Form::open(['url' => 'foo/bar']) }}
+          {{ Form::open(['action' => 'SessionsController@store']) }}
 
             <div class="form-group">
               {{ Form::label('username', 'Username') }} <span class="text-primary">*</span> <!--<small class="text-danger form-error-message">This is an error.</small>-->

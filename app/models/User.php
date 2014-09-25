@@ -19,10 +19,28 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	protected $hidden = array('password', 'password_temp', 'email_code', 'remember_token');
 
-	public static $rules = [
-		'email' => 'requied',
-		'username' => 'required',
-		'password' => 'required'
+	public $inputErrors;
+	public $inputRules = [
+		'username' 				=> 'required|min:4|max:25|unique:users',
+		'email' 				=> 'requied|unique:users',
+		'password' 				=> 'required|min:6',
+		'confirm-password' 		=> 'same:password'
 	];
+
+
+	/**
+	 * Checks user input values against
+	 * required rules.
+	 */
+	public function isValid($input) {
+
+		$validation = Validator::make($input, $this->inputRules);
+
+		if($validation->passes())
+			return true;
+		
+		$this->inputErrors = $validation->messages();
+		return false;
+	}
 
 }
