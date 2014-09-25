@@ -18,7 +18,7 @@
 
 		            <div class="form-group">
 		              {{ Form::label('password', 'Password') }} <span class="text-primary">*</span> <small id="password-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::password('password', ['id' => 'password', 'class' => 'form-control br-none', 'placeholder' => 'Password', 'autocomplete' => 'off', 'required']) }}
+		              {{ Form::password('password', ['onkeyup' => 'checkPass()', 'id' => 'password', 'class' => 'form-control br-none', 'placeholder' => 'Password', 'autocomplete' => 'off', 'required']) }}
 		            </div>
 
 		            <div class="form-group">
@@ -44,8 +44,8 @@
 			
 			// Password strength: 6 characters, at least one upper and
 			// lowercase letter, and one digit
-			var remove_icon = '&lt;i class=&quot;fa fa-remove&quot;&gt;&lt;/i&gt; ';
-			var check_icon = '&lt;i class=&quot;fa fa-check&quot;&gt;&lt;/i&gt; ';
+			var remove_icon = '<i class="fa fa-remove"></i> ';
+			var check_icon = '<i class="fa fa-check"></i> ';
 			var postUrl = $('#new-user-form').attr('action');
 			var passwordStrengthRegex = /^((?=.*[0-9])(?=.*[a-zA-Z]).{6,})$/g;
 			var usernameRegex = /^[a-zA-Z0-9_-]{4,25}$/;
@@ -98,7 +98,8 @@
 			});
 		
 			
-			$('#password').keyup(function() {
+			//$('#password').keyup(function() {
+			function checkPass() {
 				if(!$(this).val().match(passwordStrengthRegex)) {
 					$(this).css("border-color", dangerColor);	
 					$('#password-error').html(passRules).css("color", dangerColor);
@@ -106,7 +107,8 @@
 					$(this).css("border-color", successColor);
 					$('#password-error').html(gotIt).css("color", successColor);
 				}
-			});
+			}
+			//});
 			
 
 			$('#confirm-password').keyup(function() {
