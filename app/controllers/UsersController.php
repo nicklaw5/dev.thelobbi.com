@@ -17,8 +17,8 @@ class UsersController extends BaseController {
 	public function store() {
 				
 		//check if username already exists
-		if(isset(Input::get('checkUsername')) && Input::get('checkUsername') === '') {
-			if(Request::ajax())	{
+		if(Request::ajax())	{
+			if(isset(Input::get('checkUsername')) && Input::get('checkUsername') === '') {
 				$username = (string)Input::get('username');
 				$usernameFound = User::where('username', '=', $username)->first();
 				if($usernameFound) {
@@ -26,11 +26,10 @@ class UsersController extends BaseController {
 				} else {
 					return 'available';
 				}	
+			} else {
+				return Input::get('username');		
 			}
 		}
-
-
-		return Input::get('username');
 
 
 
