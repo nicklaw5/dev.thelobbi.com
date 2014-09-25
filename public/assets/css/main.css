@@ -159,10 +159,19 @@ body {
 .form-control:focus {
 	border: 1px solid #2a9fd6;
 }
-.new-user-form-container {
+#new-user-form-container {
 	margin-top: 10%;
 	background: #202020;
 	padding: 20px;
+}
+#new-user-form {
+	margin-bottom: 10px;
+}
+.username-field {
+	bac
+}
+.password-field {
+
 }
 .modal-signup-content {
 	min-height: 514px;
