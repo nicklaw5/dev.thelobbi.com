@@ -94,7 +94,7 @@ class SessionsController extends BaseController {
 			} else {
 				Session::forget('socialId');
 				Session::put('socialId', $result);
-				return View::make('users.create');	
+				return View::make('users.create');
 				/*
 				// Register new user
 				$this->user->facebook_id 			= (string)$result['id'];
@@ -321,7 +321,12 @@ class SessionsController extends BaseController {
 			    ));
 		    $user = json_decode(curl_exec ($curl), true);
 		    curl_close ($curl);
-		    dd((string)$user['_id']);
+		    
+		    dd($user);
+
+		 //    Session::forget('socialId');
+			// Session::put('socialId', $user);
+			// return View::make('users.create');
 
 	    } else {
 	    	
