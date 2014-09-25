@@ -71,7 +71,7 @@
 
 			@if(isset($display_name))
 				var display_name = {{ $display_name }};
-				checkIfUsernameAvailable( {{ display_name }} );
+				checkIfUsernameAvailable(display_name);
 			@endif
 			
 
