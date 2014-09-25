@@ -15,7 +15,7 @@ class UsersController extends BaseController {
 
 
 	public function store() {
-		
+				
 		$username = (string)Input::get('username');
 
 		//check if username already exists
@@ -27,6 +27,11 @@ class UsersController extends BaseController {
 				return 'available';
 			}	
 		}
+
+
+		return Input::get('username');
+
+
 
 
 		//Session::forget('socialId');

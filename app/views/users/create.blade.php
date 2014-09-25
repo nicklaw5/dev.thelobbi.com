@@ -121,7 +121,8 @@
 
 			$('#new-user-form').on("submit", function(evt) {
 				evt.preventDefault();
-				alert('form submitted!');
+				
+				$(this).submit();
 			})
 
 		});
