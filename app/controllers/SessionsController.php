@@ -311,7 +311,7 @@ class SessionsController extends BaseController {
 			// -X GET https://api.twitch.tv/kraken/user
 
 
-			// create a new cURL resource
+			// fetch user data
 			$curl = curl_init();
 		    curl_setopt($curl, CURLOPT_URL,"https://api.twitch.tv/kraken/user");
 		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -321,12 +321,27 @@ class SessionsController extends BaseController {
 			    ));
 		    $user = json_decode(curl_exec ($curl), true);
 		    curl_close ($curl);
-		    
-		    dd($user);
 
-		 //    Session::forget('socialId');
-			// Session::put('socialId', $user);
-			// return View::make('users.create');
+		   //  array (size=11)
+			  // 'display_name' => string 'bilbojo' (length=7)
+			  // '_id' => int 52242956
+			  // 'name' => string 'bilbojo' (length=7)
+			  // 'type' => string 'user' (length=4)
+			  // 'bio' => null
+			  // 'created_at' => string '2013-11-27T11:10:04Z' (length=20)
+			  // 'updated_at' => string '2014-09-25T06:38:43Z' (length=20)
+			  // 'logo' => null
+			  // '_links' => 
+			  //   array (size=1)
+			  //     'self' => string 'https://api.twitch.tv/kraken/users/bilbojo' (length=42)
+			  // 'email' => string 'nick_law@tpg.com.au' (length=19)
+			  // 'partnered' => boolean false
+
+		    //dd($user);
+
+		    Session::forget('socialId');
+			Session::put('socialId', $user);
+			return View::make('users.create');
 
 	    } else {
 	    	

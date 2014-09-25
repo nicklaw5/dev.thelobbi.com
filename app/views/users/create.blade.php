@@ -13,7 +13,7 @@
 
 		            <div class="form-group">
 		              {{ Form::label('username', 'Username') }} <span class="text-primary">*</span> <small id="username-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::text('username', '', ['id' => 'username', 'class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}
+		              {{ Form::text('username', '', ['id' => 'username', 'value' => {{ Session::get('key', 'name') }}, 'class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}
 		            </div>
 
 		            <div class="form-group">
