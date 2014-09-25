@@ -57,7 +57,7 @@
 			var allyours = check_icon + 'It\'s all yours!';
 
 			function checkIfUsernameAvailable(username) {
-				$.post(postUrl, { username: username }, function(resp) {
+				$.post(postUrl, { checkIfUsername: '', username: username }, function(resp) {
 					console.log('request sent');
 					if(resp === 'exists') {
 						$('#username-error').html(remove_icon + 'Username already in use.').css("color", dangerColor);

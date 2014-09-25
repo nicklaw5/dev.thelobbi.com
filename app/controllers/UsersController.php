@@ -16,16 +16,17 @@ class UsersController extends BaseController {
 
 	public function store() {
 				
-		$username = (string)Input::get('username');
-
 		//check if username already exists
-		if(Request::ajax())	{
-			$usernameFound = User::where('username', '=', $username)->first();
-			if($usernameFound) {
-				return 'exists';
-			} else {
-				return 'available';
-			}	
+		if(isset(Input::get('checkUsername')) && empty(Input::get('checkUsername'))) {
+			if(Request::ajax())	{
+				$username = (string)Input::get('username');
+				$usernameFound = User::where('username', '=', $username)->first();
+				if($usernameFound) {
+					return 'exists';
+				} else {
+					return 'available';
+				}	
+			}
 		}
 
 
