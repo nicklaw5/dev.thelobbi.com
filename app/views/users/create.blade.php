@@ -57,6 +57,9 @@
 			var allyours = check_icon + 'It\'s all yours!';
 
 			function checkIfUsernameAvailable(username) {
+
+				var username = username;
+
 				$.post(postUrl, { username: username }, function(resp) {
 					console.log('request sent');
 					if(resp === 'exists') {
