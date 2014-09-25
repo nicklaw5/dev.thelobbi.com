@@ -70,11 +70,11 @@
 			}
 
 
-			if(! $('#username').val()) {
+			if($('#username').val() !== '') {
 				checkIfUsernameAvailable($('#username'));
 			}
 			
-			
+
 			$('#username').keyup(function() {
 				var username = $(this).val();
 
