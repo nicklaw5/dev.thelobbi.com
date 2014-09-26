@@ -180,8 +180,6 @@ class SessionsController extends BaseController {
 	    //$googleService = OAuth::consumer( 'Google' );
 	    $googleService = OAuth::consumer('Google', 'http://dev.thelobbi.com/google-signin');
 
-	    // check if code is valid
-
 	    // if code is provided get user data and sign in
 	    if ( !empty( $code ) ) {
 
@@ -189,58 +187,27 @@ class SessionsController extends BaseController {
 	        $token = $googleService->requestAccessToken( $code );
 
 	        // Send a request with it
-	        $result = json_decode( $googleService->request( 'https://www.googleapis.com/oauth2/v1/userinfo' ), true );
+	        $response = json_decode( $googleService->request( 'https://www.googleapis.com/oauth2/v1/userinfo' ), true );
 
-	        //$message = 'Your unique Google user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-	        //echo $message. "<br/>";
+	    	// dd($response)
 
-	    //     array (size=10)
-			  // 'id' => string '108170707386043389590' (length=21)
-			  // 'email' => string 'practicalprogrammingdotnet@gmail.com' (length=36)
-			  // 'verified_email' => boolean true
-			  // 'name' => string 'Nicholas Law' (length=12)
-			  // 'given_name' => string 'Nicholas' (length=8)
-			  // 'family_name' => string 'Law' (length=3)
-			  // 'link' => string 'https://plus.google.com/108170707386043389590' (length=45)
-			  // 'picture' => string 'https://lh4.googleusercontent.com/-OUDVnZ8U6fc/AAAAAAAAAAI/AAAAAAAAADI/KasU61wNQwY/photo.jpg' (length=92)
-			  // 'gender' => string 'male' (length=4)
-			  // 'locale' => string 'en-GB' (length=5)
-
-	        //Check if user already exists
+	        // check if user already exists
 	        $user_id = $this->getUserIdGivenSocialId('google', (string)$result['id']);
 
 	        if($user_id) {
 
+	        	// user already exists, sign them in
 	        	Auth::login($user_id);
-				//return Auth::user();        	
-				return Redirect::to('/');
-
-	        // User already exists, sign them in
-	        //if(Auth::attempt($result['id'])) {
-
-	        //	return Auth::user();
-
+				return Redirect::back();
+	        
 			} else {
 
-				// Register new user
-				$this->user->google_id 			= (string)$result['id'];
-		        $this->user->email 				= (string)$result['email'];
-		        $this->user->username 			= (string)'nick';
-		        $this->user->password 			= (string)Hash::make('nl511988');
-		        $this->user->email_verified 	= (int)1;
-		        $this->user->gender 			= (string)$result['gender'];
-		        $this->user->active 			= (int)1;
-		        $this->user->save();
+				// put google data into session var from use later
+				$this->packSocialData('google', $response['id'], null, $response['email'], $response['gender'], 1);
 
-		        //Sign in new user
-		        $user_id = $this->getUserIdGivenSocialId('google', (string)$result['id']);
-		        Auth::login($user_id);
-		        return Redirect::to('/');
+				// send user to account create screen
+				return View::make('users.create');
 		    }
-
-	        //Var_dump
-	        //display whole array().
-	        //dd($result);
 
 	    }
 	    // if not ask for permission first
@@ -268,6 +235,7 @@ class SessionsController extends BaseController {
 		// get data from input
 	    $code = Input::get( 'code' );
 
+	    //if code is provided get user data and sign in or sign them up
 	    if ( ! empty( $code ) ) {
 
 	    	//get token
@@ -323,7 +291,7 @@ class SessionsController extends BaseController {
 				// send user to account create screen
 				return View::make('users.create');
 			}
-
+		// if not ask for permission first
 	    } else {
 	    	
 	    	// request permission from user's twitch account
