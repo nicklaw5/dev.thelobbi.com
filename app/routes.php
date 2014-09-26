@@ -22,7 +22,7 @@ Route::get('/oauth/session/google', 'SessionsController@oauthGoogle');
 // Route::get('/twitch-signin', 'SessionsController@loginWithTwitch');
 Route::get('/logout', 'SessionsController@destroy');
 
-Route::get('/articles/{year}/{month}/{day}/{title}', 'ArticlesController@showDatedArticle');
+//Route::get('/articles/{year}/{month}/{day}/{title}', 'ArticlesController@showDatedArticle');
 
 
 //Route::resource('users', 'AdminController@users', array('before'=>'auth'));
