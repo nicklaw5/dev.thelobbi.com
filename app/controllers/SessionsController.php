@@ -326,7 +326,7 @@ class SessionsController extends BaseController {
 			  // 'email' => string 'nick_law@tpg.com.au' (length=19)
 			  // 'partnered' => boolean false
 
-		    //dd($user);
+		    dd($response);
 
 		 	// Session::forget('socialId');
 			// Session::put('socialId', $user);
