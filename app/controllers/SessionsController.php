@@ -158,7 +158,7 @@ class SessionsController extends BaseController {
 			} else {
 
 				// put google data into session var from use later
-				$this->packSocialData('twitter', $response['id'], $response['scree_name'], null, null, 1);
+				$this->packSocialData('twitter', $response['id'], $response['screen_name'], null, null, 1);
 
 				// send user to account create screen
 				return Redirect::to('users/create');
