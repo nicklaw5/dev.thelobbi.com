@@ -192,7 +192,7 @@ class SessionsController extends BaseController {
 	    	// dd($response)
 
 	        // check if user already exists
-	        $user_id = $this->getUserIdGivenSocialId('google', (string)$result['id']);
+	        $user_id = $this->getUserIdGivenSocialId('google', (string)$response['id']);
 
 	        if($user_id) {
 
