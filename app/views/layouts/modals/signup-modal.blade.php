@@ -8,10 +8,10 @@
 
         <ul class="col-sm-6 social-signin">
           <p>Sign in with just one click using your social network account.</p>
-          <li><a href="#" class="btn btn-default btn-lg btn-block btn-facebook-signin br-none"><i class="fa fa-facebook"></i> Sign up with Facebook</a></li>
-          <li><a href="#" class="btn btn-default btn-lg btn-block btn-twitch-signin br-none"><i class="fa fa-twitch"></i> Sign up with Twitch</a></li>
-          <li><a href="#" class="btn btn-default btn-lg btn-block btn-twitter-signin br-none"><i class="fa fa-twitter"></i> Sign up with Twitter</a></li>
-          <li><a href="#" class="btn btn-default btn-lg btn-block btn-google-signin br-none"><i class="fa fa-google-plus"></i> Sign up with Google</a></li>
+          <li><a href="/oauth/session/facebook" class="btn btn-default btn-lg btn-block btn-facebook-signin br-none"><i class="fa fa-facebook"></i> Sign up with Facebook</a></li>
+          <li><a href="/oauth/session/twitch" class="btn btn-default btn-lg btn-block btn-twitch-signin br-none"><i class="fa fa-twitch"></i> Sign up with Twitch</a></li>
+          <li><a href="/oauth/session/twitter" class="btn btn-default btn-lg btn-block btn-twitter-signin br-none"><i class="fa fa-twitter"></i> Sign up with Twitter</a></li>
+          <li><a href="/oauth/session/google" class="btn btn-default btn-lg btn-block btn-google-signin br-none"><i class="fa fa-google-plus"></i> Sign up with Google</a></li>
         </ul>
 
         <div class="col-sm-6 signup-form-container">
