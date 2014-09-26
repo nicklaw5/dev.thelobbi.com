@@ -68,7 +68,7 @@ class UsersController extends BaseController {
 		    $this->user->email 				= $socialData['email'];
 	        $this->user->username 			= Input::get('username');
 	        $this->user->password 			= Hash::make(Input::get('password'));
-	        $this->user->email_verified		= (! is_null($socialData['provider']))? (int)1 : (int)0;
+	        $this->user->email_verified		= (is_null($socialData['email']))? (int)0 : (int)1;
 	        $this->user->gender 			= $socialData['gender'];
 	        $this->user->active 			= ($socialData['active'] === 1)? (int)1 : (int)0;
 

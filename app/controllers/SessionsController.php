@@ -142,14 +142,28 @@ class SessionsController extends BaseController {
 	        $token = $tw->requestAccessToken( $token, $verify );
 
 	        // Send a request with it
-	        $result = json_decode( $tw->request( 'account/verify_credentials.json' ), true );
+	        $response = json_decode( $tw->request( 'account/verify_credentials.json' ), true );
 
-	        $message = 'Your unique Twitter user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-	        echo $message. "<br/>";
+	        // dd($result);
 
-	        //Var_dump
-	        //display whole array().
-	        dd($result);
+	        // check if user already exists
+	        $user_id = $this->getUserIdGivenSocialId('twitter', (string)$response['id_str']);
+
+	        if($user_id) {
+
+	        	// user already exists, sign them in
+	        	Auth::login($user_id);
+				return Redirect::back();
+	        
+			} else {
+
+				// put google data into session var from use later
+				$this->packSocialData('twitter', $response['id'], $response['scree_name'], null, null, 1);
+
+				// send user to account create screen
+				return Redirect::to('users/create');
+		    }
+
 
 	    }
 	    // if not ask for permission first
