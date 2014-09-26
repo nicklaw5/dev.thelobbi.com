@@ -307,7 +307,7 @@ class SessionsController extends BaseController {
 		    // dd($response);
 
 		    // Check if user already exists
-	        $user_id = $this->getUserIdGivenSocialId('twitch', (string)$response['id']);
+	        $user_id = $this->getUserIdGivenSocialId('twitch', (string)$response['_id']);
 
 	        // if user user already registered with twitch sign them in
 	        if($user_id) {
