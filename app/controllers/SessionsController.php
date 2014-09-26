@@ -104,7 +104,7 @@ class SessionsController extends BaseController {
 			} else {
 				// create session variable
 				$this->packSocialData('facebook', $response['id'], null, $response['email'], $response['gender'], 1);
-				return View::make('users.create');
+				return Redirect::to('users/create');
 		    }
 	        
 	    }
@@ -114,7 +114,7 @@ class SessionsController extends BaseController {
 	        $url = $fb->getAuthorizationUri();
 
 	        // return to facebook login url
-	         return Redirect::to((string)$url);
+	        return Redirect::to((string)$url);
 	    }
 	}
 
@@ -206,7 +206,6 @@ class SessionsController extends BaseController {
 				$this->packSocialData('google', $response['id'], null, $response['email'], $response['gender'], 1);
 
 				// send user to account create screen
-				//$testUrl = URL::to('foo');
 				return Redirect::to('users/create');
 		    }
 
@@ -290,7 +289,7 @@ class SessionsController extends BaseController {
 				$this->packSocialData('twitch', $response['_id'], $response['display_name'], $response['email'], null, 1);
 
 				// send user to account create screen
-				return View::make('users.create');
+				return Redirect::to('users/create');
 			}
 		// if not ask for permission first
 	    } else {
