@@ -29,7 +29,7 @@ Route::get('/logout', 'SessionsController@destroy');
 //     });
 // }));
 
-Route::group(array('prefix' => 'admin', 'before' => 'auth'), function() {
+Route::group(array('prefix' => 'admin', 'before' => 'auth|admin'), function() {
 
     // Route::get('user', array('before' => 'auth', function()
     // {
