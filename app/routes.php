@@ -26,6 +26,7 @@ Route::get('/articles/{year}/{month}/{day}/{title}', 'ArticlesController@showDat
 
 
 //Route::resource('users', 'AdminController@users', array('before'=>'auth'));
+Route::resource('oauth', 'OauthController');
 Route::resource('users', 'UsersController');
 Route::resource('sessions', 'SessionsController');
 Route::resource('videos', 'VideosController');
