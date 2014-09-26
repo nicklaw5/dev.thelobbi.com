@@ -11,10 +11,10 @@ Route::get('/video-template', function(){
 	return View::make('video-template');
 });
 
-Route::get('/oauth/session/facebook', 'SessionsController@oauthFacebook');
-Route::get('/oauth/session/twitter', 'SessionsController@oauthTwitter');
-Route::get('/oauth/session/twitch', 'SessionsController@oauthTwitch');
-Route::get('/oauth/session/google', 'SessionsController@oauthGoogle');
+Route::get('/oauth/session/facebook', 'OauthController@oauthFacebook');
+Route::get('/oauth/session/twitter', 'OauthController@oauthTwitter');
+Route::get('/oauth/session/twitch', 'OauthController@oauthTwitch');
+Route::get('/oauth/session/google', 'OauthController@oauthGoogle');
 
 // Route::get('/facebook-signin', 'SessionsController@loginWithFacebook');
 // Route::get('/google-signin', 'SessionsController@loginWithGoogle');
