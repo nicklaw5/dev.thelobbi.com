@@ -43,7 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			return Redirect::guest('/login');
 		}
 	}
 });
@@ -66,12 +66,17 @@ Route::filter('auth.basic', function()
 */
 
 Route::filter('admin', function() 
-{
-	//user not logged in or not admin
-	if(!Auth::user() || !Auth::user()->group_id > 1) {
+{	
+	//user not logged in
+	if(Auth::guest())
+		return 'user not logged in, returning to login page.';
+		//return Redirect::guest('/login')
+
+	//user is not an admin
+	if(!Auth::user()->group_id > 1) 
 		return 'You must be an admin to access this page.';
 		//return Redirect::to('/login');
-	}
+	
 });
 
 /*
