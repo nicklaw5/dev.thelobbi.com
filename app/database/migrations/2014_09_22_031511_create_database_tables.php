@@ -45,7 +45,7 @@ class CreateDatabaseTables extends Migration {
 			$t->string('last_name', 15)->nullable();
 			$t->string('password', 60);
 			$t->string('password_temp', 60)->nullable();
-			$r->string('ip_address', 20)->nullable();
+			$t->string('ip_address', 20)->nullable();
 			$t->string('avatar', 200)->nullable();
 			$t->text('biography')->nullable();
 			$t->string('gender', 6)->nullable();
