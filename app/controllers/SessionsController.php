@@ -268,7 +268,7 @@ class SessionsController extends BaseController {
 		// get data from input
 	    $code = Input::get( 'code' );
 
-	    if ( !empty( $code ) ) {
+	    if ( ! empty( $code ) ) {
 
 	    	//get token
 	    	$url = 'https://api.twitch.tv/kraken/oauth2/token';
@@ -293,14 +293,7 @@ class SessionsController extends BaseController {
 
 			//dd($result);
 
-			//$access_request = 'https://[your registered redirect URI]/#access_token=[an access token]&scope=[authorized scopes]'
-
-
-			// curl -H 'Accept: application/vnd.twitchtv.v3+json' -H 'Authorization: OAuth <access_token>' \
-			// -X GET https://api.twitch.tv/kraken/user
-
-
-			// fetch user data
+			// fetch user object from twitch
 			$curl = curl_init();
 		    curl_setopt($curl, CURLOPT_URL,"https://api.twitch.tv/kraken/user");
 		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -311,31 +304,29 @@ class SessionsController extends BaseController {
 		    $response = json_decode(curl_exec ($curl), true);
 		    curl_close ($curl);
 
-		   //  array (size=11)
-			  // 'display_name' => string 'bilbojo' (length=7)
-			  // '_id' => int 52242956
-			  // 'name' => string 'bilbojo' (length=7)
-			  // 'type' => string 'user' (length=4)
-			  // 'bio' => null
-			  // 'created_at' => string '2013-11-27T11:10:04Z' (length=20)
-			  // 'updated_at' => string '2014-09-25T06:38:43Z' (length=20)
-			  // 'logo' => null
-			  // '_links' => 
-			  //   array (size=1)
-			  //     'self' => string 'https://api.twitch.tv/kraken/users/bilbojo' (length=42)
-			  // 'email' => string 'nick_law@tpg.com.au' (length=19)
-			  // 'partnered' => boolean false
+		    // dd($response);
 
-		    dd($response);
+		    // Check if user already exists
+	        $user_id = $this->getUserIdGivenSocialId('twitch', (string)$response['id']);
 
-		 	// Session::forget('socialId');
-			// Session::put('socialId', $user);
-			$this->packSocialData('twitch', $response['_id'], $response['display_name'], $response['email'], null, 1);
-			return View::make('users.create');
+	        // if user user already registered with twitch sign them in
+	        if($user_id) {
+
+	        	Auth::login($user_id);
+				return Redirect::back();
+	        
+	        // else have them create a new account
+			} else {
+				// put twitch data into session var from use later
+				$this->packSocialData('twitch', $response['_id'], $response['display_name'], $response['email'], null, 1);
+
+				// send user to account create screen
+				return View::make('users.create');
+			}
 
 	    } else {
 	    	
-	    	//request permission
+	    	// request permission from user's twitch account
 			$request_url = 'https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=' . $client_id . '&redirect_uri=' . $return_url . '&scope=user_read';
 			return Redirect::to($request_url);
 	    }	    
