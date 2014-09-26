@@ -206,7 +206,8 @@ class SessionsController extends BaseController {
 				$this->packSocialData('google', $response['id'], null, $response['email'], $response['gender'], 1);
 
 				// send user to account create screen
-				return View::make('users.create');
+				//$testUrl = URL::to('foo');
+				return Reirect::to('users.create');
 		    }
 
 	    }
