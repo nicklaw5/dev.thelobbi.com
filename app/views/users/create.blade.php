@@ -21,11 +21,6 @@
 		              {{ Form::text('username', Session::get('socialData')['username'], ['id' => 'username', 'class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}
 		            </div>
 
-		            <!--<div class="form-group">
-		              {{ Form::label('email', 'Email') }} <span class="text-primary">*</span> <small id="email-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::email('email', Session::get('socialData')['email'], ['id' => 'email', 'class' => 'form-control br-none', 'placeholder' => 'Email', 'autocomplete' => 'off', 'required']) }}
-		            </div> -->
-
 		            <div class="form-group">
 		              {{ Form::label('password', 'Password') }} <span class="text-primary">*</span> <small id="password-error" class="text-danger form-error-message pull-right"></small>
 		              {{ Form::password('password', ['id' => 'password', 'class' => 'form-control br-none', 'placeholder' => 'Password', 'autocomplete' => 'off', 'required']) }}
