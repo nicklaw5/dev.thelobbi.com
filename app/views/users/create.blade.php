@@ -6,7 +6,7 @@
 		
   			<div class="col-md-4 col-md-offset-4 box-shadow" id="new-user-form-container">
   				
-  				<h4>CREATE NEW ACCOUNT</h4>
+  				<h4>CREATE NEW ACCOUNT - {{ Request::getClientIp() }}</h4>
   				<hr>
 				<p>Looks like you're new here. Let's create you a username and password.</p>
 
@@ -23,7 +23,7 @@
 
 		            <div class="form-group">
 		              {{ Form::label('email', 'Email') }} <span class="text-primary">*</span> <small id="email-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::text('email', Session::get('socialData')['email'], ['id' => 'email', 'class' => 'form-control br-none', 'placeholder' => 'Email', 'autocomplete' => 'off', 'required']) }}
+		              {{ Form::email('email', Session::get('socialData')['email'], ['id' => 'email', 'class' => 'form-control br-none', 'placeholder' => 'Email', 'autocomplete' => 'off', 'required']) }}
 		            </div>
 
 		            <div class="form-group">
