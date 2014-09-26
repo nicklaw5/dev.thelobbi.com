@@ -2,7 +2,6 @@
 	
 	<div class="container">
 		<div class="row">
-
 		
   			<div class="col-md-4 col-md-offset-4 box-shadow" id="new-user-form-container">
   				

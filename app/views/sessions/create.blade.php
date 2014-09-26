@@ -1,30 +1,27 @@
-@extends('layouts.default')
-	@section('content')
-		
+	@include('layouts.header')
 		  <div class="modal-dialog modal-lg">
 		    <div class="br-none modal-signin-content modal-content">
 		      
 		        <div class="col-sm-12 modal-header">
-		          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		          <h4>SIGN IN</h4>
 		        </div>
 
 		        <ul class="col-sm-6 social-signin">
-		          <p>Sign in with just one click using your social network account.</p>
-		          <li><a href="/facebook-signin" class="btn btn-default btn-lg btn-block btn-facebook-signin br-none"><i class="fa fa-facebook"></i> Sign in with Facebook</a></li>
-		          <li><a href="#" class="btn btn-default btn-lg btn-block btn-twitch-signin br-none"><i class="fa fa-twitch"></i> Sign in with Twitch</a></li>
-		          <li><a href="/twitter-signin" class="btn btn-default btn-lg btn-block btn-twitter-signin br-none"><i class="fa fa-twitter"></i> Sign in with Twitter</a></li>
-		          <li><a href="/google-signin" class="btn btn-default btn-lg btn-block btn-google-signin br-none"><i class="fa fa-google-plus"></i> Sign in with Google</a></li>
+		          @include('layouts.components.social-signin-buttons')
 		        </ul>
 
 		        <div class="col-sm-6 signin-form-container">
 		          <p>Sign in to your account.</p>
 
-		          {{ Form::open(['url' => 'foo/bar']) }}
+		          @if(isset($signinError))
+		          	{{ $signinError }}
+		          @endif
+
+		          {{ Form::open(['action' => 'SessionsController@store']) }}
 
 		            <div class="form-group">
 		              {{ Form::label('username', 'Username') }} <span class="text-primary">*</span> <!--<small class="text-danger form-error-message">This is an error.</small>-->
-		              {{ Form::text('username', '', ['class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}              
+		              {{ Form::text('username', '', ['class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}
 		            </div>
 		            
 		            <div class="form-group">
@@ -44,5 +41,5 @@
 
 		    </div>
 		  </div>
-		
-	@stop
+		@include('layouts.footer')
+	

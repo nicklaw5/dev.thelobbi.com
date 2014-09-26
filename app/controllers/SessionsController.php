@@ -15,8 +15,16 @@ class SessionsController extends BaseController {
 		return View::make('sessions.create');
 	}
 
-	public function store($social_id = NULL) {
+	public function store() {
 
+		// attempt to sign the user in, if successful
+		// return them to the page they came from
+		if(Auth::attempt(array('username' => Input::get('username'),'password' => Input::get('password'))))
+			return Redirect::intended('/home');
+
+		//if unsuccessfull
+		return Redirect::to('/login')	->withInput()
+										->with('signinError', 'Invalid username or password.');
 	}
 
 	public function destroy() {
