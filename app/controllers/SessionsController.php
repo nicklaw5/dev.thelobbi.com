@@ -207,7 +207,7 @@ class SessionsController extends BaseController {
 
 				// send user to account create screen
 				//$testUrl = URL::to('foo');
-				return Redirect::to('users.create');
+				return Redirect::to('users/create');
 		    }
 
 	    }
