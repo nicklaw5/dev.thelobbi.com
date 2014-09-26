@@ -38,7 +38,7 @@ class CreateDatabaseTables extends Migration {
 			$t->string('twitch_id', 60)->unique()->nullable();
 			$t->boolean('active')->default(false);
 			$t->string('username', 20)->unique();
-			$t->string('email', 150)->unique()->nullable();
+			$t->string('email', 150)->nullable();
 			$t->boolean('email_verified')->default(false);
 			$t->string('email_code', 60)->nullable();
 			$t->string('first_name', 15)->nullable();

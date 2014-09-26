@@ -18,22 +18,22 @@
 
 		            <div class="form-group">
 		              {{ Form::label('username', 'Username') }} <span class="text-primary">*</span> <small id="username-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::text('username', Session::get('socialData')['username'], ['id' => 'username', 'pattern' => '[a-zA-Z0-9_-].{4,25}','title' => 'Username can only contain numbers, letter, as well as hyphen and underscore characters.', 'class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}
+		              {{ Form::text('username', Session::get('socialData')['username'], ['id' => 'username', 'class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}
 		            </div>
 
-		            <div class="form-group">
+		            <!--<div class="form-group">
 		              {{ Form::label('email', 'Email') }} <span class="text-primary">*</span> <small id="email-error" class="text-danger form-error-message pull-right"></small>
 		              {{ Form::email('email', Session::get('socialData')['email'], ['id' => 'email', 'class' => 'form-control br-none', 'placeholder' => 'Email', 'autocomplete' => 'off', 'required']) }}
-		            </div>
+		            </div> -->
 
 		            <div class="form-group">
 		              {{ Form::label('password', 'Password') }} <span class="text-primary">*</span> <small id="password-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::password('password', ['id' => 'password', 'pattern' => '.{6,}', 'class' => 'form-control br-none', 'placeholder' => 'Password', 'autocomplete' => 'off', 'required']) }}
+		              {{ Form::password('password', ['id' => 'password', 'class' => 'form-control br-none', 'placeholder' => 'Password', 'autocomplete' => 'off', 'required']) }}
 		            </div>
 
 		            <div class="form-group">
 		              {{ Form::label('confirm-password', 'Confirm Password') }} <span class="text-primary">*</span> <small id="confirm-password-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::password('confirm-password', ['id' => 'confirm-password', 'pattern' => '.{6,}', 'class' => 'form-control br-none', 'placeholder' => 'Confirm Password', 'autocomplete' => 'off', 'required']) }}
+		              {{ Form::password('confirm-password', ['id' => 'confirm-password', 'class' => 'form-control br-none', 'placeholder' => 'Confirm Password', 'autocomplete' => 'off', 'required']) }}
 		            </div>
 
 		            {{ Form::submit('Create Account', ['id' => 'submit-btn', 'class' => 'btn btn-default btn-lg btn-block br-none']) }}
@@ -48,6 +48,6 @@
 	</div>
 	<!-- END .container -->
 	
-	<!-- {{ HTML::script('assets/js/signup-validation.js', array('type' => 'text/javascript', 'async' => 'async')) }} -->
+	{{ HTML::script('assets/js/signup-validation.js', array('type' => 'text/javascript', 'async' => 'async')) }}
 
 @include('layouts.footer')
