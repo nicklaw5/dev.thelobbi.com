@@ -164,9 +164,14 @@ body {
 	border: 1px solid #2a9fd6;
 }
 #new-user-form-container {
-	margin-top: 10%;
+		margin-top: 10%;
 	background: #202020;
 	padding: 20px;
+}
+@media all and (max-width: 420px) {
+	#new-user-form-container {
+		margin-top: 0;
+	}
 }
 #new-user-form {
 	margin-bottom: 10px;
