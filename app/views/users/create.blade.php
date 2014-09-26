@@ -6,7 +6,7 @@
 		
   			<div class="col-md-4 col-md-offset-4 box-shadow" id="new-user-form-container">
   				
-  				<h4>CREATE NEW ACCOUNT - {{ Request::getClientIp() }}</h4>
+  				<h4>CREATE NEW ACCOUNT</h4>
   				<hr>
 				<p>Looks like you're new here. Let's create you a username and password.</p>
 

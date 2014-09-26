@@ -71,6 +71,7 @@ class UsersController extends BaseController {
 	        $this->user->email_verified		= ($socialData['email'] === null)? (int)0 : (int)1;
 	        $this->user->gender 			= $socialData['gender'];
 	        $this->user->active 			= ($socialData['active'] === 1)? (int)1 : (int)0;
+	        $this->user->ip_address 		= Request::getClientIp();
 
 	        $this->user->save();
 	        Session::forget('socialData');

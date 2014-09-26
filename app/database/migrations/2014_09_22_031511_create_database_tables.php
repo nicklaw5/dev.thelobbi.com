@@ -45,7 +45,8 @@ class CreateDatabaseTables extends Migration {
 			$t->string('last_name', 15)->nullable();
 			$t->string('password', 60);
 			$t->string('password_temp', 60)->nullable();
-			$t->string('avatar', 200)->default('http://thelobbi.com/path-to-default-avatar');
+			$r->string('ip_address', 20)->nullable();
+			$t->string('avatar', 200)->nullable();
 			$t->text('biography')->nullable();
 			$t->string('gender', 6)->nullable();
 			$t->string('country')->nullable();
