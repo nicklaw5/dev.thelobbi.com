@@ -192,7 +192,7 @@ class OauthController extends BaseController {
 
 	    // get google service
 	    //$googleService = OAuth::consumer( 'Google' );
-	    $googleService = OAuth::consumer('Google', 'http://dev.thelobbi.com/google-signin');
+	    $googleService = OAuth::consumer('Google', 'http://dev.thelobbi.com/oauth/session/google');
 
 	    // if code is provided get user data and sign in
 	    if ( !empty( $code ) ) {
@@ -242,7 +242,7 @@ class OauthController extends BaseController {
 	 */
 	public function oauthTwitch() {
 		
-		$return_url = 'http://dev.thelobbi.com/twitch-signin';
+		$return_url = 'http://dev.thelobbi.com/oauth/session/twitch';
 		$client_id = 'nsvagmf9u0fw2pquajzkd1cxa0fbc6b';
 		$client_secret = 'rl40owzw5nhhv66oqzj7ibdtj5as7xa';
 
