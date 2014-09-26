@@ -13,8 +13,8 @@
 		        <div class="col-sm-6 signin-form-container">
 		          <p>Sign in to your account.</p>
 
-		          @if(isset($signinError))
-		          	{{ $signinError }}
+		          @if(Session::has('signinError'))
+		          	<p class="signin-error"><i class="fa fa-remove"></i> {{ Session::pull('signinError', 'Default');  }} </p>
 		          @endif
 
 		          {{ Form::open(['action' => 'SessionsController@store']) }}

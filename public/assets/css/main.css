@@ -176,19 +176,16 @@ body {
 #new-user-form {
 	margin-bottom: 10px;
 }
-.username-field {
-	bac
-}
-.password-field {
-
-}
 .modal-signup-content {
 	min-height: 514px;
 	/*border: 4px solid #2a9fd6;*/
 }
 .modal-signin-content {
-	min-height: 441px;
+	min-height: 450px;
 	/*border: 4px solid #2a9fd6;*/
+}
+.signin-error {
+	color: #cc0000;
 }
 .social-signin {
 	padding: 20px;

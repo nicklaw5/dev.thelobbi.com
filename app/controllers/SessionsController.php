@@ -20,11 +20,13 @@ class SessionsController extends BaseController {
 		// attempt to sign the user in, if successful
 		// return them to the page they came from
 		if(Auth::attempt(array('username' => Input::get('username'),'password' => Input::get('password'))))
-			return Redirect::intended('/home');
+			return Redirect::intended('/');
 
 		//if unsuccessfull
-		return Redirect::to('/login')	->withInput()
-										->with('signinError', 'Invalid username or password.');
+
+		Session::put('signinError', 'Invalid username or password.');
+
+		return Redirect::to('/login')->withInput();
 	}
 
 	public function destroy() {

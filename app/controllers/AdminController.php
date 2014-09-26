@@ -2,10 +2,7 @@
 
 class AdminController extends BaseController {
 
-	function __construct() {
-		//make sure the user is an admin		
-		$this->before('admin');
-	}
+	function __construct() {}
 
 	public function index() {
 		return View::make('admin.index');

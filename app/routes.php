@@ -17,12 +17,12 @@ Route::get('/oauth/session/google', 'OauthController@oauthGoogle');
 Route::group(array('prefix' => 'admin', 'before' => 'admin'), function() {
 
     Route::get('/', function() {
-        return 'admin dash';
+        return 'Welcome Mr. Administrator.';
     });
 
 });
 
-Route::resource('admin', 'AdminController');
+//Route::resource('admin', 'AdminController');
 Route::resource('oauth', 'OauthController');
 Route::resource('users', 'UsersController');
 Route::resource('sessions', 'SessionsController');
