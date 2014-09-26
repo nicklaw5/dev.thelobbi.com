@@ -33,17 +33,6 @@ class UsersController extends BaseController {
 			if(! $this->user->isValid(Input::all()))
 				return Redirect::back()->withInput()->withErrors($this->user->inputErrors);
 			
-			//return 'All good, lets save the user to the DB';
-
-			// Register new user
-
-			// 'provider' 			=> (string)$social_provider,		//  'facebook', 'twitch', 'twitter', 'google' or null
-		 //  	'id' 				=> (string)$social_id,				//  '453546'
-		 //  	'username'			=> (string)$social_username,		//	'my_username'
-		 //  	'email' 			=> (string)$social_email,			//	'my_username@example.com'
-		 //  	'gender' 			=> (string)$social_gender,			//	'male', 'female' or null
-		 //  	'active'			=> (int)$user_active				// 	 1 (true) or 0 (false)
-
 			$socialData = Session::get('socialData');
 
 		  	switch ($socialData['provider']) {
@@ -75,15 +64,18 @@ class UsersController extends BaseController {
 
 	        $this->user->save();
 	        Session::forget('socialData');
-	        return 'user saved';
+	        //return 'user saved';
 
 	        //Sign in new user
 	        // $user_id = $this->getUserIdGivenSocialId('google', (string)$result['id']);
-	        // Auth::login($user_id);
+	        // Auth::attempt($user_id);
 	        // return Redirect::to('/');
 
 			//return Input::get('username') . ' + ' . Input::get('password') . ' + ' . Input::get('confirm-password');
 
+	        if (Auth::attempt(array('username' => Input::get('username'), 'password' => Input::get('password')))) {
+			    return Redirect::to('/admin/user');
+			}
 			
 		} else {
 			return 'nothing';

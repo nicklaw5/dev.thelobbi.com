@@ -16,13 +16,35 @@ Route::get('/oauth/session/twitter', 'OauthController@oauthTwitter');
 Route::get('/oauth/session/twitch', 'OauthController@oauthTwitch');
 Route::get('/oauth/session/google', 'OauthController@oauthGoogle');
 
-// Route::get('/facebook-signin', 'SessionsController@loginWithFacebook');
-// Route::get('/google-signin', 'SessionsController@loginWithGoogle');
-// Route::get('/twitter-signin', 'SessionsController@loginWithTwitter');
-// Route::get('/twitch-signin', 'SessionsController@loginWithTwitch');
 Route::get('/logout', 'SessionsController@destroy');
 
 //Route::get('/articles/{year}/{month}/{day}/{title}', 'ArticlesController@showDatedArticle');
+
+
+// Route::group(array('prefix' => 'admin', function()
+// {
+//     Route::get('user', function()
+//     {
+//         return 'admin/user';
+//     });
+// }));
+
+Route::group(array('prefix' => 'admin', 'before' => 'auth'), function() {
+
+    // Route::get('user', array('before' => 'auth', function()
+    // {
+    //     return 'we r here';
+    // }));
+
+    Route::get('user', function() {
+        return 'we r here';
+    });
+
+});
+
+
+
+
 
 
 //Route::resource('users', 'AdminController@users', array('before'=>'auth'));
