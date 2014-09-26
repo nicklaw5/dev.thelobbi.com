@@ -22,10 +22,8 @@ class SessionsController extends BaseController {
 		if(Auth::attempt(array('username' => Input::get('username'),'password' => Input::get('password'))))
 			return Redirect::intended('/');
 
-		//if unsuccessfull
-
+		//if unsuccessfull, return to login with error
 		Session::put('signinError', 'Invalid username or password.');
-
 		return Redirect::to('/login')->withInput();
 	}
 
