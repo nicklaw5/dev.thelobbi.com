@@ -73,10 +73,9 @@ Route::filter('admin', function()
 		//return Redirect::guest('/login')
 
 	//user is not an admin
-	if(!Auth::user()->group_id > 1) 
+	if(Auth::user()->group_id) 
 		return 'You must be an admin to access this page.';
 		//return Redirect::to('/login');
-	
 });
 
 /*

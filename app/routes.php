@@ -24,7 +24,7 @@ Route::get('/logout', 'SessionsController@destroy');
 
 //Route::get('/articles/{year}/{month}/{day}/{title}', 'ArticlesController@showDatedArticle');
 
-Route::group(array('prefix' => 'admin', 'before' => array('auth', 'admin')), function() {
+Route::group(array('prefix' => 'admin', 'before' => 'admin'), function() {
 
     Route::get('/', function() {
         return 'admin dash';
