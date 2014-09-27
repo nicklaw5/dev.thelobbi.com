@@ -23,7 +23,7 @@
 		            @if(!Session::has('socialData'))
 		            <div class="form-group">
 		              {{ Form::label('email', 'Email') }} <span class="text-primary">*</span> <small id="email-error" class="text-danger form-error-message pull-right"></small>
-		              {{ Form::email('email', Session::get('socialData')['email'], ['id' => 'email', 'class' => 'form-control br-none', 'placeholder' => 'Email', 'autocomplete' => 'off', 'required']) }}
+		              {{ Form::email('email', '', ['id' => 'email', 'class' => 'form-control br-none', 'placeholder' => 'Email', 'autocomplete' => 'off', 'required']) }}
 		            </div>
 		            @endif
 
