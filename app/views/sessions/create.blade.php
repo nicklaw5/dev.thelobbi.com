@@ -7,6 +7,10 @@
 		        </div>
 
 		        <ul class="col-sm-6 social-signin">
+		          @if(Session::has('userCreateSuccess'))
+		          	<p class="text-success">{{ Session::get('userCreateSuccess') }}</p>
+		          @endif
+		          
 		          @include('layouts.components.social-signin-buttons')
 		        </ul>
 

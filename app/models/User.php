@@ -22,7 +22,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public $inputErrors;
 	public $inputRules = [
 		'username' 				=> 'required|min:4|max:25|unique:users',
-		'email' 				=> '',
+		'email' 				=> 'required|email|unique:users',
 		'password' 				=> 'required|min:6',
 		'confirm-password' 		=> 'same:password'
 	];

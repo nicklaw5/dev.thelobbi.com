@@ -13,25 +13,46 @@ class UsersController extends BaseController {
 		return View::make('users.create');
 	}
 
-
 	public function store() {
 		
-		//check if username already exists
+		$username 			= (string)Input::get('username');
+		$email 				= (string)Input::get('email');
+		$password 			= (string)Input::get('password');
+		$confirmPassword 	= (string)Input::get('confirm-password');
+
+		// Check if username already exists upon AJAX request
 		if(Request::ajax())	{
-			$username = (string)Input::get('username');
-			$usernameFound = User::where('username', '=', $username)->first();
-			if($usernameFound) {
+			if($this->usernameExists($username))
 				return 'exists';
-			} else {
-				return 'available';
-			}	
+			return 'available';
 		}
 
-		// if(Input::has('username') && Input::has('email') && Input::has('password') && Input::has('confirm-password')) {
+		// If user IS NOT signing up via social network
+		if(isset($username) && isset($email) && isset($password) && isset($confirmPassword)) {
 
-		// }
+			//Validate user input against User::$inputRules
+			if(! $this->user->isValid(Input::all()))
+				return Redirect::to('users/create')->withInput()->withErrors($this->user->inputErrors);
 
-		if(Input::has('username') && Input::has('password') && Input::has('confirm-password')) {
+			// Save new user to DB
+			$this->createNewUser($username, $email, $password);
+
+			// Send email verification link
+/****/		$data = 'This is some data';
+			//$recipient = ['email' => $email, 'username' => $username];
+			Mail::queue('emails.welcome', ['data' => $data], function($message) use ($email, $username)	{
+			    $message->to($email, $username)
+			    		->subject('Welcome to The Lobbi!');
+			});
+
+			// Push new user to login page with 
+			Session::flash('userCreateSuccess', 'Thanks for signing up and welcome. We\'ve emailed you your account activation link.
+													You will need activate your account before signing in for the first time.');
+			return Redirect::to('/login');
+		}
+
+		// If user IS signing up via social network
+		if(isset($username) && isset($password) && isset($confirmPassword) && !isset($email)) {
 
 			//Validate user input against User::$inputRules
 			if(! $this->user->isValid(Input::all()))
@@ -39,60 +60,62 @@ class UsersController extends BaseController {
 			
 			$socialData = Session::get('socialData');
 
-		  	switch ($socialData['provider']) {
-			  	case "facebook":
-			    	$this->user->facebook_id	= $socialData['id'];
-			    	break;
-			  	case "twitter":
-			    	$this->user->twitter_id		= $socialData['id'];
-			    	break;			  	
-			  	case "google":
-			  		$this->user->google_id		= $socialData['id'];
-			    	break;
-		    	case "twitch":
-		    		$this->user->twitch_id		= $socialData['id'];
-		    		break;
-			  	default:
-			  		// not setting social id,
-			  		// user signed up with own email address
-			    	break;
-			}
+			// Save new user to DB
+			$this->createNewUser($username, $socialData['email'], $password, $socialData['provider'], $socialData['id'], $socialData['gender']);
 
-		    $this->user->email 				= ($socialData['email'] === null)? null : $socialData['email'];
-	        $this->user->username 			= Input::get('username');
-	        $this->user->password 			= Hash::make(Input::get('password'));
-	        $this->user->email_verified		= ($socialData['email'] === null)? (int)0 : (int)1;
-	        $this->user->gender 			= $socialData['gender'];
-	        $this->user->active 			= ($socialData['active'] === 1)? (int)1 : (int)0;
-	        $this->user->ip_address 		= Request::getClientIp();
+			// Remove social session data
+			Session::forget('socialData');
 
-	        $this->user->save();
-	        Session::forget('socialData');
-	        //return 'user saved';
+			// Sign user if they signed up with a social network
+			if(Auth::attempt(array('username' => $username,'password' => $password)))
+				return Redirect::to('/');
 
-	        //Sign in new user
-	        // $user_id = $this->getUserIdGivenSocialId('google', (string)$result['id']);
-	        // Auth::attempt($user_id);
-	        // return Redirect::to('/');
-
-			//return Input::get('username') . ' + ' . Input::get('password') . ' + ' . Input::get('confirm-password');
-
-	        if (Auth::attempt(array('username' => Input::get('username'), 'password' => Input::get('password')))) {
-			    return Redirect::to('/admin/user');
-			}
-			
-		} else {
-			return 'nothing';
 		}
-
-
 		
-
+		App::abort(404);
 		
-
-
-		//Session::forget('socialId');
 	}
 
-	
+	/**
+	 * Creates new user in the DB.
+	 */
+	private function createNewUser($username, $email, $password, $socialProvider = null, $socialId = null, $socialGender = null ) {
+		
+		switch ($socialProvider) {
+		  	case "facebook":
+		    	$this->user->facebook_id	= $socialId;
+		    	break;
+		  	case "google":
+		  		$this->user->google_id		= $socialId;
+		    	break;
+	    	case "twitch":
+	    		$this->user->twitch_id		= $socialId;
+	    		break;
+		  	default:
+		  		//not signing up with social network
+		    	break;
+		}
+
+        $this->user->username 			= $username;
+        $this->user->email 				= $email;
+        $this->user->password 			= Hash::make($password);
+        $this->user->email_verified		= ($socialProvider !== null) ? (int)1 : (int)0;
+        $this->user->gender 			= ($socialGender !== null) ? $socialGender : null;
+        $this->user->active 			= ($socialProvider !== null) ? (int)1 : (int)0;
+        $this->user->ip_address 		= Request::getClientIp();
+
+        $this->user->save();
+	}
+
+	/**
+	 * Returns TRUE if username already exists
+	 * and FALSE otherwise.
+	 */
+	private function usernameExists($username) {
+		$usernameFound = User::where('username', '=', $username)->first();
+		if($usernameFound)
+			return true;
+		return false;
+	}
+
 }
