@@ -14,66 +14,74 @@ class UsersController extends BaseController {
 	}
 
 	public function store() {
-		
-		$username 			= (string)Input::get('username');
-		$email 				= (string)Input::get('email');
-		$password 			= (string)Input::get('password');
-		$confirmPassword 	= (string)Input::get('confirm-password');
 
 		// Check if username already exists upon AJAX request
 		if(Request::ajax())	{
-			if($this->usernameExists($username))
+			if($this->usernameExists(Input::get('username')))
 				return 'exists';
 			return 'available';
 		}
 
-		// If user IS NOT signing up via social network
-		if(isset($username) && isset($email) && isset($password) && isset($confirmPassword)) {
+		// Validate user input against User::$inputRules
+		if(! $this->user->isValid($input = Input::all()))
+			return Redirect::back()->withInput()->withErrors($this->user->inputErrors);
 
-			//Validate user input against User::$inputRules
-			if(! $this->user->isValid(Input::all()))
-				return Redirect::to('users/create')->withInput()->withErrors($this->user->inputErrors);
+		// if user IS NOT signing up via social network
+		if( ! Session::has('socialData')) {
+			$this->registerNonSocialUser($input);
 
-			// Save new user to DB
-			$this->createNewUser($username, $email, $password);
-
-			// Send email verification link
-/****/		$data = 'This is some data';
-			//$recipient = ['email' => $email, 'username' => $username];
-			Mail::queue('emails.welcome', ['data' => $data], function($message) use ($email, $username)	{
-			    $message->to($email, $username)
-			    		->subject('Welcome to The Lobbi!');
-			});
-
-			// Push new user to login page with 
-			Session::flash('userCreateSuccess', 'Thanks for signing up and welcome. We\'ve emailed you your account activation link.
-													You will need activate your account before signing in for the first time.');
-			return Redirect::to('/login');
-		}
-
-		// If user IS signing up via social network
-		if(isset($username) && isset($password) && isset($confirmPassword) && !isset($email)) {
-
-			//Validate user input against User::$inputRules
-			if(! $this->user->isValid(Input::all()))
-				return Redirect::back()->withInput()->withErrors($this->user->inputErrors);
-			
-			$socialData = Session::get('socialData');
-
-			// Save new user to DB
-			$this->createNewUser($username, $socialData['email'], $password, $socialData['provider'], $socialData['id'], $socialData['gender']);
-
-			// Remove social session data
-			Session::forget('socialData');
-
-			// Sign user if they signed up with a social network
-			if(Auth::attempt(array('username' => $username,'password' => $password)))
-				return Redirect::to('/');
+		// else if user IS signing up via social network
+		} else {
+			$this->registerSocialUser($input);
 
 		}
+
+		return Redirect::to('/');
+
+	}
+
+	private function registerSocialUser($input) {
+
+		$username 	= (string) $input['username'];
+		$email 		= (string) $input['email'];
+		$password 	= (string) $input['password'];
 		
-		App::abort(404);
+		// Fetch user social data and destroy it at the same time
+		$socialData = Session::get('socialData');
+
+		// Save new user to DB
+		$this->createNewUser($username, $email, $password, $socialData['provider'], $socialData['id'], $socialData['gender']);
+
+		// Sign user if they signed up with a social network
+		Auth::attempt(array('username' => $username,'password' => $password));
 		
+		// Create welcome message
+		Session::flash('welcomeMessage', 'Welcome message/Tour message: Something here...');
+		
+		return true;
+	}
+
+	private function registerNonSocialUser($input) {
+
+		$username 	= (string) $input['username'];
+		$email 		= (string) $input['email'];
+		$password 	= (string) $input['password'];
+
+		// Save new user to DB
+		$this->createNewUser($username, $email, $password);
+
+		// Send email verification link
+/****/	$data = 'This is some data';
+		
+		Mail::queue('emails.welcome', ['data' => $data], function($message) use ($email, $username)	{
+		    $message->to($email, $username)
+		    		->subject('Welcome to The Lobbi!');
+		});
+
+		// Push new user to login page with 
+		Session::flash('userCreateSuccess', 'Thanks for signing up and welcome. We\'ve emailed you your account activation link.
+												You will need activate your account before signing in for the first time.');
+		return true;
 	}
 
 	/**
