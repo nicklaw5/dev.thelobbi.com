@@ -16,22 +16,22 @@
           {{ Form::open(['action' => 'UsersController@store']) }}
 
             <div class="form-group">
-              {{ Form::label('username', 'Username') }} <span class="text-primary">*</span> <!--<small class="text-danger form-error-message">This is an error.</small>-->
+              {{ Form::label('username', 'Username') }} <span class="text-primary">*</span>
               {{ Form::text('username', '', ['class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']) }}              
             </div>
             
             <div class="form-group">
-              {{ Form::label('email', 'Email Address') }} <span class="text-primary">*</span> <!--<small class="text-danger form-error-message">This is an error.</small>-->
+              {{ Form::label('email', 'Email Address') }} <span class="text-primary">*</span>
               {{ Form::email('email', '', ['class' => 'form-control br-none', 'placeholder' => 'Email', 'autocomplete' => 'off', 'required']) }}
             </div>
 
             <div class="form-group">
-              {{ Form::label('password', 'Password') }} <span class="text-primary">*</span> <!--<small class="text-danger form-error-message">This is an error.</small>-->
+              {{ Form::label('password', 'Password') }} <span class="text-primary">*</span>
               {{ Form::password('password', ['class' => 'form-control br-none', 'placeholder' => 'Password', 'autocomplete' => 'off', 'required']) }}
             </div>
 
             <div class="form-group">
-              {{ Form::label('confirm-password', 'Confirm Password') }} <span class="text-primary">*</span> <!--<small class="text-danger form-error-message">This is an error.</small>-->
+              {{ Form::label('confirm-password', 'Confirm Password') }} <span class="text-primary">*</span>
               {{ Form::password('confirm-password', ['class' => 'form-control br-none', 'placeholder' => 'Confirm Password', 'autocomplete' => 'off', 'required']) }}
             </div>
 

@@ -27,6 +27,10 @@ class UsersController extends BaseController {
 			}	
 		}
 
+		// if(Input::has('username') && Input::has('email') && Input::has('password') && Input::has('confirm-password')) {
+
+		// }
+
 		if(Input::has('username') && Input::has('password') && Input::has('confirm-password')) {
 
 			//Validate user input against User::$inputRules

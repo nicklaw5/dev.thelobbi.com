@@ -4,7 +4,7 @@
 
             <div class="feature-container-inner">
                 <!--<div class="overlay-left"></div>
-                <!--<div class="overlay-right"></div>        -->
+                <div class="overlay-right"></div>-->
                 <div class="feature-container-inner-major">
                     <a href="#">
                     <div>
