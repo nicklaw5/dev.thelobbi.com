@@ -4,7 +4,7 @@
 		
 			<!-- logo -->
 			<div class="navbar-brand">
-				<a href="index.html">
+				<a href="/admin">
 					<img src="assets/images/logos/thelobbi-logo-181x30.png" alt="">
 				</a>
 			</div>
@@ -14,34 +14,21 @@
 						
 			<ul class="navbar-nav">
 				<li>
-					<a href="/admin">
-						<i class="entypo-gauge"></i>
-						<span>Dashboard</span>
-					</a>
-				</li>
-				<li>
 					<a href="layout-api.html">
-						<i class="entypo-layout"></i>
-						<span>Layouts</span>
+						<i class="entypo-newspaper"></i>
+						<span>New News Article</span>
 					</a>
 				</li>
 				<li>
 					<a href="ui-panels.html">
-						<i class="entypo-newspaper"></i>
-						<span>UI Elements</span>
+						<i class="entypo-video"></i>
+						<span>New Video</span>
 					</a>
 				</li>
 				<li>
 					<a href="forms-main.html">
 						<i class="entypo-doc-text"></i>
 						<span>Forms</span>
-					</a>
-				</li>
-				<li>
-					<a href="extra-icons.html">
-						<i class="entypo-bag"></i>
-						<span>Extra</span>
-						<span class="badge badge-danger">9</span>
 					</a>
 				</li>
 				<!-- Search Bar -->
@@ -376,8 +363,8 @@
 				<li class="sep"></li>
 				
 				<li>
-					<a href="/login">
-						Log Out <i class="entypo-logout right"></i>
+					<a href="/signout">
+						Sign Out <i class="entypo-logout right"></i>
 					</a>
 				</li>
 				

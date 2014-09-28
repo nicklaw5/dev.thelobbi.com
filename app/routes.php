@@ -1,5 +1,13 @@
 <?php
 
+// Route Resoureces
+Route::resource('oauth', 'OauthController');
+Route::resource('users', 'UsersController');
+Route::resource('sessions', 'SessionsController');
+Route::resource('videos', 'VideosController');
+Route::resource('articles', 'ArticlesController');
+
+
 Route::get('/', 'HomeController@index');
 
 
@@ -20,21 +28,26 @@ Route::group(array('before' => 'guest'), function() {
 
 //signined in only routes
 Route::group(array('before' => 'auth'), function() {
-		
 	Route::get('/signout', 'SessionsController@destroy');
 
 });
 
+
 // admin only routes
-//Route::group(array('prefix' => 'admin', 'before' => 'admin'), function() {
+Route::group(array('prefix' => 'admin' , 'before' => 'admin' ), function() {
+	
+    Route::get('/', function() {
+        return View::make('admin.index');
+    });
+	
+	Route::get('games', 'AdminGamesController@index');
 
-	Route::resource('admin', 'AdminController');
-    
-//});
+    Route::get('content', function() {
+        return View::make('admin.index');
+    });
 
+    Route::get('content/news', function() {
+        return View::make('admin.index');
+    });
 
-Route::resource('oauth', 'OauthController');
-Route::resource('users', 'UsersController');
-Route::resource('sessions', 'SessionsController');
-Route::resource('videos', 'VideosController');
-Route::resource('articles', 'ArticlesController');
+});

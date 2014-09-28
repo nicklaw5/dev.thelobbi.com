@@ -5,6 +5,7 @@ class SessionsController extends BaseController {
 	protected $user;
 
 	function __construct(User $user) {
+		//$this->beforeFilter('csrf', array('on' => 'store') );
 		$this->user = $user;
 	}
 

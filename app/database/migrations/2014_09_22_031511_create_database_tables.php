@@ -124,6 +124,16 @@ class CreateDatabaseTables extends Migration {
 			$t->timestamps(); 
 		});
 
+		// Create 'events' table
+		Schema::create('events', function($t) {
+			$t->engine = 'InnoDB';
+			$t->increments('id');
+			$t->string('name');
+			$t->string('description', 250)->nullable();
+			$t->timestamps();
+		});
+
+		// Create 'comments' table
 		Schema::create('comments', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
@@ -134,6 +144,7 @@ class CreateDatabaseTables extends Migration {
 			$t->timestamps();
 		});
 
+		// Create 'flag_types' table
 		Schema::create('flag_types', function($t) {		//['spam', 'abusive', 'innapropriate', 'troll']
 			$t->engine = 'InnoDB';
 			$t->increments('id');
@@ -142,6 +153,7 @@ class CreateDatabaseTables extends Migration {
 			$t->timestamps();
 		});
 
+		// Create 'flagged_comments' table
 		Schema::create('flagged_comments', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('flag_id');
@@ -155,6 +167,7 @@ class CreateDatabaseTables extends Migration {
 			$t->timestamps();
 		});
 
+		// Create 'settings' table
 		Schema::create('settings', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
@@ -164,6 +177,7 @@ class CreateDatabaseTables extends Migration {
 			$t->timestamps();
 		});
 
+		// Create 'companies' table
 		Schema::create('companies', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
@@ -174,6 +188,7 @@ class CreateDatabaseTables extends Migration {
 			$t->timestamps();
 		});
 
+		// Create 'games' table
 		Schema::create('games', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
@@ -187,11 +202,22 @@ class CreateDatabaseTables extends Migration {
 			$t->timestamps();
 		});
 
+		// Create 'platforms' table
 		Schema::create('platforms', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->integer('developer')->unsigned();
 			$t->foreign('developer')->references('id')->on('companies')->onDelete('no action')->onUpdate('cascade');
+			$t->string('name', 60);
+			$t->string('abreviation', 15)->nullable();
+			$t->string('description', 250)->nullable();
+			$t->timestamps();
+		});
+
+		// Create 'genres' table
+		Schema::create('genres', function($t) {
+			$t->engine = 'InnoDB';
+			$t->increments('id');
 			$t->string('name', 60);
 			$t->string('abreviation', 15)->nullable();
 			$t->string('description', 250)->nullable();
@@ -250,6 +276,7 @@ class CreateDatabaseTables extends Migration {
 		Schema::drop('videos');
 		Schema::drop('video_types');
 		Schema::drop('reviews');
+		Schema::drop('events');
 		Schema::drop('comments');
 		Schema::drop('flag_types');
 		Schema::drop('flagged_comments');
@@ -257,6 +284,7 @@ class CreateDatabaseTables extends Migration {
 		Schema::drop('companies');
 		Schema::drop('games');
 		Schema::drop('platforms');
+		Schema::drop('genres');
 		
 	}
 }

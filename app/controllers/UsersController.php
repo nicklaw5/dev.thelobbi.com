@@ -71,14 +71,11 @@ class UsersController extends BaseController {
 		$this->createNewUser($username, $email, $password);
 
 		// Send email verification link
-/****/	$data = 'This is some data';
-		
-		mail($email, 'My Subject', $data);
-
-		Mail::queue('emails.welcome', ['data' => $data], function($message) use ($email, $username)	{
-		    $message->to($email, $username)
-		    		->subject('Welcome to The Lobbi!');
-		});
+// /****/	$data = 'This is some data';
+// 		Mail::queue('emails.welcome', ['data' => $data], function($message) use ($email, $username)	{
+// 		    $message->to($email, $username)
+// 		    		->subject('Welcome to The Lobbi!');
+// 		});
 
 		// Set welcome message
 		Session::flash('userCreateSuccess', 'Thanks for signing up and welcome. We\'ve emailed you your account activation link.

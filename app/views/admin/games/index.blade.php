@@ -1,4 +1,7 @@
 @extends('admin.layouts.admin-default')
+	
 	@section('content')
-		<h1>Dashboard</h1>
+
+		<h1>stuff</h1>
+	
 	@stop
