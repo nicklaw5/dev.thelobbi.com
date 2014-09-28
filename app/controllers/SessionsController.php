@@ -19,7 +19,7 @@ class SessionsController extends BaseController {
 		if(Auth::attempt(array('username' => Input::get('username'),'password'=> Input::get('password')))) {
 			if(Auth::user()->active === 0) {
 				Auth::logout();
-				Session::put('signinError', 'You have not yet activated your account.');
+				Session::put('signinError', 'You have not yet activated your account. Click the below link if you require it to be eamil to you again.');
 				return Redirect::to('/signin')->withInput();
 			}
 
