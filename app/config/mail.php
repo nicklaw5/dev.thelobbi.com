@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
+	'host' => 'localhost'; //'smtp.mailgun.org',
 
 	/*
 	|--------------------------------------------------------------------------
