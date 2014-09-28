@@ -3,9 +3,6 @@
 class SessionsController extends BaseController {
 	
 	protected $user;
-	
-	// An array of acceptable social login methods
-	private $allowableSocialAuths = ['facebook', 'google', 'twitch']; // twitter ommited
 
 	function __construct(User $user) {
 		$this->user = $user;
@@ -20,16 +17,29 @@ class SessionsController extends BaseController {
 		// attempt to sign the user in, if successful
 		// return them to the page they came from
 		if(Auth::attempt(array(
+				'username' 	=> Input::get('username'),
+				'active'	=> (int) 1
+				)
+			)) {
+			//if unsuccessfull, return to login with error
+			Session::put('signinError', 'You haven\'t yet activated you account.');
+			return Redirect::to('/login')->withInput();
+		}
+
+
+		if(Auth::attempt(array(
 			'username' 	=> Input::get('username'),
 			'password' 	=> Input::get('password'),
-			'active'	=> (int) 1
 			)
 		))
-			return Redirect::intended('/');
+			return Redirect::back();
 
 		//if unsuccessfull, return to login with error
 		Session::put('signinError', 'Invalid username or password.');
 		return Redirect::to('/login')->withInput();
+
+
+		
 	}
 
 	public function destroy() {
