@@ -47,7 +47,7 @@ class UsersController extends BaseController {
 		$password 	= (string) $input['password'];
 		
 		// Fetch user social data and destroy it at the same time
-		$socialData = Session::get('socialData');
+		$socialData = Session::pull('socialData', 'default');
 
 		// Save new user to DB
 		$this->createNewUser($username, $email, $password, $socialData['provider'], $socialData['id'], $socialData['gender']);
