@@ -10,13 +10,13 @@
 		          @if(Session::has('userCreateSuccess'))
 		          	<p class="text-success">{{ Session::get('userCreateSuccess') }}</p>
 		          @endif
-		          
+
 		          @include('layouts.components.social-signin-buttons')
 		        </ul>
 
 		        <div class="col-sm-6 signin-form-container">
 		          <p>Sign in to your account.</p>
-
+		          	          
 		          @if(Session::has('signinError'))
 		          	<p class="signin-error"><i class="fa fa-remove"></i> {{ Session::pull('signinError', 'Default');  }} </p>
 		          @endif
