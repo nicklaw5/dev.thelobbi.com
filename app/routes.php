@@ -8,7 +8,8 @@ Route::get('/', 'HomeController@index');
 //guest only routes
 Route::group(array('before' => 'guest'), function() {
 
-	Route::get('/login', 'SessionsController@create');	
+	Route::get('/login', 'SessionsController@create');
+	Route::get('/signup', 'UsersController@create');
 
 	Route::get('/oauth/session/facebook', 'OauthController@oauthFacebook');
 	Route::get('/oauth/session/twitter', 'OauthController@oauthTwitter');

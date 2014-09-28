@@ -24,7 +24,7 @@ class UsersController extends BaseController {
 
 		// Validate user input against User::$inputRules
 		if(! $this->user->isValid($input = Input::all()))
-			return Redirect::back()->withInput()->withErrors($this->user->inputErrors);
+			return Redirect::to('/signup')->withInput()->withErrors($this->user->inputErrors);
 
 		// if user IS NOT signing up via social network
 		if( ! Session::has('socialData')) {
@@ -78,7 +78,7 @@ class UsersController extends BaseController {
 		    		->subject('Welcome to The Lobbi!');
 		});
 
-		// Push new user to login page with 
+		// Set welcome message
 		Session::flash('userCreateSuccess', 'Thanks for signing up and welcome. We\'ve emailed you your account activation link.
 												You will need activate your account before signing in for the first time.');
 		return true;

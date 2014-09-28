@@ -26,7 +26,7 @@ class SessionsController extends BaseController {
 
 		//if unsuccessfull, return to login with error
 		Session::put('signinError', 'Invalid username or password.');
-		return Redirect::to('/login')->withInput();
+		return Redirect::to('/signup')->withInput();
 	}
 
 	public function destroy() {
