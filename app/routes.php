@@ -8,7 +8,7 @@ Route::get('/', 'HomeController@index');
 //guest only routes
 Route::group(array('before' => 'guest'), function() {
 
-	Route::get('/login', 'SessionsController@create');
+	Route::get('/signin', 'SessionsController@create');
 	Route::get('/signup', 'UsersController@create');
 
 	Route::get('/oauth/session/facebook', 'OauthController@oauthFacebook');
@@ -21,7 +21,7 @@ Route::group(array('before' => 'guest'), function() {
 //signined in only routes
 Route::group(array('before' => 'auth'), function() {
 		
-	Route::get('/logout', 'SessionsController@destroy');
+	Route::get('/signout', 'SessionsController@destroy');
 
 });
 
