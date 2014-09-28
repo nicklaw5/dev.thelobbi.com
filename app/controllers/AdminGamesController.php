@@ -2,11 +2,15 @@
 
 class AdminGamesController extends BaseController {
 
-	public function __construct() {}
+	protected $baseUrl;
+
+	public function __construct() {
+		$this->baseUrl = 'http://dev.thelobbi.com/public';
+	}
 
 	//GET:HEAD users 					users.index
 	public function index() {
-		return View::make('admin.games.index');
+		return View::make('admin.games.index')->with('baseUrl', $this->baseUrl);
 	}
 
 	//GET:HEAD users/create 			users.create
