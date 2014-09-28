@@ -5,7 +5,7 @@ class OauthController extends BaseController {
 	protected $user;
 	
 	// An array of acceptable social login methods
-	private $allowableSocialAuths = ['facebook', 'google', 'twitter', 'twitch'];
+	private $allowableSocialAuths = ['facebook', 'google', 'twitch']; // twitter ommited
 
 	function __construct(User $user) {
 		$this->user = $user;
@@ -20,8 +20,7 @@ class OauthController extends BaseController {
 	}
 
 	public function destroy() {
-		Auth::logout();
-		return Redirect::to('/');
+		
 	}
 	
 	/**
