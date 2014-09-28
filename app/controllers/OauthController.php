@@ -37,12 +37,11 @@ class OauthController extends BaseController {
 		  	'active'			=> (int)$user_active				// 	 1 (true) or 0 (false)
 		);
 
-		//set session
-		Session::forget('socialData');
-		Session::put('socialData', $socialData);
+		// Save user social data to flash session variable
+		Session::flash('socialData', $socialData);
 
 		// make sure the session data has been set
-		if(Session::has('socialData') && count(Session::has('socialData')) === 6) {
+		if(Session::has('socialData') && count(Session::has('socialData')) === count($socialData)) {
 			return true;		
 		}
 		return false;
