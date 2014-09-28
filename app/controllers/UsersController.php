@@ -73,6 +73,8 @@ class UsersController extends BaseController {
 		// Send email verification link
 /****/	$data = 'This is some data';
 		
+		mail($email, 'My Subject', $data);
+
 		Mail::queue('emails.welcome', ['data' => $data], function($message) use ($email, $username)	{
 		    $message->to($email, $username)
 		    		->subject('Welcome to The Lobbi!');
