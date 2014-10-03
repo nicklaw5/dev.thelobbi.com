@@ -43,7 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('/login');
+			return Redirect::guest('/signin');
 		}
 	}
 });
@@ -69,7 +69,7 @@ Route::filter('admin', function()
 {	
 	//user not logged in
 	if(Auth::guest())
-		return 'User not logged in, returning to login page.';
+		return Redirect::to('/signin');
 		//return Redirect::guest('/login')
 
 	//user is not an admin

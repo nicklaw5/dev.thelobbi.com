@@ -34,8 +34,8 @@
 
 			<li class="root-level has-sub"><a href="/admin"><i class="entypo-layout"></i><span>Games</span></a>
 				<ul class="">
-					<li><a href="/admin"><span>New Game</span></a></li>
-					<li><a href="/admin"><span>List Games</span></a></li>
+					<li><a href="/admin/games/create"><span>New Game</span></a></li>
+					<li><a href="/admin/games"><span>All Games</span></a></li>
 					<li><a href="/admin"><span>Released this week</span></a></li>
 					<li><a href="/admin"><span>Released this month</span></a></li>
 				</ul>
@@ -101,14 +101,5 @@
 
 	<div class="main-content">
 
-		<ol class="breadcrumb bc-1">
-			<li>
-				<a href="#">
-					<i class="entypo-folder"></i>
-					Dashboard
-				</a>
-			</li>
-			<li><a href="#">Appearance</a></li>
-			<li><a href="#">Plugins</a></li>
-			<li class="active">Widgets</li>
-		</ol>
+		@include('admin.layouts.admin-breadcrumbs')
+		@include('admin.alerts.admin-alerts')

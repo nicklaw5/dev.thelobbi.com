@@ -10,21 +10,20 @@
 	
 	<title>Neon | Mixed Menus</title>
 	
-
-	<link rel="stylesheet" href="{{ $baseUrl }}/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
-	<link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
+	<link rel="stylesheet" href="{{ URL::asset('assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css') }}">
+	<link rel="stylesheet" href="{{ URL::asset('assets/css/font-icons/entypo/css/entypo.css') }}">
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
-	<link rel="stylesheet" href="assets/css/bootstrap.css">
-	<link rel="stylesheet" href="assets/css/neon-core.css">
-	<link rel="stylesheet" href="assets/css/neon-theme.css">
-	<link rel="stylesheet" href="assets/css/neon-forms.css">
-	<link rel="stylesheet" href="assets/css/custom.css">
-	<link rel="stylesheet" href="assets/css/skins/black.css">
-	<link rel="stylesheet" href="assets/css/backend-main.css">
+	<link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ URL::asset('assets/css/neon-core.css') }}">
+	<link rel="stylesheet" href="{{ URL::asset('assets/css/neon-theme.css') }}">
+	<link rel="stylesheet" href="{{ URL::asset('assets/css/neon-forms.css') }}">
+	<link rel="stylesheet" href="{{ URL::asset('assets/css/custom.css') }}">
+	<link rel="stylesheet" href="{{ URL::asset('assets/css/skins/black.css') }}">
+	<link rel="stylesheet" href="{{ URL::asset('assets/css/backend-main.css') }}">
 
-	<script src="assets/js/jquery-1.11.0.min.js"></script>
+	<script src="{{ URL::asset('assets/js/jquery-1.11.0.min.js') }}"></script>
 
-	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	<!--[if lt IE 9]><script src="{{ URL::asset('assets/js/ie8-responsive-file-warning.js') }}"></script><![endif]-->
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>

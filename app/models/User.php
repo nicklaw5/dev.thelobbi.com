@@ -42,4 +42,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return false;
 	}
 
+	/**
+	 * Checks if user has verifies their email address.	
+	 */
+	public function isEmailVerified() {
+		if(Auth::user()->email_verified === 1)
+			return true;
+		return false;
+	}
+
+	/**
+	 * Returns TRUE if user is an admin, 
+	 * False otherwise.
+	 */
+	public function isAdmin() {
+
+	}
+
 }

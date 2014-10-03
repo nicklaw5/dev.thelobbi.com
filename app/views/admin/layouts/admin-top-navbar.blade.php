@@ -5,7 +5,7 @@
 			<!-- logo -->
 			<div class="navbar-brand">
 				<a href="/admin">
-					<img src="assets/images/logos/thelobbi-logo-181x30.png" alt="">
+					<img src="{{ URL::asset('assets/images/logos/thelobbi-logo-181x30.png') }}" alt="">
 				</a>
 			</div>
 			
@@ -170,7 +170,7 @@
 		<li class="active">
 			<a href="#">
 				<span class="image pull-right">
-					<img src="assets/images/thumb-1.png" alt="" class="img-circle">
+					<img src="{{ URL::asset('assets/images/thumb-1.png') }}" alt="" class="img-circle">
 				</span>
 				
 				<span class="line">
@@ -187,7 +187,7 @@
 		<li class="active">
 			<a href="#">
 				<span class="image pull-right">
-					<img src="assets/images/thumb-2.png" alt="" class="img-circle">
+					<img src="{{ URL::asset('assets/images/thumb-2.png') }}" alt="" class="img-circle">
 				</span>
 				
 				<span class="line">
@@ -204,7 +204,7 @@
 		<li>
 			<a href="#">
 				<span class="image pull-right">
-					<img src="assets/images/thumb-3.png" alt="" class="img-circle">
+					<img src="{{ URL::asset('assets/images/thumb-3.png') }}" alt="" class="img-circle">
 				</span>
 				
 				<span class="line">
@@ -221,7 +221,7 @@
 		<li>
 			<a href="#">
 				<span class="image pull-right">
-					<img src="assets/images/thumb-4.png" alt="" class="img-circle">
+					<img src="{{ URL::asset('assets/images/thumb-4.png') }}" alt="" class="img-circle">
 				</span>
 				
 				<span class="line">

@@ -1,17 +1,28 @@
 <?php
 
-// Route Resoureces
-Route::resource('oauth', 'OauthController');
-Route::resource('users', 'UsersController');
-Route::resource('sessions', 'SessionsController');
-Route::resource('videos', 'VideosController');
-Route::resource('articles', 'ArticlesController');
+// Content Route Resoureces
+Route::resource('news', 			'NewsController');
+Route::resource('reviews', 			'ReviewsController');
+Route::resource('interviews', 		'InterviewsController');
+Route::resource('videos', 			'VideosController');
 
+
+Route::resource('games', 		'GamesController');
+Route::resource('users', 		'UsersController');
+Route::resource('sessions', 	'SessionsController');
+Route::resource('companies', 	'CompaniesController');
+Route::resource('platforms', 	'PlatformsController');
+
+Route::resource('groups', 		'VideosController');
+
+//Route::resource('admin/games', 'AdminGamesController');
 
 Route::get('/', 'HomeController@index');
 
+Route::get('/signout', 'SessionsController@destroy');
 
-//Route::get('/articles/{year}/{month}/{day}/{title}', 'ArticlesController@showDatedArticle');
+
+//Route::get('/articles/{year}/{month}/{day}/{title}/{game_id}', 'ArticlesController@showDatedArticle');
 
 //guest only routes
 Route::group(array('before' => 'guest'), function() {
@@ -20,7 +31,7 @@ Route::group(array('before' => 'guest'), function() {
 	Route::get('/signup', 'UsersController@create');
 
 	Route::get('/oauth/session/facebook', 'OauthController@oauthFacebook');
-	Route::get('/oauth/session/twitter', 'OauthController@oauthTwitter');
+	//Route::get('/oauth/session/twitter', 'OauthController@oauthTwitter');
 	Route::get('/oauth/session/twitch', 'OauthController@oauthTwitch');
 	Route::get('/oauth/session/google', 'OauthController@oauthGoogle');
 
@@ -28,26 +39,18 @@ Route::group(array('before' => 'guest'), function() {
 
 //signined in only routes
 Route::group(array('before' => 'auth'), function() {
-	Route::get('/signout', 'SessionsController@destroy');
+	
 
 });
 
 
-// admin only routes
+// Admin only routes
 Route::group(array('prefix' => 'admin' , 'before' => 'admin' ), function() {
-	
-    Route::get('/', function() {
-        return View::make('admin.index');
-    });
-	
-	Route::get('games', 'AdminGamesController@index');
 
-    Route::get('content', function() {
-        return View::make('admin.index');
-    });
+  	Route::get('/', 'AdminController@index');
+  	Route::get('/games/create', 'GamesController@create');
+  	Route::get('/games', 'GamesController@listGames');
 
-    Route::get('content/news', function() {
-        return View::make('admin.index');
-    });
+//	Route::get('/games', 'AdminGamesController@index');
 
 });

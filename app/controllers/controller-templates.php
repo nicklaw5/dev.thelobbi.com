@@ -1,28 +1,28 @@
 <?php
 
-class SampleController extends BaseController {
+class AdminGamesController extends BaseController {
 
 	public function __construct() {}
 
-	//GET:HEAD users 					users.index
+	//GET 		games 					 games.index
 	public function index() {}
 
-	//GET:HEAD users/create 			users.create
+	//GET 		games/create 			games.create
 	public function create() {}
 
-	//POST users 						users.store
+	//POST 		games 					games.store
 	public function store() {}
 
-	//GET:HEAD users/{users} 			users.show
+	//GET 		games/{game} 			games.show
 	public function show() {}
 
-	//GET:HEAD users/{users}/edit 		users.edit
+	//GET 		games/{game}/edit 		games.edit
 	public function edit() {}
 
-	//PUT/PATCH users/{users}			users.update
+	//PUT/PATCH games/{game}			games.update
 	public function update() {}
 
-	//DELETE users/{users}				users.delete
+	//DELETE 	games/{game}			games.delete
 	public function destroy() {} 
 	
 }

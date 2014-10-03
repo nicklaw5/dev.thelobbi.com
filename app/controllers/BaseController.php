@@ -15,4 +15,13 @@ class BaseController extends Controller {
 		}
 	}
 
+	/**
+	* @return Object list()
+	*/
+	public function returnModelList($model, $column1, $column2, $orderByColumn = null) {
+		if($orderByColumn)
+			return $model->orderBy($orderByColumn)->lists($column1, $column2);
+		return $model->lists($column1, $column2);
+	}
+
 }

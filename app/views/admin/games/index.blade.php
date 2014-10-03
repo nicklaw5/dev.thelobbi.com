@@ -2,6 +2,344 @@
 	
 	@section('content')
 
-		<h1>stuff</h1>
+		<div class="gallery-env">
+
+	<div class="row">
 	
+		<div class="col-sm-12">
+			
+			<h3>
+				Album Title
+				&nbsp;
+				<a href="#" onclick="jQuery('#album-cover-options').modal('show');" class="btn btn-default btn-sm btn-icon icon-left">
+					<i class="entypo-cog"></i>
+					Edit Album
+				</a>
+			</h3>
+			
+			<hr>
+			
+			<div class="image-categories">
+				<span>Filter Images:</span>
+				<a href="#" class="active" data-filter="all">Show All</a> /
+				<a href="#" data-filter="1d">Taken today</a> /
+				<a href="#" data-filter="3d">Taken three days ago</a> /
+				<a href="#" data-filter="1w">Taken a week ago</a>
+			</div>
+		</div>
+	
+	</div>
+
+	<div class="row">
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1d">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="3d">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="3d">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1d">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1d">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="3d">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1w">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1d">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1w">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1w">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="3d">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1w">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1d">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1w">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1d">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="3d">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1w">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+	
+		<div class="col-sm-2 col-xs-4" data-tag="1d">
+			
+			<article class="image-thumb">
+				
+				<a href="#" class="image">
+					<img src="assets/images/album-image.jpg">
+				</a>
+				
+				<div class="image-options">
+					<a href="#" class="edit"><i class="entypo-pencil"></i></a>
+					<a href="#" class="delete"><i class="entypo-cancel"></i></a>
+				</div>
+				
+			</article>
+		
+		</div>
+		
+	</div>
+
+</div>
+			
 	@stop

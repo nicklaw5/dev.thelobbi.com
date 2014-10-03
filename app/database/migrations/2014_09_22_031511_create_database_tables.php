@@ -181,8 +181,9 @@ class CreateDatabaseTables extends Migration {
 		Schema::create('companies', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
-			$t->string('name');
-			$t->string('description');
+			$t->string('name', 150);
+			$t->string('abbreviation', 15)->nullable;
+			$t->string('description', 500)->nullable();
 			$t->string('logo', 300)->nullable();
 			$t->string('website', 300)->nullable();
 			$t->timestamps();
@@ -192,13 +193,17 @@ class CreateDatabaseTables extends Migration {
 		Schema::create('games', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
-			$t->string('name', 100);
-			$t->string('box_art', 150)->nullable();
+			$t->string('title', 150);
 			$t->string('description', 500)->nullable();
-			$t->integer('developer')->unsigned();
-			$t->foreign('developer')->references('id')->on('companies')->onDelete('no action')->onUpdate('cascade');
-			$t->integer('publisher')->unsigned();
-			$t->foreign('publisher')->references('id')->on('companies')->onDelete('no action')->onUpdate('cascade');			
+			$t->string('website', 150)->nullable();
+			$t->string('facebook', 150)->nullable();
+			$t->string('twitter', 150)->nullable();
+			$t->string('twitch', 150)->nullable();
+			$t->string('google_plus', 150)->nullable();
+			$t->string('youtube', 150)->nullable();
+			$t->string('box_art', 200)->nullable();
+			$t->string('title_image', 200)->nullable();
+			$t->decimal('price_at_launch', 5, 2)->nullable();
 			$t->timestamps();
 		});
 
@@ -206,11 +211,11 @@ class CreateDatabaseTables extends Migration {
 		Schema::create('platforms', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
-			$t->integer('developer')->unsigned();
-			$t->foreign('developer')->references('id')->on('companies')->onDelete('no action')->onUpdate('cascade');
+			$t->integer('developer_id')->unsigned();
+			$t->foreign('developer_id')->references('id')->on('companies')->onDelete('no action')->onUpdate('cascade');
 			$t->string('name', 60);
-			$t->string('abreviation', 15)->nullable();
-			$t->string('description', 250)->nullable();
+			$t->string('abbreviation', 15)->nullable();
+			$t->string('description', 500)->nullable();
 			$t->timestamps();
 		});
 
@@ -219,9 +224,69 @@ class CreateDatabaseTables extends Migration {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->string('name', 60);
-			$t->string('abreviation', 15)->nullable();
-			$t->string('description', 250)->nullable();
+			$t->string('abbreviation', 15)->nullable();
+			$t->string('description', 500)->nullable();
 			$t->timestamps();
+		});
+
+		// Create 'game_developers' table
+		Schema::create('game_developers', function($t) {
+			$t->engine = 'InnoDB';
+			$t->increments('id');
+			$t->integer('game_id')->unsigned();
+			$t->foreign('game_id')->references('id')->on('games')->onDelete('cascade')->onUpdate('cascade');
+			$t->integer('developer_id')->unsigned();
+			$t->foreign('developer_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+			$t->timestamps();
+		});	
+
+		// Create 'game_publishers' table
+		Schema::create('game_publishers', function($t) {
+			$t->engine = 'InnoDB';
+			$t->increments('id');
+			$t->integer('game_id')->unsigned();
+			$t->foreign('game_id')->references('id')->on('games')->onDelete('cascade')->onUpdate('cascade');
+			$t->integer('publisher_id')->unsigned();
+			$t->foreign('publisher_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+			$t->timestamps();
+		});	
+
+		// Create 'game_platforms' table
+		Schema::create('game_platforms', function($t) {
+			$t->engine = 'InnoDB';
+			$t->increments('id');
+			$t->integer('game_id')->unsigned();
+			$t->foreign('game_id')->references('id')->on('games')->onDelete('cascade')->onUpdate('cascade');
+			$t->integer('platform_id')->unsigned();
+			$t->foreign('platform_id')->references('id')->on('platforms')->onDelete('cascade')->onUpdate('cascade');
+			$t->date('release_date')->nullable();
+			$t->timestamps();
+		});
+
+		// Create 'game_genres' table
+		Schema::create('game_genres', function($t) {
+			$t->engine = 'InnoDB';
+			$t->increments('id');
+			$t->integer('game_id')->unsigned();
+			$t->foreign('game_id')->references('id')->on('games')->onDelete('cascade')->onUpdate('cascade');
+			$t->integer('genre_id')->unsigned();
+			$t->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade')->onUpdate('cascade');
+			$t->timestamps();
+		});
+
+		// Create 'logger' table
+		Schema::create('logger', function($t) {
+			$t->engine = 'InnoDB';
+			$t->increments('id');
+			$t->integer('user_id');
+			$t->string('ip_address', 20);
+			$t->string('class', 50);
+			$t->string('method', 50);
+			$t->string('description', 500);
+			$t->string('url', 100);
+			$t->string('uri', 100);
+			$t->integer('priority');
+			$t->dateTime('created_at');
 		});
 
 	}
@@ -265,6 +330,21 @@ class CreateDatabaseTables extends Migration {
 			$t->dropForeign('games_publisher_foreign');
 		});
 
+		Schema::table('game_developers', function($t) {
+			$t->dropForeign('game_developers_game_id_foreign');
+			$t->dropForeign('game_developers_developer_id_foreign');
+		});
+
+		Schema::table('game_publishers', function($t) {
+			$t->dropForeign('game_publishers_game_id_foreign');
+			$t->dropForeign('game_publishers_publisher_id_foreign');
+		});
+
+		Schema::table('game_platforms', function($t) {
+			$t->dropForeign('game_platforms_game_id_foreign');
+			$t->dropForeign('game_platforms_platform_id_foreign');
+		});
+
 		Schema::table('platforms', function($t) {
 			$t->dropForeign('platforms_developer_foreign');
 		});
@@ -285,6 +365,10 @@ class CreateDatabaseTables extends Migration {
 		Schema::drop('games');
 		Schema::drop('platforms');
 		Schema::drop('genres');
-		
+		Schema::drop('game_developers');
+		Schema::drop('game_publishers');
+		Schema::drop('game_platforms');
+		Schema::drop('game_genres');
+		Schema::drop('logger');
 	}
 }
