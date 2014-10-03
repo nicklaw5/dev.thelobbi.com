@@ -30,8 +30,8 @@ class GamesController extends BaseController {
 		            ->join('game_developers', 'games.id', '=', 'game_developers.game_id')
 		            ->join('companies', 'game_developers.developer_id', '=', 'companies.id')
 
-		            ->join('game_publishers', 'games.id', '=', 'game_publishers.game_id')
-		            ->join('companies', 'game_publishers.publisher_id', '=', 'companies.id')
+		            // ->join('game_publishers', 'games.id', '=', 'game_publishers.game_id')
+		            // ->join('companies', 'game_publishers.publisher_id', '=', 'companies.id')
 
 		            ->select('games.id as id', 'games.title as title', 'companies.id as developerId', 'companies.name as developerName')
 		            ->groupBy('games.title')
