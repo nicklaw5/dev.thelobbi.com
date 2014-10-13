@@ -31,7 +31,6 @@ Route::group(array('before' => 'guest'), function() {
 	Route::get('/signup', 'UsersController@create');
 
 	Route::get('/oauth/session/facebook', 'OauthController@oauthFacebook');
-	//Route::get('/oauth/session/twitter', 'OauthController@oauthTwitter');
 	Route::get('/oauth/session/twitch', 'OauthController@oauthTwitch');
 	Route::get('/oauth/session/google', 'OauthController@oauthGoogle');
 
@@ -48,9 +47,10 @@ Route::group(array('before' => 'auth'), function() {
 Route::group(array('prefix' => 'admin' , 'before' => 'admin' ), function() {
 
   	Route::get('/', 'AdminController@index');
-  	Route::get('/games/create', 'GamesController@create');
   	Route::get('/games', 'GamesController@listGames');
+  	Route::get('/games/create', 'GamesController@create');
 
-//	Route::get('/games', 'AdminGamesController@index');
+  	Route::get('/companies', 'CompaniesController@listCompanies');
+  	Route::get('/companies/create', 'CompaniesController@create');
 
 });

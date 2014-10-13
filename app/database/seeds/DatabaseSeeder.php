@@ -109,7 +109,7 @@ class CompaniesTableSeeder extends Seeder {
 	        [ 	'name' 	=> 	'Ubisoft', 'created_at'	=> 	$now, 'updated_at'	=> 	$now	],
 			[	'name'	=> 	'Bungie', 'created_at'	=> 	$now, 'updated_at'	=> 	$now	],
 	        [  	'name'	=> 	'Bohemia Interactive', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'name' 	=> 	'Electronic Arts', 'abbreviation'  =>  'EA', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'Electronic Arts', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
 	        [ 	'name'	=> 	'EA Sports', 'created_at'	=> 	$now, 'updated_at'	=> 	$now  ],
 	        [ 	'name' 	=> 	'Microsoft', 'created_at'	=> 	$now, 'updated_at'	=> 	$now  ],
 	        [ 	'name' 	=> 	'Bandai Namco Games', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],

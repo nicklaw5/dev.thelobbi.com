@@ -182,10 +182,14 @@ class CreateDatabaseTables extends Migration {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->string('name', 150);
-			$t->string('abbreviation', 15)->nullable;
 			$t->string('description', 500)->nullable();
+			$t->string('website', 150)->nullable();
+			$t->string('facebook', 150)->nullable();
+			$t->string('twitter', 150)->nullable();
+			$t->string('twitch', 150)->nullable();
+			$t->string('google_plus', 150)->nullable();
+			$t->string('youtube', 150)->nullable();
 			$t->string('logo', 300)->nullable();
-			$t->string('website', 300)->nullable();
 			$t->timestamps();
 		});
 

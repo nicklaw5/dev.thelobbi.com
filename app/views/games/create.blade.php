@@ -3,17 +3,13 @@
 @section('content')
 
 <div style="clear:both">
-	<h2><b>New Game</b></h2>
+	<h2><b>Add New Game</b></h2>
 </div>
 
-<div class="panel panel-primary">
-	
 	<div class="panel-body">
 		{{ Form::open(['action' => 'GamesController@store']) }}
 			
-			@foreach ($errors->all('<p style="color:#cc0000">:message</p>') as $error)
-				{{ $error }}
-			@endforeach
+			@include('admin.alerts.admin-form-errors')
 
 			<!-- TITLE -->
 			<div class="form-group row">
@@ -160,9 +156,6 @@
 		{{ Form::close() }}
 	
 	</div>
-
-</div>
-
 
 <!-- Modals -->
 @include('modals.new-company-modal')

@@ -25,30 +25,8 @@ class GamesController extends BaseController {
 	}
 
 	public function listGames() {
-		$games = DB::table('games')
-
-		            ->join('game_developers', 'games.id', '=', 'game_developers.game_id')
-		            ->join('companies', 'game_developers.developer_id', '=', 'companies.id')
-
-		            // ->join('game_publishers', 'games.id', '=', 'game_publishers.game_id')
-		            // ->join('companies', 'game_publishers.publisher_id', '=', 'companies.id')
-
-		            ->select('games.id as id', 'games.title as title', 'companies.id as developerId', 'companies.name as developerName')
-		            ->groupBy('games.title')
-		            ->orderBy('games.created_at','desc')
-		            ->limit(40)
-		            ->get();
-
-		//$developers = DB::table('')
-
-		// $games = DB::table('games')
-		// 			->select('games.id as id', 'games.title as title')
-		// 			->orderBy('games.created_at','desc')
-		//             ->limit(40)
-		//             ->get();
-
-		
-		// dd($games);
+		$numGames = 50;
+		$games = $this->game->returnGamesList($numGames);
 		return View::make('games.list')->with('games', $games);
 	}
 
@@ -68,11 +46,12 @@ class GamesController extends BaseController {
 	public function store() {
 
 		// Validate the game data
-		if( ! $this->game->isValid($input = Input::all()))
+		if( ! $this->isValid(Input::all(), $this->game))
 			return Redirect::back()->withInput()->withErrors($this->game->inputErrors);
 
 		//attempt to save game to DB
 		if( ! $game_id = $this->game->saveNewGame(Input::all())) {
+			
 			//log error to logger
 			$this->errorNum =  $this->logger->createLog('GamesController', 'store', 'Failed to add game to DB.', Request::url(), Request::path(), 8);
 			Session::put('adminDangerAlert', 'Error #'. $errorNum . ' - Something went wrong attempting to save the game to the database. Contact an administrator if this continues.');
@@ -94,9 +73,7 @@ class GamesController extends BaseController {
 			return Redirect::back();
 		}
 		else{
-			// if(! empty(Input::get('release_date')))
-
-			// $this->
+			
 			// Insert game release dates (more to come)
 			$date = date('Y-m-d', strtotime(Input::get('release_date')));
 

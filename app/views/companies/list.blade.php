@@ -3,27 +3,27 @@
 
 @section('content')
 
-<h2><strong>Games List</strong></h2>
+<h2><strong>Comapanies List</strong></h2>
 
 <table class="table table-bordered datatable" id="table-1">
 	<thead>
 		<tr>
-			<th>Game Title</th>
-			<th>Developer(s)</th>
-			<th>Publisher(s)</th>
-			<th>Platform(s)</th>			
-			<th>Release Date(s)</th>
+			<th>Company Name</th>
+			<th>Description</th>
+			<th>Website</th>
+			<th>Facebook</th>			
+			<th>Twitter</th>
 			<th width="245">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
-	@foreach($games as $game)
+		@foreach($companies as $company)
 		<tr>
-			<td><a href="{{ $game->id }}">{{ $game->title }}</a></td>
-			<td>{{ $game->developers }}</td>
-			<td>{{ $game->publishers }}</td>
-			<td>{{ $game->platforms }}</td>
-			<td>{{ $game->genres }}</td>
+			<td><a href="{{ $company->id }}">{{ $company->name }}</a></td>
+			<td>{{ $company->description }}</td>
+			<td></td>
+			<td></td>
+			<td></td>
 			<td>
 				<a href="#" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>		
 				<a href="#" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>

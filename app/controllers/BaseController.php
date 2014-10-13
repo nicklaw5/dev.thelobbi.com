@@ -16,6 +16,18 @@ class BaseController extends Controller {
 	}
 
 	/**
+	 * Checks user input values against
+	 * required rules.
+	 */
+	public function isValid($input, $model) {
+		$validation = Validator::make($input, $model->inputRules);
+		if($validation->passes())
+			return true;
+		$model->inputErrors = $validation->messages();
+		return false;
+	}
+
+	/**
 	* @return Object list()
 	*/
 	public function returnModelList($model, $column1, $column2, $orderByColumn = null) {

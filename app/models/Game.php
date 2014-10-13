@@ -14,31 +14,16 @@ class Game extends Eloquent {
 	public $inputRules = [
 		'title' 				=> 	'required|unique:games',
 		'description' 			=> 	'max:500',
-		'website' 				=>	'url|max:100',
-		'facebook' 				=>	'url|max:100',
-		'twitter' 				=>	'url|max:100',
-		'twitch' 				=>	'url|max:100',
-		'google_plus' 			=>	'url|max:100',
-		'youtube' 				=>	'url|max:100',
+		'website' 				=>	'url|max:150',
+		'facebook' 				=>	'url|max:150',
+		'twitter' 				=>	'url|max:150',
+		'twitch' 				=>	'url|max:150',
+		'google_plus' 			=>	'url|max:150',
+		'youtube' 				=>	'url|max:150',
 		'box_art' 				=> 	'url|max:200',
 		'title_image' 			=> 	'url|max:200',
 		'price_at_launch' 		=> 	'Regex:/[^0-9.]/'
 	];
-
-	/**
-	 * Checks user input values against
-	 * required rules.
-	 */
-	public function isValid($input) {
-
-		$validation = Validator::make($input, $this->inputRules);
-
-		if($validation->passes())
-			return true;
-		
-		$this->inputErrors = $validation->messages();
-		return false;
-	}
 
 	public function saveNewGame($input) {
 
@@ -58,10 +43,10 @@ class Game extends Eloquent {
 		return $this->returnGameData('id', 'title', $input['title']);
 	}
 
-	private function nullCheck($input) {
-		if($input === '' || $input === null)
+	private function nullCheck($data) {
+		if($data === '' || $data === null)
 			return null;
-		return $input;
+		return $data;
 	}
 
 	public function returnGameData($data, $field, $value) {
@@ -81,58 +66,41 @@ class Game extends Eloquent {
 		return true;
 	}
 
-	// public function insertGameDevelopers($game_id, $developers) {
-	// 	$time = date('Y-m-d H:i:s');
-	// 	foreach ($developers as $developer) {
-	// 		DB::table('game_developers')->insert(array(
-	// 				'game_id' 		=> $game_id,
- //    				'developer_id' 	=> (int)$developer,
-	// 				'created_at'	=> $time,
-	// 				'updated_at'	=> $time
- //    		));
-	// 	}
-	// 	return true;
-	// }
+	public function returnGamesList($numberOfGames) {
+		$games = DB::table('games')
+                ->select(
+                	DB::raw(
+                	'games.id, games.title, 
+                	GROUP_CONCAT(DISTINCT dc.name) AS developers,
+                	GROUP_CONCAT(DISTINCT pc.name) AS publishers,
+                	GROUP_CONCAT(DISTINCT pl.abbreviation) AS platforms,
+                	GROUP_CONCAT(DISTINCT g.name) AS genres'
+                	)
+                )
+                ->join('game_developers AS gd', 'gd.game_id', '=', 'games.id')
+		        ->join('companies AS dc', 'dc.id', '=', 'gd.developer_id')
 
-	// public function insertGamePublishers($game_id, $publishers) {
-	// 	$time = date('Y-m-d H:i:s');
-	// 	foreach ($publishers as $publisher) {
-	// 		DB::table('game_publishers')->insert(array(
-	// 				'game_id' 		=> $game_id,
- //    				'publisher_id' 	=> (int)$publisher),
-	// 				'created_at'	=> $time,
-	// 				'updated_at'	=> $time,
- //    		);
-	// 	}
-	// 	return true;
-	// }
+		        ->join('game_publishers AS gp', 'gp.game_id', '=', 'games.id')
+		        ->join('companies AS pc', 'pc.id', '=', 'gp.publisher_id')
 
-	// public function insertGamePlatforms($game_id, $genres) {
-	// 	$time = date('Y-m-d H:i:s');
-	// 	foreach ($genres as $genre) {
-	// 		DB::table('game_genres')->insert(array(
-	// 				'game_id' 		=> $game_id,
- //    				'genre_id' 	=> (int)$genre),
-	// 				'created_at'	=> $time,
-	// 				'updated_at'	=> $time,
- //    		);
-	// 	}
-	// 	return true;
-	// }
+				->join('game_platforms AS gpl', 'gpl.game_id', '=', 'games.id')
+		        ->join('platforms AS pl', 'pl.id', '=', 'gpl.platform_id')			        
 
-	// public function insertGameGenres($game_id, $genres) {
-	// 	$time = date('Y-m-d H:i:s');
-	// 	foreach ($genres as $genre) {
-	// 		DB::table('game_genres')->insert(array(
-	// 				'game_id' 		=> $game_id,
- //    				'genre_id' 	=> (int)$genre),
-	// 				'created_at'	=> $time,
-	// 				'updated_at'	=> $time,
- //    		);
-	// 	}
-	// 	return true;
-	// }
+		        ->join('game_genres AS gg', 'gg.game_id', '=', 'games.id')
+		        ->join('genres AS g', 'g.id', '=', 'gg.genre_id')
 
+		        ->groupBy('games.id')
+	            ->orderBy('games.created_at', 'desc')
+	            ->limit($numberOfGames)
+	            ->get();
 
-
+		foreach($games as $game) {
+			$game->developers = str_replace(',', ', ', $game->developers);
+			$game->publishers = str_replace(',', ', ', $game->publishers);
+			$game->platforms = str_replace(',', ', ', $game->platforms);
+			$game->genres = str_replace(',', ', ', $game->genres);
+		}
+		return $games;
+	}
+	
 }

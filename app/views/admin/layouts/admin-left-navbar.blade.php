@@ -40,7 +40,14 @@
 					<li><a href="/admin"><span>Released this month</span></a></li>
 				</ul>
 			</li>
-			
+
+			<li class="root-level has-sub"><a href="/admin"><i class="entypo-layout"></i><span>Companies</span></a>
+				<ul class="">
+					<li><a href="/admin/companies/create"><span>New Company</span></a></li>
+					<li><a href="/admin/companies"><span>List Companies</span></a></li>
+				</ul>
+			</li>
+						
 			<li class="root-level has-sub"><a href="/admin"><i class="entypo-layout"></i><span>Platforms</span></a>
 				<ul class="">
 					<li><a href="/admin"><span>New Platform</span></a></li>
@@ -52,13 +59,6 @@
 				<ul class="">
 					<li><a href="/admin"><span>New Genre</span></a></li>
 					<li><a href="/admin"><span>List Genres</span></a></li>
-				</ul>
-			</li>
-			
-			<li class="root-level has-sub"><a href="/admin"><i class="entypo-layout"></i><span>Companies</span></a>
-				<ul class="">
-					<li><a href="/admin"><span>New Company</span></a></li>
-					<li><a href="/admin"><span>List Companies</span></a></li>
 				</ul>
 			</li>
 			
