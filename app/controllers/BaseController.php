@@ -35,5 +35,4 @@ class BaseController extends Controller {
 			return $model->orderBy($orderByColumn)->lists($column1, $column2);
 		return $model->lists($column1, $column2);
 	}
-
 }

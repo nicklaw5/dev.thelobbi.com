@@ -1,10 +1,10 @@
 <?php
 
 // Content Route Resoureces
-Route::resource('news', 			'NewsController');
-Route::resource('reviews', 			'ReviewsController');
-Route::resource('interviews', 		'InterviewsController');
-Route::resource('videos', 			'VideosController');
+Route::resource('news', 		'NewsController');
+Route::resource('reviews', 		'ReviewsController');
+Route::resource('interviews', 	'InterviewsController');
+Route::resource('videos', 		'VideosController');
 
 
 Route::resource('games', 		'GamesController');
@@ -42,15 +42,15 @@ Route::group(array('before' => 'auth'), function() {
 
 });
 
-
 // Admin only routes
 Route::group(array('prefix' => 'admin' , 'before' => 'admin' ), function() {
 
   	Route::get('/', 'AdminController@index');
   	Route::get('/games', 'GamesController@listGames');
   	Route::get('/games/create', 'GamesController@create');
+  	Route::get('/games/{game_id}/edit', 'GamesController@edit');
 
   	Route::get('/companies', 'CompaniesController@listCompanies');
   	Route::get('/companies/create', 'CompaniesController@create');
-
+  	Route::get('/companies/{company_id}/edit', 'CompaniesController@edit');
 });

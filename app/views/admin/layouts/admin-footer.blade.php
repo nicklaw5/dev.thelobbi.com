@@ -12,10 +12,8 @@
 
 
 
-	
-
 	<!-- Bottom Scripts -->
-
+	<script src="{{ URL::asset('assets/js/bootbox.min.js') }}"></script>
 	<script src="{{ URL::asset('assets/js/gsap/main-gsap.js') }}"></script>
 	<script src="{{ URL::asset('assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js') }}"></script>
 	<script src="{{ URL::asset('assets/js/bootstrap.js') }}"></script>

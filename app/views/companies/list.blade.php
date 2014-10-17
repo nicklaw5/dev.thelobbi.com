@@ -3,7 +3,9 @@
 
 @section('content')
 
-<h2><strong>Comapanies List</strong></h2>
+<div style="clear:both">
+	<h2><strong>Comapanies List</strong></h2>
+</div>
 
 <table class="table table-bordered datatable" id="table-1">
 	<thead>
@@ -13,21 +15,20 @@
 			<th>Website</th>
 			<th>Facebook</th>			
 			<th>Twitter</th>
-			<th width="245">Actions</th>
+			<th width="165">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach($companies as $company)
 		<tr>
-			<td><a href="{{ $company->id }}">{{ $company->name }}</a></td>
+			<td><a href="/companies/{{ $company->name_slug }}">{{ $company->name }}</a></td>
 			<td>{{ $company->description }}</td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td>
-				<a href="#" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>		
-				<a href="#" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
-				<a href="#" class="btn btn-info btn-sm btn-icon icon-left"><i class="entypo-info"></i>View</a>
+				<a style="float:left" href="companies/{{ $company->id }}/edit" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+				<button style="float:left; margin-left: 5px;" data-id="{{ $company->id }}" class="delete-btn btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</button>
 			</td>
 		</tr>
 		@endforeach
@@ -35,5 +36,40 @@
 </table>
 
 <script src="{{ URL::asset('assets/js/custom/list-functions.js') }}"></script>
+
+<script type="text/javascript">	
+	$(document).ready(function() {
+		$('.delete-btn').click(function() {
+			$company_id = $(this).attr('data-id');
+			bootbox.dialog({
+			  message: "Are you sure you want to delete this company?",
+			  title: "Confirmation",
+			  buttons: {
+			    danger: {
+			      label: "Cancel",
+			      className: "btn-default",
+			      callback: function() {
+			    	// do nothing
+			      }
+			    },
+			    success: {
+			      label: "Delete",
+			      className: "btn-danger",
+			      callback: function() {
+			      	$.ajax({
+				        url: '/companies/' + $company_id,
+				        type: 'post',
+				        data: {_method: 'delete'},
+				        success:function(msg){
+				        	location.reload();
+				        }
+					});
+			      }
+			    }
+			  }
+			});
+		});
+	});
+</script>
 
 @stop

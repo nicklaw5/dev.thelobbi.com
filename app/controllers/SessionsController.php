@@ -37,5 +37,4 @@ class SessionsController extends BaseController {
 		Auth::logout();
 		return Redirect::to('/');
 	}
-
 }

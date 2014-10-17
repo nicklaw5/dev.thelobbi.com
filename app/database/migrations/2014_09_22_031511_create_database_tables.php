@@ -182,6 +182,7 @@ class CreateDatabaseTables extends Migration {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->string('name', 150);
+			$t->string('name_slug', 200);
 			$t->string('description', 500)->nullable();
 			$t->string('website', 150)->nullable();
 			$t->string('facebook', 150)->nullable();
@@ -198,6 +199,7 @@ class CreateDatabaseTables extends Migration {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->string('title', 150);
+			$t->string('title_slug', 200);
 			$t->string('description', 500)->nullable();
 			$t->string('website', 150)->nullable();
 			$t->string('facebook', 150)->nullable();
