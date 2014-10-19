@@ -50,8 +50,8 @@
 						
 			<li class="root-level has-sub"><a href="/admin"><i class="entypo-layout"></i><span>Platforms</span></a>
 				<ul class="">
-					<li><a href="/admin"><span>New Platform</span></a></li>
-					<li><a href="/admin"><span>List Platforms</span></a></li>
+					<li><a href="/admin/platforms/create"><span>New Platform</span></a></li>
+					<li><a href="/admin/platforms"><span>All Platforms</span></a></li>
 				</ul>
 			</li>
 

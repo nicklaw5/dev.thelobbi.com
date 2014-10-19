@@ -45,12 +45,21 @@ Route::group(array('before' => 'auth'), function() {
 // Admin only routes
 Route::group(array('prefix' => 'admin' , 'before' => 'admin' ), function() {
 
+	// Dashboard
   	Route::get('/', 'AdminController@index');
+
+  	// Games
   	Route::get('/games', 'GamesController@listGames');
   	Route::get('/games/create', 'GamesController@create');
   	Route::get('/games/{game_id}/edit', 'GamesController@edit');
 
+  	// Companies
   	Route::get('/companies', 'CompaniesController@listCompanies');
   	Route::get('/companies/create', 'CompaniesController@create');
   	Route::get('/companies/{company_id}/edit', 'CompaniesController@edit');
+
+  	// Platforms
+  	Route::get('/platforms', 'PlatformsController@listPlatforms');
+  	Route::get('/platforms/create', 'PlatformsController@create');
+  	Route::get('/platforms/{platform_id}/edit', 'PlatformsController@edit');
 });

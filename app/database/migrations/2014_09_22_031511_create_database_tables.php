@@ -220,7 +220,8 @@ class CreateDatabaseTables extends Migration {
 			$t->integer('developer_id')->unsigned();
 			$t->foreign('developer_id')->references('id')->on('companies')->onDelete('no action')->onUpdate('cascade');
 			$t->string('name', 60);
-			$t->string('abbreviation', 15)->nullable();
+			$t->string('abbreviation', 15);
+			$t->string('abbreviation_slug', 20);
 			$t->string('description', 500)->nullable();
 			$t->timestamps();
 		});
@@ -229,7 +230,7 @@ class CreateDatabaseTables extends Migration {
 		Schema::create('genres', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
-			$t->string('name', 60);
+			$t->string('name', 100);
 			$t->string('abbreviation', 15)->nullable();
 			$t->string('description', 500)->nullable();
 			$t->timestamps();

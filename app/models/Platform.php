@@ -16,16 +16,16 @@ class Platform extends Eloquent {
 		'description' 			=> 	'max:500'
 	];
 
-	/**
-	 * Checks user input values against
-	 * required rules.
-	 */
-	public function isValid($input) {
-		$validation = Validator::make($input, $this->inputRules);
-		if($validation->passes())
-			return true;
-		$this->inputErrors = $validation->messages();
-		return false;
-	}
+	public function returnPlatformsList() {
+		
+		$platforms = DB::table($this->table)
+				->select(DB::raw('platforms.id, platforms.name, platforms.abbreviation, 
+					platforms.abbreviation_slug, platforms.description, companies.name AS developer'))
+				->leftJoin('companies', 'companies.id', '=', 'platforms.developer_id')
+	            ->orderBy('platforms.created_at', 'desc')
+	            ->get();
 
+		return $platforms;
+	}
+	
 }

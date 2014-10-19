@@ -32,9 +32,12 @@
 
                 <div class="hero-unit-items col-md-10 col-sm-12">
                     <ul class="media-list">
-                        <li class="media media-image">
-                            <a class="pull-left" href="#">
-                                <img class="media-object img-b img-responsive" src="/assets/images/bman420x236.jpg" alt="">
+                        <li class="media">
+                            <a class="pull-left">
+                                <video style="border:3px solid #080808; background: url(/assets/images/bman420x236.jpg) no-repeat" width="320" height="183" loop preload="none">
+                                    <source src="http://static.thelobbi.com/videos/kingdom-come-deliverance.mp4" type="video/mp4">   
+                                </video>
+                                
                             </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a class="text-link" href="#">Bravely Second is More of The Bravely Default We Love - TGS 2014</a></h4>
@@ -377,5 +380,6 @@
             <!-- END ITEMS UNIT -->
     	</div>
 
+    <script src="{{ URL::asset('assets/js/video-on-demand.js') }}"></script>
     @stop
 

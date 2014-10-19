@@ -108,8 +108,6 @@ class GamesController extends BaseController {
 
 	//PUT/PATCH games/{game_id}			games.update
 	public function update($game_id) {
-		
-		
 		// Validate the game data
 		// if( ! $this->isValid(Input::all(), $this->game))
 		// 	return Redirect::back()->withInput()->withErrors($this->game->inputErrors);
