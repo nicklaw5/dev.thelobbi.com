@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="{{ URL::asset('assets/js/icheck/skins/polaris/polaris.css') }}">
 
 
-
 	<!-- Bottom Scripts -->
 	<script src="{{ URL::asset('assets/js/bootbox.min.js') }}"></script>
 	<script src="{{ URL::asset('assets/js/gsap/main-gsap.js') }}"></script>

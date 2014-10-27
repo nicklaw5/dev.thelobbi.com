@@ -70,14 +70,11 @@ Route::filter('admin', function()
 	//user not logged in
 	if(Auth::guest())
 		return Redirect::to('/signin');
-		//return Redirect::guest('/login')
 
 	//user is not an admin
-	if(Auth::user()->group_id < 2)
+	if(Auth::user()->group_id < 3)
 		return 'You must be an admin to access this page.';
-		//return Redirect::to('/login');
-
-	// else, if user is admin continue on
+	
 });
 
 /*

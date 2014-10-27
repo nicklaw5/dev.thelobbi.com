@@ -35,4 +35,12 @@ class BaseController extends Controller {
 			return $model->orderBy($orderByColumn)->lists($column1, $column2);
 		return $model->lists($column1, $column2);
 	}
+	
+	public function incrementViews($table, $row, $rowValue, $columnToIncrement = 'views') {
+		//only increment if not admin user
+		if(Auth::guest() || ! Auth::user()->group_id > 1) {
+			DB::table($table)->where($row, '=', $rowValue)->increment($columnToIncrement);
+		}
+	}
+
 }

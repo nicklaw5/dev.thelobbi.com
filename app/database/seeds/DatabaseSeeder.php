@@ -17,11 +17,15 @@ class DatabaseSeeder extends Seeder {
 	    $this->call('CompaniesTableSeeder');
         $this->call('PlatformsTableSeeder');
         $this->call('GenresTableSeeder');
+        $this->call('VideoCategoriesTableSeeder');
+        $this->call('ArticleCategoriesTableSeeder');
+        $this->call('SettingsTableSeeder');
         $this->call('GamesTableSeeder');
         $this->call('GameDevelopersTableSeeder');
         $this->call('GamePublishersTableSeeder');
         $this->call('GamePlatformsTableSeeder');
         $this->call('GameGenresTableSeeder');
+
         
    	}
 }
@@ -36,22 +40,41 @@ class GroupsTableSeeder extends Seeder {
 
         // Create groups
 		$groups = [
-			[
-	        	'group_name' 	=> 	'registered_user',
+			[	
+				'id' 			=> 	1,
+	        	'group_name' 	=> 	'Unverified User',
 	            'permissions' 	=> 	'none',
 	            'description' 	=>	'this is the description',
 	            'created_at'	=> 	$now,            
 	            'updated_at'	=> 	$now
 	        ],
-			[
-				'group_name' 	=> 	'moderator',
+			[	
+				'id' 			=> 	2,
+	        	'group_name' 	=> 	'Verified User',
+	            'permissions' 	=> 	'none',
+	            'description' 	=>	'this is the description',
+	            'created_at'	=> 	$now,            
+	            'updated_at'	=> 	$now
+	        ],
+			[	
+				'id' 			=> 	3,
+				'group_name' 	=> 	'Junior Staff',
 	            'permissions' 	=> 	'none',
 	            'description' 	=> 	'this is the description',
 	            'created_at'	=> 	$now,            
 	            'updated_at'	=> 	$now
 	        ],
 			[
-				'group_name' 	=> 	'admin',
+				'id' 			=> 	4,
+				'group_name' 	=> 	'Senior Staff',
+	            'permissions' 	=> 	'none',
+	            'description' 	=> 	'this is the description',
+	            'created_at'	=> 	$now,            
+	            'updated_at'	=> 	$now
+	        ],
+	        [	
+	        	'id' 			=> 	5,
+				'group_name' 	=> 	'Administrator',
 	            'permissions' 	=> 	'none',
 	            'description' 	=> 	'this is the description',
 	            'created_at'	=> 	$now,            
@@ -75,8 +98,10 @@ class UsersTableSeeder extends Seeder {
 
         $users = [
 			[
-	        	'group_id' 			=>	3,
+	        	'group_id' 			=>	5,
 	            'username' 			=> 	'nick',
+	            'first_name'		=> 	'Nicholas',
+	            'last_name'			=>	'Law',
 	            'active'			=> 	1,
 	            'email' 			=>	'nick_law@tpg.com.au',
 	            'email_verified'	=>	1,
@@ -143,7 +168,7 @@ class PlatformsTableSeeder extends Seeder {
 			[	'name' 	=> 	'Mactintosh', 'abbreviation'  =>  'Mac', 'developer_id' => 15, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
 			[	'name' 	=> 	'PlayStation 4', 'abbreviation'  =>  'PS4', 'developer_id' => 14, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
 			[	'name' 	=> 	'PlayStation 3', 'abbreviation'  =>  'PS3', 'developer_id' => 14, 'created_at'	=> 	$now, 'updated_at'	=> 	$now],
-			[	'name' 	=> 	'PlayStation Portable', 'abbreviation'  =>  'PSP', 'developer_id' => 14, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'PlayStation Vita', 'abbreviation'  =>  'PS Vita', 'developer_id' => 14, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
 			[	'name' 	=> 	'Xbox One', 'abbreviation'  =>  'Xbox One', 'developer_id' => 8, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
 			[	'name' 	=> 	'Xbox 360', 'abbreviation'  =>  'Xbox 360', 'developer_id' => 8, 'created_at'	=> 	$now, 'updated_at'	=> 	$now  ],
 			[	'name' 	=> 	'Nintendo Wii U', 'abbreviation'  =>  'Wii U', 'developer_id' => 17, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
@@ -155,7 +180,8 @@ class PlatformsTableSeeder extends Seeder {
 		// Insert group date
 		foreach($platforms as $platform){
 			DB::table('platforms')->insert($platform);
-		}         
+		}
+
     }
 }
 
@@ -170,11 +196,11 @@ class GenresTableSeeder extends Seeder {
         // Create groups
 		$genres = [
 			[	'name' 	=> 	'Shooter', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'name' 	=> 	'First-Person Shooter', 'abbreviation'  =>  'FPS', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'name' 	=> 	'Role Playing Game', 'abbreviation'  =>  'RPG', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'First-Person Shooter',  'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'Role Playing Game', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
 			[	'name' 	=> 	'Survinal Horror', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
 			[	'name' 	=> 	'Adventure', 'created_at'	=> 	$now, 'updated_at'	=> 	$now],
-			[	'name' 	=> 	'Massively Multiplayer Online', 'abbreviation'  =>  'MMO', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'Massively Multiplayer Online', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
 			[	'name' 	=> 	'Strategy', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
 			[	'name' 	=> 	'Simulation', 'created_at'	=> 	$now, 'updated_at'	=> 	$now  ],
 			[	'name' 	=> 	'Sports', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
@@ -185,6 +211,71 @@ class GenresTableSeeder extends Seeder {
 		// Insert group date
 		foreach($genres as $genre){
 			DB::table('genres')->insert($genre);
+		}         
+    }
+}
+
+class VideoCategoriesTableSeeder extends Seeder {
+
+    public function run() {
+
+    	$now = date('Y-m-d H:i:s');
+        //DB::table('platforms')->delete();
+
+        // Create groups
+		$categories = [
+			[	'category' 	=> 	'Trailer', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'category' 	=> 	'Gameplay',  'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'category' 	=> 	'Review', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'category' 	=> 	'Preview', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'category' 	=> 	'Interview', 'created_at'	=> 	$now, 'updated_at'	=> 	$now],
+			[	'category' 	=> 	'Other', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ]		
+		];
+
+		// Insert group date
+		foreach($categories as $category){
+			DB::table('video_categories')->insert($category);
+		}         
+    }
+}
+
+class ArticleCategoriesTableSeeder extends Seeder {
+
+    public function run() {
+
+    	$now = date('Y-m-d H:i:s');
+        //DB::table('platforms')->delete();
+
+        // Create groups
+		$categories = [
+			[	'category' 	=> 	'News', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'category' 	=> 	'Reviews',  'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'category' 	=> 	'Interviews', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'category' 	=> 	'Features', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'category' 	=> 	'Opinions', 'created_at'	=> 	$now, 'updated_at'	=> 	$now]
+		];
+
+		// Insert group date
+		foreach($categories as $category){
+			DB::table('article_categories')->insert($category);
+		}         
+    }
+}
+
+class SettingsTableSeeder extends Seeder {
+
+    public function run() {
+    	
+    	$now = date('Y-m-d H:i:s');
+
+        // Create groups
+		$settings = [
+			[	'name' 	=> 	'autoplay_videos', 'value' => 'true', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ]
+		];
+
+		// Insert group date
+		foreach($settings as $setting){
+			DB::table('settings')->insert($setting);
 		}         
     }
 }

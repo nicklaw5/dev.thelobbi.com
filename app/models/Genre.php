@@ -12,20 +12,43 @@ class Genre extends Eloquent {
 	public $inputErrors;
 	public $inputRules = [
 		'name' 					=> 	'required|unique:genres',
-		'abbreviation'			=>	'max:15',
 		'description' 			=> 	'max:500'
 	];
 
-	/**
-	 * Checks user input values against
-	 * required rules.
-	 */
-	public function isValid($input) {
-		$validation = Validator::make($input, $this->inputRules);
-		if($validation->passes())
-			return true;
-		$this->inputErrors = $validation->messages();
-		return false;
+	public function returnGenresList() {
+		$genres = DB::table($this->table)
+				->select(DB::raw('genres.id, genres.name, genres.name_slug, genres.description'))
+	            ->orderBy('genres.name', 'desc')
+	            ->get();
+
+		return $genres;
 	}
-	
+
+	public function saveNewGenre($input) {
+
+		$this->name 			  = $this->nullCheck($input['name']);
+		$this->name_slug  		  = $this->nullCheck(strtolower(preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/'), array('', '-', ''), $input['name'])));
+		$this->description 		  = $this->nullCheck($input['description']);
+		$this->save();
+
+		return true;
+	}
+
+	public function updateGenre($genre_id, $input) {
+		DB::table($this->table)
+            ->where('id', $genre_id)
+            ->update(array(
+            	'name'				=> $this->nullCheck($input['name']),
+            	'name_slug' 		=> $this->nullCheck(strtolower(preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/'), array('', '-', ''), $input['name']))),
+            	'description'		=> $this->nullCheck($input['description'])
+            ));
+            
+        return true;
+	}
+
+	private function nullCheck($data) {
+		if($data === '' || $data === null)
+			return null;
+		return $data;
+	}
 }

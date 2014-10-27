@@ -7,12 +7,21 @@
 				<a href="/admin/index"><i class="entypo-gauge"></i><span>Dashboard</span></a>
 			</li>
 			
-			<li class="root-level has-sub"><a href="/admin"><i class="entypo-layout"></i><span>Content</span></a>
+			<li class="root-level has-sub opened"><a href=""><i class="entypo-layout"></i><span>Articles</span></a>
 				<ul class="">
-					<li><a href="/admin"><span>News</span></a></li>
-					<li><a href="/admin"><span>Reviews</span></a></li>
-					<li><a href="/admin"><span>Interviews</span></a></li>
-					<li><a href="/admin"><span>Videos</span></a></li>
+					<li><a href="/admin/articles"><span>List Articles</span></a></li>
+					<li><a href="/admin/news/create"><span>+ New News Article</span></a></li>
+					<li><a href="/admin/reviews/create"><span>+ New Review Article</span></a></li>
+					<li><a href="/admin/interviews/create"><span>+ New Interview Article</span></a></li>
+					<li><a href="/admin/features/create"><span>+ New Feature Article</span></a></li>
+					<li><a href="/admin/opinions/create"><span>+ New Opinion Article</span></a></li>
+				</ul>
+			</li>
+
+			<li class="root-level has-sub opened"><a href=""><i class="entypo-layout"></i><span>Videos</span></a>
+				<ul class="">
+					<li><a href="/admin/videos"><span>List Videos</span></a></li>
+					<li><a href="/admin/videos/create"><span>+ New Video</span></a></li>
 				</ul>
 			</li>
 
@@ -57,8 +66,8 @@
 
 			<li class="root-level has-sub"><a href="/admin"><i class="entypo-layout"></i><span>Genres</span></a>
 				<ul class="">
-					<li><a href="/admin"><span>New Genre</span></a></li>
-					<li><a href="/admin"><span>List Genres</span></a></li>
+					<li><a href="/admin/genres/create"><span>New Genre</span></a></li>
+					<li><a href="/admin/genres"><span>List Genres</span></a></li>
 				</ul>
 			</li>
 			

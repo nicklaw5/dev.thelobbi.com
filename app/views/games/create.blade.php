@@ -118,7 +118,7 @@
 			<!-- BOX ART -->
 			<div class="form-group row">
 				<div class="col-lg-5">
-					<label for="box_art" class="control-label">Box Art (optional)</label>
+					<label for="box_art" class="control-label">Box Art (272 x 380) (optional)</label>
 					{{ Form::text('box_art', '', ['id' => 'box_art', 'class' => 'form-control', 'placeholder' => 'Click the button to add some box art.']) }}
 				</div>
 				<div class="col-lg-1">

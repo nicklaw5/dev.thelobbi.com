@@ -19,7 +19,7 @@ class CreateDatabaseTables extends Migration {
 		// Create 'groups' table
 		Schema::create('groups', function($t) {		//['registered user', 'moderator', 'junior journalist', 'senior journalist', 'junior admin', 'senior admin']
 			$t->engine = 'InnoDB';
-			$t->increments('id');
+			$t->integer('id');
 			$t->string('group_name', 50);
 			$t->string('permissions', 500);
 			$t->string('description', 250)->nullable();
@@ -53,47 +53,90 @@ class CreateDatabaseTables extends Migration {
 			$t->rememberToken();
 			$t->timestamps();
 		});
-
-		// Create 'news' table
-		Schema::create('news', function($t) {
+		
+		// Create 'games' table
+		Schema::create('games', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
-			$t->integer('user_id')->unsigned();
-			$t->foreign('user_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
-			$t->string('title', 100);
-			$t->string('url', 150);
-			$t->string('description', 250);
-			$t->text('body');
-			$t->string('image', 250)->nullable();
-			$t->boolean('is_published')->default(false);
-			$t->integer('views')->default(0);
-			$t->integer('last_edit_by')->nullable();
-			$t->string('last_edit_comment', 250)->nullable();
+			$t->string('title', 150);
+			$t->string('title_slug', 200);
+			$t->string('description', 500)->nullable();
+			$t->string('website', 150)->nullable();
+			$t->string('facebook', 150)->nullable();
+			$t->string('twitter', 150)->nullable();
+			$t->string('twitch', 150)->nullable();
+			$t->string('google_plus', 150)->nullable();
+			$t->string('youtube', 150)->nullable();
+			$t->string('box_art', 200)->nullable();
+			$t->string('title_image', 200)->nullable();
+			$t->decimal('price_at_launch', 5, 2)->nullable();
 			$t->timestamps();
 		});
 
-		// Create 'video_types' table
-		Schema::create('video_types', function($t) {	//['trailer', 'gameplay', 'interview', 'review', 'previews', 'other']
+		// Create 'video_categories' table
+		Schema::create('video_categories', function($t) {	//['trailer', 'gameplay', 'interview', 'review', 'previews', 'other']
 			$t->engine = 'InnoDB';
 			$t->increments('id');
-			$t->string('name', 20);
-			$t->string('description', 250);
-			$t->timestamps(); 
+			$t->string('category', 30);
+			$t->string('description', 300)->nullable();
+			$t->timestamps();
 		});
 
 		// Create 'videos' table
 		Schema::create('videos', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
-			$t->integer('video_type');
-			$t->integer('user_id')->unsigned();
-			$t->foreign('user_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
-			$t->string('url', 150);		
-			$t->string('title', 100);
+			$t->integer('video_category')->unsigned();
+			$t->foreign('video_category')->references('id')->on('video_categories')->onDelete('no action')->onUpdate('cascade');
+			$t->integer('author_id')->unsigned();
+			$t->foreign('author_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
+			$t->integer('game_id')->unsigned();
+			$t->foreign('game_id')->references('id')->on('games')->onDelete('no action')->onUpdate('cascade');
+			$t->string('title', 150);
+			$t->string('title_slug', 160);
 			$t->string('video', 250);
-			$t->string('image', 250)->nullable();
-			$t->string('description', 300);			
+			$t->string('video_short', 250)->nullable();
+			$t->string('image', 250);
+			$t->string('description', 350);
+			$t->integer('views')->default(0);
+			$t->dateTime('posted_at');
+			$t->boolean('is_published')->default(false);
+			$t->dateTime('published_at')->nullable();
+			$t->integer('last_edit_by')->nullable();
+			$t->string('last_edit_comment', 250)->nullable();
+			$t->timestamps();
+		});
+
+		// Create 'article_categories' table
+		Schema::create('article_categories', function($t) {	//['news', 'reviews', 'interviews', 'features', 'opinions']
+			$t->engine = 'InnoDB';
+			$t->increments('id');
+			$t->string('category', 30);
+			$t->string('description', 300)->nullable();
+			$t->timestamps();
+		});
+
+		// Create 'articles' table
+		Schema::create('articles', function($t) {
+			$t->engine = 'InnoDB';
+			$t->increments('id');
+			$t->integer('article_category')->unsigned();
+			$t->foreign('article_category')->references('id')->on('article_categories')->onDelete('no action')->onUpdate('cascade');
+			$t->integer('author_id')->unsigned();
+			$t->foreign('author_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
+			$t->integer('game_id')->unsigned();
+			$t->foreign('game_id')->references('id')->on('game')->onDelete('no action')->onUpdate('cascade');
+			$t->string('title', 150);
+			$t->string('title_slug', 50);
+			$t->string('description', 300);
+			$t->string('main_image', 250);
+			$t->string('cover_image', 250)->nullable;
+			$t->text('body');
 			$t->string('sources', 300)->nullable();
+			$t->double('review_score')->nullable();
+			$t->integer('review_video')->unsigned();
+			$t->foreign('review_video')->references('id')->on('videos')->onDelete('no action')->onUpdate('cascade');
+			$t->boolean('has_video')->default(false);
 			$t->boolean('is_published')->default(false);
 			$t->integer('views')->default(0);
 			$t->integer('last_edit_by')->nullable();
@@ -105,10 +148,10 @@ class CreateDatabaseTables extends Migration {
 		Schema::create('reviews', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
-			$t->integer('user_id')->unsigned();
-			$t->foreign('user_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
-			$t->string('url', 150);		
+			$t->integer('author_id')->unsigned();
+			$t->foreign('author_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
 			$t->string('title', 100);
+			$t->string('title_slug', 50);
 			$t->string('description', 300);
 			$t->string('image', 250)->nullable();
 			$t->text('body');
@@ -194,25 +237,6 @@ class CreateDatabaseTables extends Migration {
 			$t->timestamps();
 		});
 
-		// Create 'games' table
-		Schema::create('games', function($t) {
-			$t->engine = 'InnoDB';
-			$t->increments('id');
-			$t->string('title', 150);
-			$t->string('title_slug', 200);
-			$t->string('description', 500)->nullable();
-			$t->string('website', 150)->nullable();
-			$t->string('facebook', 150)->nullable();
-			$t->string('twitter', 150)->nullable();
-			$t->string('twitch', 150)->nullable();
-			$t->string('google_plus', 150)->nullable();
-			$t->string('youtube', 150)->nullable();
-			$t->string('box_art', 200)->nullable();
-			$t->string('title_image', 200)->nullable();
-			$t->decimal('price_at_launch', 5, 2)->nullable();
-			$t->timestamps();
-		});
-
 		// Create 'platforms' table
 		Schema::create('platforms', function($t) {
 			$t->engine = 'InnoDB';
@@ -223,6 +247,7 @@ class CreateDatabaseTables extends Migration {
 			$t->string('abbreviation', 15);
 			$t->string('abbreviation_slug', 20);
 			$t->string('description', 500)->nullable();
+			$t->string('website', 150)->nullable();
 			$t->timestamps();
 		});
 
@@ -231,7 +256,7 @@ class CreateDatabaseTables extends Migration {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
 			$t->string('name', 100);
-			$t->string('abbreviation', 15)->nullable();
+			$t->string('name_slug', 110);
 			$t->string('description', 500)->nullable();
 			$t->timestamps();
 		});
@@ -279,6 +304,38 @@ class CreateDatabaseTables extends Migration {
 			$t->integer('genre_id')->unsigned();
 			$t->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade')->onUpdate('cascade');
 			$t->timestamps();
+		});
+
+		// Create 'tags' table
+		Schema::create('tags', function($t) {
+			$t->engine = 'InnoDB';
+			$t->increments('id');
+			$t->integer('game_id')->unsigned();
+			$t->foreign('game_id')->references('id')->on('games')->onDelete('cascade')->onUpdate('cascade');
+			$t->integer('platform_id')->unsigned();
+			$t->foreign('platform_id')->references('id')->on('platforms')->onDelete('cascade')->onUpdate('cascade');
+			$t->integer('company_id')->unsigned();
+			$t->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+			$t->string('name')
+			$t->timestamps();
+		});
+
+		// Create 'article_tags' table
+		Schema::create('article_tags', function($t) {
+			$t->engine = 'InnoDB';
+			$t->integer('article_id')->unsigned();
+			$t->foreign('article_id')->references('id')->on('articles')->onDelete('cascade')->onUpdate('cascade');
+			$t->integer('tag_id')->unsigned();
+			$t->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade')->onUpdate('cascade');
+		});
+
+		// Create 'video_tags' table
+		Schema::create('video_tags', function($t) {
+			$t->engine = 'InnoDB';
+			$t->integer('video_id')->unsigned();
+			$t->foreign('video_id')->references('id')->on('videos')->onDelete('cascade')->onUpdate('cascade');
+			$t->integer('tag_id')->unsigned();
+			$t->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade')->onUpdate('cascade');
 		});
 
 		// Create 'logger' table
@@ -361,7 +418,7 @@ class CreateDatabaseTables extends Migration {
 		Schema::drop('users');	
 		Schema::drop('news');
 		Schema::drop('videos');
-		Schema::drop('video_types');
+		Schema::drop('video_categories');
 		Schema::drop('reviews');
 		Schema::drop('events');
 		Schema::drop('comments');

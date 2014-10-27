@@ -14,7 +14,7 @@
       <ul class="nav navbar-nav">
         <li><a href="#">News</a></li>
         <li><a href="#">Reviews</a></li>
-        <li><a href="#">Features</a></li>
+        <li><a href="#">Interviews</a></li>
         <li><a href="#">Videos</a></li>
         <li><a href="#">Forums</a></li>
         <li><a href="#">More</a></li>

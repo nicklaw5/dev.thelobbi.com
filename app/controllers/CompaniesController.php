@@ -47,7 +47,8 @@ class CompaniesController extends BaseController {
 
 	//GET 		companies/{company_id}/edit 		companies.edit
 	public function edit($company_id) {
-		return View::make('companies.edit')->with('company', $this->company->find($company_id));
+		return View::make('companies.edit')
+							->with('company', $this->company->find($company_id));
 	}
 
 	//PUT/PATCH companies/{company}			companies.update
@@ -67,13 +68,21 @@ class CompaniesController extends BaseController {
 	//DELETE 	companies/{company_id}			companies.destroy
 	public function destroy($company_id) {
 
+		//Check if company is not assigned to any game/plaform before deleting
 		if(Request::ajax())	{
-			if($company = $this->company->find($company_id)) {
-				$name = $company->name;
-				$company->delete();
-				Session::put('adminSuccessAlert', '<b>'.$name.'</b> has successfully been deleted.');
-			} else {
-				Session::put('adminDangerAlert', 'Something went wrong attempting to delete <b>'.$name.'</b>.');
+			if(DB::table('game_developers')->where('developer_id', '=', $company_id)->get()
+					|| 	DB::table('game_publishers')->where('publisher_id', '=', $company_id)->get()
+					|| 	DB::table('platforms')->where('developer_id', '=', $company_id)->get()) {
+				Session::put('adminInfoAlert', 'You cannot delete this company because it is currently assigned to a game or platform.');
+			}
+			else {
+				if($company = $this->company->find($company_id)) {
+					$name = $company->name;
+					$company->delete();
+					Session::put('adminSuccessAlert', '<b>'.$name.'</b> has successfully been deleted.');
+				} else {
+					Session::put('adminDangerAlert', 'Something went wrong attempting to delete <b>'.$name.'</b>.');
+				}
 			}
 			return;
 		}

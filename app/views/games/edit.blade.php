@@ -4,6 +4,7 @@
 
 <div style="clear:both">
 	<h2><b>Edit Game</b></h2>
+
 </div>
 	<div class="panel-body">
 		{{ Form::open(['method' => 'PUT', 'action' => array('GamesController@update', $game->id)]) }}

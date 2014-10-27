@@ -3,7 +3,7 @@
 @section('content')
 
 <div style="clear:both">
-	<h2><strong>Platforms List</strong></h2>
+	<h2><b>Platforms List</b></h2>
 </div>
 
 <table class="table table-bordered datatable" id="table-1">

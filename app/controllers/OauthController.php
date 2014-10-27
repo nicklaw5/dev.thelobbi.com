@@ -34,7 +34,7 @@ class OauthController extends BaseController {
 		  	'username'			=> (string)$social_username,		//	'my_username' or null
 		  	'email' 			=> (string)$social_email,			//	'my_username@example.com'
 		  	'gender' 			=> (string)$social_gender,			//	'male', 'female' or null
-		  	'active'			=> (int)$user_active				// 	 1 (true) or 0 (false)
+		  	'active'			=> intval($user_active)				// 	 1 (true) or 0 (false)
 		);
 
 		// Save user social data to flash session variable
@@ -155,7 +155,7 @@ class OauthController extends BaseController {
 	        
 			} else {
 
-				// put google data into session var from use later
+				// put google data into session var for use later
 				$this->packSocialData('twitter', $response['id'], $response['screen_name'], null, null, 1);
 
 				// send user to account create screen

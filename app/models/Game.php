@@ -85,8 +85,7 @@ class Game extends Eloquent {
 				'box_art' 			=> $this->nullCheck($input['box_art']),
 				'title_image' 		=> $this->nullCheck($input['title_image']),
 				'price_at_launch' 	=> $this->nullCheck(preg_replace('/[^0-9.]/', '', $input['price_at_launch']))
-        	)
-        );
+			));
         
         //delete game data from other tables
         $tables = array('game_developers', 'game_publishers', 'game_genres', 'game_platforms'); 

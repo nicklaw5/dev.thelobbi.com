@@ -1,4 +1,4 @@
-<header class="navbar navbar-fixed-top"><!-- set fixed position by adding class "navbar-fixed-top" -->
+<header class="navbar"><!-- set fixed position by adding class "navbar-fixed-top" -->
 		
 		<div class="navbar-inner">
 		
@@ -14,23 +14,24 @@
 						
 			<ul class="navbar-nav">
 				<li>
-					<a href="layout-api.html">
-						<i class="entypo-newspaper"></i>
-						<span>New News Article</span>
+					<a href="/admin/games/create">
+						<i class="entypo-trophy"></i>
+						<span>New Game</span>
 					</a>
 				</li>
 				<li>
-					<a href="ui-panels.html">
+					<a href="/admin/videos/create">
 						<i class="entypo-video"></i>
 						<span>New Video</span>
 					</a>
 				</li>
 				<li>
-					<a href="forms-main.html">
-						<i class="entypo-doc-text"></i>
-						<span>Forms</span>
+					<a href="/admin/articles/create">
+						<i class="entypo-newspaper"></i>
+						<span>New Article</span>
 					</a>
 				</li>
+
 				<!-- Search Bar -->
 				<li id="search" class="root-level search-input-collapsed">
 					<!-- add class "search-input-collapsed" to auto collapse search input -->

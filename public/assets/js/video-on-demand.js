@@ -6,10 +6,9 @@ var vid = document.getElementsByTagName("video");
 
 function playVideo(e)
 {   
-    this.play();
+	this.play();
 }
 function pauseVideo(e)
 {
     this.pause();
-    this.style.background.display = "";
 }

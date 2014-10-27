@@ -11,18 +11,18 @@
                     <div id='playertqLUYHhEYkVv'></div>
                     <script type='text/javascript'>
                         jwplayer('playertqLUYHhEYkVv').setup({
-                            file: 'https://www.youtube.com/watch?v=xzCEdSKMkdU',
-                            image: 'http://drh2.img.digitalriver.com/DRHM/Storefront/Company/ubi/images/hero/ubi/ACU_hero.jpg',
+                            file: '{{ $video->video }}',
+                            image: '{{ $video->image }}',
                             width: '100%',
                             aspectratio: '16:9',
-                            autostart: 'false',
-                            primary: 'flash'
+                            autostart: '{{ $autoplay_video }}',
+                            primary: 'html5'
                         });
                     </script>
                     <div class="video-player-meta">
-                        <h4 class="video-player-meta-title text-shadow">E3 2014: Assassin's Creed: Unity - Revolution Trailer</h4>
-                        <p><small>Posted: Sept 19, 2014 <span class="pull-right"><i class="fa fa-users"></i> Views: 2,438 | <a href="#comments"><i class="fa fa-comment"></i> Comments: 6</a></span></small></p>
-                        <p>Revolution is in the air in Assassin's Creed: Unity. Are you ready to write history? Revolution is in the air in Assassin's Creed: Unity. Are you ready to write history?</p>
+                        <h4 class="video-player-meta-title text-shadow">{{ $video->title }}</h4>
+                        <p><small>Posted: {{ $video->published_at }} <span class="pull-right"><i class="fa fa-users"></i> Views: {{ $video->views }} | <a href="#comments"><i class="fa fa-comment"></i> Comments: 6</a></span></small></p>
+                        <p>{{ $video->description }}</p>
                     </div>
                 </div>
 

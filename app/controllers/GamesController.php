@@ -179,5 +179,5 @@ class GamesController extends BaseController {
          	->update(array('release_date' => $date));
         return true;
 	}
-	
+
 }
