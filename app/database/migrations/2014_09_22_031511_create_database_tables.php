@@ -19,7 +19,7 @@ class CreateDatabaseTables extends Migration {
 		// Create 'groups' table
 		Schema::create('groups', function($t) {		//['registered user', 'moderator', 'junior journalist', 'senior journalist', 'junior admin', 'senior admin']
 			$t->engine = 'InnoDB';
-			$t->integer('id');
+			$t->increments('id');
 			$t->string('group_name', 50);
 			$t->string('permissions', 500);
 			$t->string('description', 250)->nullable();
