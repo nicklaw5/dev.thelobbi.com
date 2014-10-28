@@ -77,12 +77,12 @@
 			</div>
 
 			<!-- TAG COMPANIES -->
-			<div class="form-group row">
+			<!-- <div class="form-group row">
 				<div class="col-lg-6">
 					<label for="games" class="control-label">Tag Company(s) (optional)</label>
 					{{ Form::select('companies[]', $companies, null, ['class' => 'select2', 'multiple', 'required']); }}
 				</div>
-			</div>
+			</div> -->
 
 			<!-- SUBMIT -->
 			<div style="margin-top:50px;" class="form-group row col-lg-3">
