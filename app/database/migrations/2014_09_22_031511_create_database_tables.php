@@ -19,7 +19,7 @@ class CreateDatabaseTables extends Migration {
 		// Create 'groups' table
 		Schema::create('groups', function($t) {		//['registered user', 'moderator', 'junior journalist', 'senior journalist', 'junior admin', 'senior admin']
 			$t->engine = 'InnoDB';
-			$t->integer('id');
+			$t->increments('id');
 			$t->string('group_name', 50);
 			$t->string('permissions', 500);
 			$t->string('description', 250)->nullable();
@@ -30,8 +30,8 @@ class CreateDatabaseTables extends Migration {
 		Schema::create('users', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
-			// $t->integer('group_id')->unsigned()->default(1);
-			// $t->foreign('group_id')->references('id')->on('groups')->onDelete('no action')->onUpdate('cascade');
+			$t->integer('group_id')->unsigned()->default(1);
+			$t->foreign('group_id')->references('id')->on('groups')->onDelete('no action')->onUpdate('cascade');
 			$t->string('facebook_id', 60)->unique()->nullable();
 			$t->string('google_id', 60)->unique()->nullable();
 			$t->string('twitter_id', 60)->unique()->nullable();
