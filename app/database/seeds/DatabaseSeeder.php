@@ -44,7 +44,7 @@ class GroupsTableSeeder extends Seeder {
 				'id' 			=> 	1,
 	        	'group_name' 	=> 	'Unverified User',
 	            'permissions' 	=> 	'none',
-	            'description' 	=>	'this is the description',
+	            'description' 	=>	'An unverified user is one whose email is either unverified through a social provider (facebook, google, etc.) or whose email has not been provided. (For example, users who sign up with twitter are unverified because Twitter Oath facilities do not provide user emails.)',
 	            'created_at'	=> 	$now,            
 	            'updated_at'	=> 	$now
 	        ],
@@ -52,7 +52,7 @@ class GroupsTableSeeder extends Seeder {
 				'id' 			=> 	2,
 	        	'group_name' 	=> 	'Verified User',
 	            'permissions' 	=> 	'none',
-	            'description' 	=>	'this is the description',
+	            'description' 	=>	'Verified users are those who have verified their email addresses by signing up to the site using their email, or those who have clciked a verification link after signing up thorugh a social network.',
 	            'created_at'	=> 	$now,            
 	            'updated_at'	=> 	$now
 	        ],
