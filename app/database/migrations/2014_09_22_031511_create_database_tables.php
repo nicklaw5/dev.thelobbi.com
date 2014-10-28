@@ -316,7 +316,7 @@ class CreateDatabaseTables extends Migration {
 			$t->foreign('platform_id')->references('id')->on('platforms')->onDelete('cascade')->onUpdate('cascade');
 			$t->integer('company_id')->unsigned();
 			$t->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
-			$t->string('name')
+			$t->string('name');
 			$t->timestamps();
 		});
 
