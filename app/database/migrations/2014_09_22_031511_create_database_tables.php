@@ -30,8 +30,8 @@ class CreateDatabaseTables extends Migration {
 		Schema::create('users', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
-			$t->integer('group_id')->unsigned()->default(1);
-			$t->foreign('group_id')->references('id')->on('groups')->onDelete('no action')->onUpdate('cascade');
+			// $t->integer('group_id')->unsigned()->default(1);
+			// $t->foreign('group_id')->references('id')->on('groups')->onDelete('no action')->onUpdate('cascade');
 			$t->string('facebook_id', 60)->unique()->nullable();
 			$t->string('google_id', 60)->unique()->nullable();
 			$t->string('twitter_id', 60)->unique()->nullable();
