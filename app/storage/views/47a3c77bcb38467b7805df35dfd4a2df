@@ -1,0 +1,54 @@
+	<?php echo $__env->make('layouts.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		  <div class="modal-dialog modal-lg">
+		    <div class="br-none modal-signin-content modal-content">
+		      
+		        <div class="col-sm-12 modal-header">
+		          <h4>SIGN IN</h4>
+		        </div>
+
+		        <ul class="col-sm-6 social-signin">
+		          <?php if(Session::has('userCreateSuccess')): ?>
+		          	<p class="text-success"><?php echo Session::get('userCreateSuccess'); ?></p>
+		          <?php endif; ?>
+
+		          <?php echo $__env->make('layouts.components.social-signin-buttons', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		        </ul>
+
+		        <div class="col-sm-6 signin-form-container">
+		          <p>Sign in to your account.</p>
+		          	          
+		          <?php if(Session::has('signinError')): ?>
+		          	<p class="signin-error"><i class="fa fa-remove"></i> <?php echo Session::pull('signinError', 'Default');; ?> </p>
+		          <?php endif; ?>
+
+		          <?php echo Form::open(['action' => 'SessionsController@store']); ?>
+
+
+		            <div class="form-group">
+		              <?php echo Form::label('username', 'Username'); ?> <span class="text-primary">*</span> <!--<small class="text-danger form-error-message">This is an error.</small>-->
+		              <?php echo Form::text('username', '', ['class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']); ?>
+
+		            </div>
+		            
+		            <div class="form-group">
+		              <?php echo Form::label('password', 'Password'); ?> <span class="text-primary">*</span> <!--<small class="text-danger form-error-message">This is an error.</small>-->
+		              <?php echo Form::password('password', ['class' => 'form-control br-none', 'placeholder' => 'Password', 'autocomplete' => 'off', 'required']); ?>
+
+		            </div>
+
+		            <?php echo Form::submit('Sign in', ['class' => 'btn btn-default btn-lg btn-block br-none']); ?>
+
+
+		          <?php echo Form::close(); ?>
+
+
+		          <br>
+		          <a href="#">Forgot your password?</a>
+		          <br>
+		          <a href="#">Send me my email verification again.</a>
+		        </div>
+
+		    </div>
+		  </div>
+		<?php echo $__env->make('layouts.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	

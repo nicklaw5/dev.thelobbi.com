@@ -1,0 +1,68 @@
+	
+<?php $__env->startSection('content'); ?>
+
+<div style="clear:both">
+	<h2><b>Genres List</b></h2>
+</div>
+
+<table class="table table-bordered datatable" id="table-1">
+	<thead>
+		<tr>
+			<th>Genre Name</th>
+			<th>Genre Description</th>			
+			<th width="165">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach($genres as $genre): ?>
+		<tr>
+			<td><a href="/genres/<?php echo $genre->name_slug; ?>"><?php echo $genre->name; ?></a></td>
+			<td><?php echo $genre->description; ?></td>
+			<td>
+				<a style="float:left" href="genres/<?php echo $genre->id; ?>/edit" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+				<button style="float:left; margin-left: 5px;" data-id="<?php echo $genre->id; ?>" class="delete-btn btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</button>
+			</td>
+		</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>
+
+<script src="<?php echo URL::asset('assets/js/custom/list-functions.js'); ?>"></script>
+
+<script type="text/javascript">	
+	$(document).ready(function() {
+		$('.delete-btn').click(function() {
+			$genre_id = $(this).attr('data-id');
+			bootbox.dialog({
+			  message: "Are you sure you want to delete this genre?",
+			  title: "Confirmation",
+			  buttons: {
+			    danger: {
+			      label: "Cancel",
+			      className: "btn-default",
+			      callback: function() {
+			    	// do nothing
+			      }
+			    },
+			    success: {
+			      label: "Delete",
+			      className: "btn-danger",
+			      callback: function() {
+			      	$.ajax({
+				        url: '/genres/' + $genre_id,
+				        type: 'post',
+				        data: {_method: 'delete'},
+				        success:function(msg){
+				        	location.reload();
+				        }
+					});
+			      }
+			    }
+			  }
+			});
+		});
+	});
+</script>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.admin-default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

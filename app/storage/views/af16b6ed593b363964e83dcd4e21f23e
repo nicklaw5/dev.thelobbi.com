@@ -1,0 +1,51 @@
+<div class="modal fade bs-modal-signup" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="br-none modal-signup-content modal-content">
+        <div class="col-sm-12 modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4>SIGN UP</h4>
+        </div>
+
+        <ul class="col-sm-6 social-signin">
+          <?php echo $__env->make('layouts.components.social-signin-buttons', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </ul>
+
+        <div class="col-sm-6 signup-form-container">
+          <p>Create a new account.</p>
+
+          <?php echo Form::open(['action' => 'UsersController@store']); ?>
+
+
+            <div class="form-group">
+              <?php echo Form::label('username', 'Username'); ?> <span class="text-primary">*</span>
+              <?php echo Form::text('username', '', ['class' => 'form-control br-none', 'placeholder' => 'Username', 'autocomplete' => 'off', 'required']); ?>              
+            </div>
+            
+            <div class="form-group">
+              <?php echo Form::label('email', 'Email Address'); ?> <span class="text-primary">*</span>
+              <?php echo Form::email('email', '', ['class' => 'form-control br-none', 'placeholder' => 'Email', 'autocomplete' => 'off', 'required']); ?>
+
+            </div>
+
+            <div class="form-group">
+              <?php echo Form::label('password', 'Password'); ?> <span class="text-primary">*</span>
+              <?php echo Form::password('password', ['class' => 'form-control br-none', 'placeholder' => 'Password', 'autocomplete' => 'off', 'required']); ?>
+
+            </div>
+
+            <div class="form-group">
+              <?php echo Form::label('confirm-password', 'Confirm Password'); ?> <span class="text-primary">*</span>
+              <?php echo Form::password('confirm-password', ['class' => 'form-control br-none', 'placeholder' => 'Confirm Password', 'autocomplete' => 'off', 'required']); ?>
+
+            </div>
+
+            <?php echo Form::submit('Sign up', ['class' => 'btn btn-default btn-lg btn-block br-none']); ?>
+
+
+          <?php echo Form::close(); ?>
+
+        </div>
+
+    </div>
+  </div>
+</div>

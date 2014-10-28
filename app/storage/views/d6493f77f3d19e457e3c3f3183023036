@@ -1,0 +1,18 @@
+<!-- CONFIRM DIALOG BOX -->
+<!-- <a href="javascript:;" onclick="jQuery('#modal-4').appendTo(body).modal('show', {backdrop: 'static'});" class="btn btn-default">Show Me</a> -->
+<div class="modal fade" id="confirm-modal" data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Confirmation</h4>
+			</div>
+			<div class="modal-body">
+				<p>Are you sure you want to continue with this action?</p>
+			</div>
+			<div class="modal-footer">
+				<button id="confirm-true" type="button" class="btn btn-info" data-dismiss="modal">Continue</button>
+				<button id="confirm-true" style="float:left" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>

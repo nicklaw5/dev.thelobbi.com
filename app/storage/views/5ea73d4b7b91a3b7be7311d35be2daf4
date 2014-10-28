@@ -1,0 +1,20 @@
+<!-- Admin Alerts -->
+<?php if(Session::has('adminSuccessAlert')): ?>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="alert alert-success"><strong><?php echo Session::pull('adminSuccessAlert'); ?></strong></div>
+	</div>
+</div>
+<?php elseif(Session::has('adminWarningAlert')): ?>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="alert alert-success"><strong><?php echo Session::pull('adminWarningAlert', 'Default'); ?></strong></div>
+	</div>
+</div>
+<?php elseif(Session::has('adminDangerAlert')): ?>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="alert alert-success"><strong><?php echo Session::pull('adminDangerAlert', 'Default'); ?></strong></div>
+	</div>
+</div>
+<?php endif; ?>

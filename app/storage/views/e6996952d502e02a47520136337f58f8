@@ -1,0 +1,12 @@
+
+<ol class="breadcrumb bc-1">
+	<?php foreach(explode('/', ltrim($_SERVER['REQUEST_URI'], '/')) as $crumb): ?>
+	<li>
+		<a href="#">
+				<?php echo ucfirst($crumb); ?>
+
+		</a>
+	</li>
+	<?php endforeach; ?>
+</ol>
+	
