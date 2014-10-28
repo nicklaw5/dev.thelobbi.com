@@ -125,7 +125,7 @@ class CreateDatabaseTables extends Migration {
 			$t->integer('author_id')->unsigned();
 			$t->foreign('author_id')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
 			$t->integer('game_id')->unsigned();
-			$t->foreign('game_id')->references('id')->on('game')->onDelete('no action')->onUpdate('cascade');
+			$t->foreign('game_id')->references('id')->on('games')->onDelete('no action')->onUpdate('cascade');
 			$t->string('title', 150);
 			$t->string('title_slug', 50);
 			$t->string('description', 300);
