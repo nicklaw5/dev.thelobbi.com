@@ -14,7 +14,7 @@
                     </div>
                     </a> -->
                 </a>
-                <a href="#" class="feature-minor minor-top"></a> 
+                <a href="#" class="feature-minor minor-top testGit"></a> 
                 <a href="#" class="feature-minor minor-bottom"></a>
             <!-- </div> --> 
         </div>
