@@ -13,7 +13,6 @@
 			<tr>
 				<th width="500">Video Title</th>				
 				<th>Video Category</th>
-				<th>Game Linked To</th>
 				<th>Posted By</th>
 				<th>Dated Posted</th>
 				<th>View Count</th>
@@ -23,10 +22,9 @@
 		<tbody>
 			<?php foreach($uVideos as $video): ?>
 			<tr>
-				<td><a href="javascript:;" onclick="jQuery('#videoPreviewModal').appendTo(body).modal('show');jQuery('#frame').attr('src', '<?php echo $video->url; ?>');"><?php echo $video->title; ?></a></td>
+				<td><a href="javascript:;" onclick="jQuery('#previewModal').appendTo(body).modal('show');jQuery('#frame').attr('src', '<?php echo $video->url; ?>');"><?php echo $video->title; ?></a></td>
 				
 				<td><?php echo $video->category; ?></td>
-				<td><?php echo $video->game_title; ?></td>
 				<td><?php echo $video->first_name . ' ' . $video->last_name; ?></td>
 				<td><?php echo $video->posted_at; ?></td>
 				<td><?php echo $video->views; ?></td>
@@ -53,7 +51,6 @@
 		<tr>
 			<th width="500">Video Title</th>			
 			<th>Video Category</th>
-			<th>Game Linked To</th>
 			<th>Posted By</th>
 			<th>Dated Posted</th>
 			<th>View Count</th>
@@ -65,7 +62,6 @@
 		<tr>
 			<td><a target="_blank" href="<?php echo $video->url; ?>"><?php echo $video->title; ?></a></td>
 			<td><?php echo $video->category; ?></td>
-			<td><?php echo $video->game_title; ?></td>
 			<td><?php echo $video->first_name . ' ' . $video->last_name; ?></td>
 			<td><?php echo $video->posted_at; ?></td>
 			<td><?php echo $video->views; ?></td>
@@ -83,7 +79,7 @@
 
 <?php if(! empty($uVideos)): ?>
 	<!-- Modals -->
-	<?php echo $__env->make('modals.video-preview-modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->make('modals.preview-modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php endif; ?>
 
 <script type="text/javascript">	

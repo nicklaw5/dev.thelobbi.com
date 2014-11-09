@@ -35,12 +35,12 @@ class PlatformsController extends BaseController {
 			//log error to logger
 			$this->errorNum =  $this->logger->createLog('PlatformsController', 'store', 'Failed to add platform to DB.', Request::url(), Request::path(), 8);
 			Session::put('adminDangerAlert', 'Error #'. $errorNum . ' - Something went wrong attempting to save the platform to the database. Contact an administrator if this continues.');
-			return Redirect::back();
+			return Redirect::back()->withInput();
 		}
 
 		// Platform has been added successfully
 		Session::put('adminSuccessAlert', '<b>'. Input::get('name') .'</b> has successfully been added.');
-		return Redirect::back();
+		return Redirect::to('/admin/platforms');
 	}
 
 	//GET 		platforms/{platform} 			platforms.show

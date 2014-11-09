@@ -30,17 +30,18 @@ class Video extends Eloquent {
 
 		$this->video_category	= intval($input['video_category']);
 		$this->author_id		= intval(Auth::id());
-		$this->game_id			= intval($input['game']);
-		$this->title 			= $string->nullifyAndStrip($input['title']);
+		$this->title 			= $string->nullifyAndStripTags($input['title']);
 		$this->title_slug		= $string->slugify($this->title);
-		$this->video 			= $string->nullifyAndStrip($input['video']);
-		$this->video_short		= $string->nullifyAndStrip($input['video_short']);
-		$this->image			= $string->nullifyAndStrip($input['image']);
-		$this->description		= $string->nullifyAndStrip($input['description']);
+		$this->description		= $string->nullifyAndStripTags($input['description'], '<em><strong><b><a><s>');
+		$this->video 			= $string->nullifyAndStripTags($input['video']);
+		$this->video_short		= $string->nullifyAndStripTags($input['video_short']);
+		$this->image			= $string->nullifyAndStripTags($input['image']);
 		$this->posted_at		= $date->newDate();
 		$this->save();
 
-		return $this->returnVideoData('id', 'title', $this->title);
+		$video_id = $this->returnVideoData('id', 'title', $this->title);
+
+		return $video_id;
 	}
 
 	public function updateVideo($video_id, $input) {
@@ -51,13 +52,12 @@ class Video extends Eloquent {
             ->where('id', $video_id)
             ->update(array(
             	'video_category'	=> intval($input['video_category']),
-            	'game_id'			=> intval($input['game']),
-            	'title' 			=> $string->nullifyAndStrip($input['title']),
-            	'title_slug'		=> $string->slugify($this->title),
-				'video' 			=> $string->nullifyAndStrip($input['video']),
-				'video_short'		=> $string->nullifyAndStrip($input['video_short']),
-				'image'				=> $string->nullifyAndStrip($input['image']),
-				'description'		=> $string->nullifyAndStrip($input['description']),
+            	'title' 			=> $string->nullifyAndStripTags($input['title']),
+            	'title_slug'		=> $string->slugify($input['title']),
+            	'description'		=> $string->nullifyAndStripTags($input['description'], '<em><strong><b><a><s>'),
+				'video' 			=> $string->nullifyAndStripTags($input['video']),
+				'video_short'		=> $string->nullifyAndStripTags($input['video_short']),
+				'image'				=> $string->nullifyAndStripTags($input['image']),				
 				'last_edit_by'		=> intval(Auth::id())
 			));
 
@@ -78,14 +78,12 @@ class Video extends Eloquent {
 
 	                	 GROUP_CONCAT(DISTINCT vc.category) AS category,
 	                	 GROUP_CONCAT(DISTINCT u.first_name) AS first_name,
-	                 	 GROUP_CONCAT(DISTINCT u.last_name) AS last_name,
-	                	 GROUP_CONCAT(DISTINCT g.title) AS game_title'
+	                 	 GROUP_CONCAT(DISTINCT u.last_name) AS last_name'
                 	)
                 )
 
                 ->leftJoin('video_categories AS vc', 'vc.id', '=', 'videos.video_category')
                 ->leftJoin('users AS u', 'u.id', '=', 'videos.author_id')
-                ->leftJoin('games AS g', 'g.id', '=', 'videos.game_id')
 
                 ->where('videos.is_published', '=', $is_published)
 
@@ -97,7 +95,7 @@ class Video extends Eloquent {
 	    $date = App::make('DateClass');
 
 		foreach($videos as $video) {
-			$video->posted_at = $date->formatDate($video->posted_at, 'dS M Y');
+			$video->posted_at = $date->formatDate($video->posted_at, 'jS M Y');
 			$video->url = '/videos/' . $date->formatDate($video->published_at, 'Y/m/d/') . $video->title_slug;
 		}
 

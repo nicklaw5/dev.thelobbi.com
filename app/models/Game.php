@@ -27,27 +27,33 @@ class Game extends Eloquent {
 
 	public function saveNewGame($input) {
 
-		$this->title 			= $this->nullCheck($input['title']);
-		$this->title_slug		= $this->nullCheck(strtolower(preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/'), array('', '-', ''), $input['title'])));
-		$this->description 		= $this->nullCheck($input['description']);
-		$this->website 			= $this->nullCheck($input['website']);
-		$this->facebook 		= $this->nullCheck($input['facebook']);
-		$this->twitter 			= $this->nullCheck($input['twitter']);
-		$this->twitch 			= $this->nullCheck($input['twitch']);
-		$this->google_plus 		= $this->nullCheck($input['google_plus']);
-		$this->youtube 			= $this->nullCheck($input['youtube']);
-		$this->box_art 			= $this->nullCheck($input['box_art']);
-		$this->title_image 		= $this->nullCheck($input['title_image']);
-		$this->price_at_launch 	= $this->nullCheck(preg_replace('/[^0-9.]/', '', $input['price_at_launch']));
+		$string = App::make('StringClass');
+
+		//save new game to DB
+		$this->title 			= $string->nullifyAndStripTags($input['title']);
+		$this->title_slug		= $string->slugify($this->title);
+		$this->description 		= $string->nullifyAndStripTags($input['description']);
+		$this->website 			= $string->nullifyAndStripTags($input['website']);
+		$this->facebook 		= $string->nullifyAndStripTags($input['facebook']);
+		$this->twitter 			= $string->nullifyAndStripTags($input['twitter']);
+		$this->twitch 			= $string->nullifyAndStripTags($input['twitch']);
+		$this->google_plus 		= $string->nullifyAndStripTags($input['google_plus']);
+		$this->youtube 			= $string->nullifyAndStripTags($input['youtube']);
+		$this->box_art 			= $string->nullifyAndStripTags($input['box_art']);
+		$this->title_image 		= $string->nullifyAndStripTags($input['title_image']);
+		$this->price_at_launch 	= $string->nullifyAndStripTags(preg_replace('/[^0-9.]/', '', $input['price_at_launch']));
 		$this->save();
 
-		return $this->returnGameData('id', 'title', $input['title']);
-	}
+		$game_id = $this->returnGameData('id', 'title', $input['title']);
 
-	private function nullCheck($data) {
-		if($data === '' || $data === null)
-			return null;
-		return $data;
+		//add game as a tag
+		$tag = App::make('Tag');
+		if($tag->createNewTag($this->table, $game_id))
+
+			//return 'game_id'
+			return $game_id;
+
+		return false;
 	}
 
 	public function returnGameData($data, $field, $value) {
@@ -55,13 +61,16 @@ class Game extends Eloquent {
 	}
 
 	public function insertGameData($game_id, $datas, $table, $column) {
-		$time = date('Y-m-d H:i:s');
+
+		$date = App::make('DateClass');
+
+		//$time = date('Y-m-d H:i:s');
 		foreach ($datas as $data) {
 			DB::table($table)->insert(array(
-					'game_id' 		=> $game_id,
-    				$column		 	=> (int)$data,
-					'created_at'	=> $time,
-					'updated_at'	=> $time
+					'game_id' 		=> intval($game_id),
+    				$column		 	=> intval($data),
+					'created_at'	=> $date->newDate(),
+					'updated_at'	=> $date->newDate()
     		));
 		}
 		return true;
@@ -69,26 +78,28 @@ class Game extends Eloquent {
 
 	public function updateGame($game_id, $input) {
 		
+		$string = App::make('StringClass');
+
 		//update game data
 		DB::table($this->table)
             ->where('id', $game_id)
             ->update(array(
-            	'title'				=> $this->nullCheck($input['title']),
-            	'title_slug'		=> $this->nullCheck(strtolower(preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/'), array('', '-', ''), $input['title']))),
-				'description' 		=> $this->nullCheck($input['description']),
-				'website' 			=> $this->nullCheck($input['website']),
-				'facebook' 			=> $this->nullCheck($input['facebook']),
-				'twitter' 			=> $this->nullCheck($input['twitter']),
-				'twitch' 			=> $this->nullCheck($input['twitch']),
-				'google_plus' 		=> $this->nullCheck($input['google_plus']),
-				'youtube' 			=> $this->nullCheck($input['youtube']),
-				'box_art' 			=> $this->nullCheck($input['box_art']),
-				'title_image' 		=> $this->nullCheck($input['title_image']),
-				'price_at_launch' 	=> $this->nullCheck(preg_replace('/[^0-9.]/', '', $input['price_at_launch']))
+            	'title'				=> $title = $string->nullifyAndStripTags($input['title']),
+            	'title_slug'		=> $string->slugify($title),
+				'description' 		=> $string->nullifyAndStripTags($input['description']),
+				'website' 			=> $string->nullifyAndStripTags($input['website']),
+				'facebook' 			=> $string->nullifyAndStripTags($input['facebook']),
+				'twitter' 			=> $string->nullifyAndStripTags($input['twitter']),
+				'twitch' 			=> $string->nullifyAndStripTags($input['twitch']),
+				'google_plus' 		=> $string->nullifyAndStripTags($input['google_plus']),
+				'youtube' 			=> $string->nullifyAndStripTags($input['youtube']),
+				'box_art' 			=> $string->nullifyAndStripTags($input['box_art']),
+				'title_image' 		=> $string->nullifyAndStripTags($input['title_image']),
+				'price_at_launch' 	=> $string->nullifyAndStripTags(preg_replace('/[^0-9.]/', '', $input['price_at_launch']))
 			));
         
         //delete game data from other tables
-        $tables = array('game_developers', 'game_publishers', 'game_genres', 'game_platforms'); 
+        $tables = array('game_developers', 'game_publishers', 'game_genres', 'game_platforms');
         foreach($tables as $table) {
         	DB::table($table)->where('game_id', '=', $game_id)->delete();
         }
@@ -128,7 +139,7 @@ class Game extends Eloquent {
 
 			if($date = $this->returnGameReleaseDate($game->id)) {
 				$date = date_create($date);
-				$game->release_date = date_format($date,'D, d F Y');
+				$game->release_date = date_format($date,'d F Y');
 			} else {
 				$game->release_date = '- TBA -';
 			}
@@ -160,5 +171,45 @@ class Game extends Eloquent {
 			array_push($data_array, $data->$column);
 		}
 		return array_unique($data_array);
+	}
+
+	public function deleteGame($game_id) {
+
+		//get game
+		if( ! $game = $this->find($game_id)) {
+			Session::put('adminDangerAlert', 'Cannot find game.');
+			return;
+		}
+
+		$title = $game->title;
+
+		//get game tag_id
+		$tag = App::make('Tag');
+		if( ! $tag_id = $tag->getTagId('game_tags', 'game_id', $game_id)) {
+			Session::put('adminDangerAlert', 'The game tag for <b>'.$title.'</b> doesn\'t exist.');
+			return;
+		}
+
+		$media_types = ['video', 'article'];
+
+		//check if tagged in any media content
+		foreach ($media_types as $media_type) {
+			$count = DB::table($media_type.'_tags')
+						->where('tag_id', '=', $tag_id)
+						->count();
+			if($count) {
+				Session::put('adminInfoAlert', '<b>'.$title.'</b> cannot be deleted as it is tagged in either an article or video.');
+				return;
+			}
+		}
+
+		//delete game
+		if($game->delete()) {
+			Session::put('adminSuccessAlert', '<b>'.$title.'</b> has been deleted.');
+			return;
+		}
+
+		Session::put('adminInfoAlert', 'Something went wrong attempting to delete <b>'.$title.'.</b>');
+		return;
 	}
 }

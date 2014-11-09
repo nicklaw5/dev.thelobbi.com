@@ -23,7 +23,15 @@
 			<div class="form-group row">
 				<div class="col-lg-6">
 					<label for="description" class="control-label">Video Description (required)</label>	
-					{{ Form::textarea('description', '', ['required', 'rows' => '3', 'class' => 'form-control autogrow', 'placeholder' => 'eg. Revolution is in the air in Assassin\'s Creed: Unity. Are you ready to write history?']) }}
+					{{ Form::textarea('description', '', ['id' => 'description', 'required', 'rows' => '3', 'class' => 'form-control autogrow', 'placeholder' => 'eg. Revolution is in the air in Assassin\'s Creed: Unity. Are you ready to write history?']) }}
+
+					<script type="text/javascript">
+						$(document).ready(function() {
+		                	CKEDITOR.replace( 'description', {
+							        customConfig: "{{ URL::asset('assets/js/ckeditor/config-limited.js') }}",
+							});
+		            	});
+					</script>
 				</div>
 			</div>
 
@@ -64,7 +72,7 @@
 			<div class="form-group row">
 				<div class="col-lg-6">
 					<label for="games" class="control-label">Tag Game(s) (optional)</label>
-					{{ Form::select('games[]', $games, null, ['class' => 'select2', 'multiple', 'required']); }}
+					{{ Form::select('games[]', $games, null, ['class' => 'select2', 'multiple']); }}
 				</div>
 			</div>
 
@@ -72,15 +80,23 @@
 			<div class="form-group row">
 				<div class="col-lg-6">
 					<label for="platforms" class="control-label">Tag Platform(s) (optional)</label>
-					{{ Form::select('platforms[]', $platforms, null, ['class' => 'select2', 'multiple', 'required']); }}
+					{{ Form::select('platforms[]', $platforms, null, ['class' => 'select2', 'multiple']); }}
 				</div>
 			</div>
 
 			<!-- TAG COMPANIES -->
 			<div class="form-group row">
 				<div class="col-lg-6">
-					<label for="games" class="control-label">Tag Company(s) (optional)</label>
-					{{ Form::select('companies[]', $companies, null, ['class' => 'select2', 'multiple', 'required']); }}
+					<label for="companies" class="control-label">Tag Company(s) (optional)</label>
+					{{ Form::select('companies[]', $companies, null, ['class' => 'select2', 'multiple']); }}
+				</div>
+			</div>
+
+			<!-- TAG GAMING EVENTS -->
+			<div class="form-group row">
+				<div class="col-lg-6">
+					<label for="events" class="control-label">Tag Event(s) (optional)</label>
+					{{ Form::select('events[]', $events, null, ['class' => 'select2', 'multiple']); }}
 				</div>
 			</div>
 

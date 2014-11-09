@@ -14,7 +14,6 @@
 			<tr>
 				<th width="500">Video Title</th>				
 				<th>Video Category</th>
-				<th>Game Linked To</th>
 				<th>Posted By</th>
 				<th>Dated Posted</th>
 				<th>View Count</th>
@@ -24,10 +23,9 @@
 		<tbody>
 			@foreach($uVideos as $video)
 			<tr>
-				<td><a href="javascript:;" onclick="jQuery('#videoPreviewModal').appendTo(body).modal('show');jQuery('#frame').attr('src', '{{ $video->url }}');">{{ $video->title }}</a></td>
+				<td><a href="javascript:;" onclick="jQuery('#previewModal').appendTo(body).modal('show');jQuery('#frame').attr('src', '{{ $video->url }}');">{{ $video->title }}</a></td>
 				
 				<td>{{ $video->category }}</td>
-				<td>{{ $video->game_title }}</td>
 				<td>{{ $video->first_name . ' ' . $video->last_name }}</td>
 				<td>{{ $video->posted_at }}</td>
 				<td>{{ $video->views }}</td>
@@ -54,7 +52,6 @@
 		<tr>
 			<th width="500">Video Title</th>			
 			<th>Video Category</th>
-			<th>Game Linked To</th>
 			<th>Posted By</th>
 			<th>Dated Posted</th>
 			<th>View Count</th>
@@ -66,7 +63,6 @@
 		<tr>
 			<td><a target="_blank" href="{{ $video->url }}">{{ $video->title }}</a></td>
 			<td>{{ $video->category }}</td>
-			<td>{{ $video->game_title }}</td>
 			<td>{{ $video->first_name . ' ' . $video->last_name }}</td>
 			<td>{{ $video->posted_at }}</td>
 			<td>{{ $video->views }}</td>
@@ -84,7 +80,7 @@
 
 @if(! empty($uVideos))
 	<!-- Modals -->
-	@include('modals.video-preview-modal')
+	@include('modals.preview-modal')
 @endif
 
 <script type="text/javascript">	

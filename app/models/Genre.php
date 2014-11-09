@@ -26,29 +26,28 @@ class Genre extends Eloquent {
 
 	public function saveNewGenre($input) {
 
-		$this->name 			  = $this->nullCheck($input['name']);
-		$this->name_slug  		  = $this->nullCheck(strtolower(preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/'), array('', '-', ''), $input['name'])));
-		$this->description 		  = $this->nullCheck($input['description']);
+		$string = App::make('StringClass');
+
+		$this->name 			  = $string->nullifyAndStripTags($input['name']);
+		$this->name_slug  		  = $string->slugify($this->name);
+		$this->description 		  = $string->nullifyAndStripTags($input['description']);
 		$this->save();
 
 		return true;
 	}
 
 	public function updateGenre($genre_id, $input) {
+
+		$string = App::make('StringClass');
+
 		DB::table($this->table)
             ->where('id', $genre_id)
             ->update(array(
-            	'name'				=> $this->nullCheck($input['name']),
-            	'name_slug' 		=> $this->nullCheck(strtolower(preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/'), array('', '-', ''), $input['name']))),
-            	'description'		=> $this->nullCheck($input['description'])
+            	'name'				=> $name = $string->nullifyAndStripTags($input['name']),
+            	'name_slug' 		=> $string->slugify($name),
+            	'description'		=> $string->nullifyAndStripTags($input['description'])
             ));
             
         return true;
-	}
-
-	private function nullCheck($data) {
-		if($data === '' || $data === null)
-			return null;
-		return $data;
 	}
 }

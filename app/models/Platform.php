@@ -18,27 +18,33 @@ class Platform extends Eloquent {
 	];
 
 	public function saveNewplatform($input) {
-		$this->developer_id		  = $this->nullCheck((int)$input['developer']);
-		$this->name 			  = $this->nullCheck($input['name']);
-		$this->abbreviation		  = $this->nullCheck($input['abbreviation']);
-		$this->abbreviation_slug  = $this->nullCheck(strtolower(preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/'), array('', '-', ''), $input['abbreviation'])));
-		$this->description 		  = $this->nullCheck($input['description']);
-		$this->website 			  = $this->nullCheck($input['website']);
+
+		$string = App::make('StringClass');
+
+		$this->developer_id		  = intval($input['developer']);
+		$this->name 			  = $string->nullifyAndStripTags($input['name']);
+		$this->abbreviation		  = $string->nullifyAndStripTags($input['abbreviation']);
+		$this->abbreviation_slug  = $string->slugify($this->abbreviation);
+		$this->description 		  = $string->nullifyAndStripTags($input['description']);
+		$this->website 			  = $string->nullifyAndStripTags($input['website']);
 		$this->save();
 
 		return true;
 	}
 
 	public function updatePlatform($platform_id, $input) {
+
+		$string = App::make('StringClass');
+
 		DB::table($this->table)
             ->where('id', $platform_id)
             ->update(array(
-            	'developer_id'		=> $this->nullCheck((int)$input['developer']),
-            	'name'				=> $this->nullCheck($input['name']),
-            	'abbreviation'		=> $this->nullCheck($input['abbreviation']),
-            	'abbreviation_slug' => $this->nullCheck(strtolower(preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/'), array('', '-', ''), $input['abbreviation']))),
-            	'description'		=> $this->nullCheck($input['description']),
-            	'website'			=> $this->nullCheck($input['website'])
+            	'developer_id'		=> intval($input['developer']),
+            	'name'				=> $string->nullifyAndStripTags($input['name']),
+            	'abbreviation'		=> $abbreviation = $string->nullifyAndStripTags($input['abbreviation']),
+            	'abbreviation_slug' => $string->slugify($abbreviation),
+            	'description'		=> $string->nullifyAndStripTags($input['description']),
+            	'website'			=> $string->nullifyAndStripTags($input['website'])
             ));
             
         return true;
@@ -53,12 +59,6 @@ class Platform extends Eloquent {
 	            ->get();
 
 		return $platforms;
-	}
-
-	private function nullCheck($data) {
-		if($data === '' || $data === null)
-			return null;
-		return $data;
 	}
 	
 }

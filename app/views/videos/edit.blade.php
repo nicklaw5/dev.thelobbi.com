@@ -15,7 +15,7 @@
 			<div class="form-group row">
 				<div class="col-lg-6">
 					<label for="title" class="control-label">Video Title (required)</label>
-					{{ Form::text('title', $video->title, ['class' => 'form-control', 'required', 'placeholder' => 'eg. E3 2014: Assassin\'s Creed: Unity - Revolution Trailer']) }}
+					{{ Form::text('title', $video->title, ['id' => 'title', 'class' => 'form-control', 'required', 'placeholder' => 'eg. E3 2014: Assassin\'s Creed: Unity - Revolution Trailer']) }}
 				</div>
 			</div>
 
@@ -23,7 +23,15 @@
 			<div class="form-group row">
 				<div class="col-lg-6">
 					<label for="description" class="control-label">Video Description (required)</label>	
-					{{ Form::textarea('description', $video->description, ['required', 'rows' => '3', 'class' => 'form-control autogrow', 'placeholder' => 'eg. Revolution is in the air in Assassin\'s Creed: Unity. Are you ready to write history?']) }}
+					{{ Form::textarea('description', $video->description, ['id' => 'description', 'required', 'class' => 'form-control autogrow', 'placeholder' => 'eg. Revolution is in the air in Assassin\'s Creed: Unity. Are you ready to write history?']) }}
+
+					<script type="text/javascript">
+						$(document).ready(function() {
+		                	CKEDITOR.replace( 'description', {
+							        customConfig: "{{ URL::asset('assets/js/ckeditor/config-limited.js') }}",
+							});
+		            	});
+					</script>
 				</div>
 			</div>
 
@@ -55,16 +63,40 @@
 			<div class="form-group row">
 				<div class="col-lg-6">
 					<label for="video_category" class="control-label">Video Category (required)</label>
-					{{ Form::select('video_category', $video_categories, null, ['class' => 'select2', 'required', 'data-allow-clear' => 'true', 'data-placeholder' => 'Select a category...']); }}
+					{{ Form::select('video_category', $video_categories, $video->video_category, ['class' => 'select2', 'required', 'data-allow-clear' => 'true', 'data-placeholder' => 'Select a category...']); }}
 					
 				</div>
 			</div>
 
-			<!-- TAG GAME(S) -->
+			<!-- TAG GAMES -->
 			<div class="form-group row">
 				<div class="col-lg-6">
-					<label for="games" class="control-label">Game mentioned in this video (required)</label>
-					{{ Form::select('game', $games, $video->game_id, ['class' => 'select2', 'required', 'data-allow-clear' => 'true', 'data-placeholder' => 'Select a game...']); }}
+					<label for="games" class="control-label">Tag Game(s) (optional)</label>
+					{{ Form::select('games[]', $games, $game_tags, ['class' => 'select2', 'multiple']); }}
+				</div>
+			</div>
+
+			<!-- TAG PLATFORMS -->
+			<div class="form-group row">
+				<div class="col-lg-6">
+					<label for="platforms" class="control-label">Tag Platform(s) (optional)</label>
+					{{ Form::select('platforms[]', $platforms, $platform_tags, ['class' => 'select2', 'multiple']); }}
+				</div>
+			</div>
+
+			<!-- TAG COMPANIES -->
+			<div class="form-group row">
+				<div class="col-lg-6">
+					<label for="companies" class="control-label">Tag Company(s) (optional)</label>
+					{{ Form::select('companies[]', $companies, $company_tags, ['class' => 'select2', 'multiple']); }}
+				</div>
+			</div>
+
+			<!-- TAG GAMING EVENTS -->
+			<div class="form-group row">
+				<div class="col-lg-6">
+					<label for="events" class="control-label">Tag Event(s) (optional)</label>
+					{{ Form::select('events[]', $events, $event_tags, ['class' => 'select2', 'multiple']); }}
 				</div>
 			</div>
 

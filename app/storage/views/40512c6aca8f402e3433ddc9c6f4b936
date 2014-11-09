@@ -4,24 +4,27 @@
 			<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 			<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 			<li class="active">
-				<a href="/admin/index"><i class="entypo-gauge"></i><span>Dashboard</span></a>
+				<a href="/admin"><i class="entypo-gauge"></i><span>Dashboard</span></a>
 			</li>
 			
-			<li class="root-level has-sub opened"><a href=""><i class="entypo-layout"></i><span>Articles</span></a>
+			<li class="root-level has-sub"><a href=""><i class="entypo-layout"></i><span>Articles</span></a>
 				<ul class="">
+					<li><a href="/admin/articles/create"><span>New Article</span></a></li>
 					<li><a href="/admin/articles"><span>List Articles</span></a></li>
-					<li><a href="/admin/news/create"><span>+ New News Article</span></a></li>
-					<li><a href="/admin/reviews/create"><span>+ New Review Article</span></a></li>
-					<li><a href="/admin/interviews/create"><span>+ New Interview Article</span></a></li>
-					<li><a href="/admin/features/create"><span>+ New Feature Article</span></a></li>
-					<li><a href="/admin/opinions/create"><span>+ New Opinion Article</span></a></li>
+				</ul>
+			</li>
+			
+			<li class="root-level has-sub"><a href=""><i class="entypo-layout"></i><span>Videos</span></a>
+				<ul class="">
+					<li><a href="/admin/videos/create"><span>New Video</span></a></li>
+					<li><a href="/admin/videos"><span>List Videos</span></a></li>
 				</ul>
 			</li>
 
-			<li class="root-level has-sub opened"><a href=""><i class="entypo-layout"></i><span>Videos</span></a>
+			<li class="root-level has-sub"><a href="/admin"><i class="entypo-layout"></i><span>Games</span></a>
 				<ul class="">
-					<li><a href="/admin/videos"><span>List Videos</span></a></li>
-					<li><a href="/admin/videos/create"><span>+ New Video</span></a></li>
+					<li><a href="/admin/games/create"><span>New Game</span></a></li>
+					<li><a href="/admin/games"><span>All Games</span></a></li>
 				</ul>
 			</li>
 
@@ -38,15 +41,6 @@
 				<ul class="">
 					<li><a href="/admin"><span>Discussion Boards</span></a></li>
 					<li><a href="/admin"><span>Manage Discussion Boards</span></a></li>
-				</ul>
-			</li>
-
-			<li class="root-level has-sub"><a href="/admin"><i class="entypo-layout"></i><span>Games</span></a>
-				<ul class="">
-					<li><a href="/admin/games/create"><span>New Game</span></a></li>
-					<li><a href="/admin/games"><span>All Games</span></a></li>
-					<li><a href="/admin"><span>Released this week</span></a></li>
-					<li><a href="/admin"><span>Released this month</span></a></li>
 				</ul>
 			</li>
 

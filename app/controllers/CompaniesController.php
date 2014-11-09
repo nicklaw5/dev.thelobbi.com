@@ -13,7 +13,7 @@ class CompaniesController extends BaseController {
 	public function index() {}
 
 	public function listCompanies() {
-		$numRows = 50;
+		$numRows = null;
 		$companies = $this->company->returnCompaniesList($numRows);
 
 		//dd($companies);

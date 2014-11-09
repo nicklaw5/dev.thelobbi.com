@@ -2,21 +2,21 @@
     @section('content')
         <div class="feature-container">
 
-            <div class="feature-container-inner">
+            <!-- <div class="feature-container-inner"> -->
                 <!--<div class="overlay-left"></div>
                 <div class="overlay-right"></div>-->
-                <div class="feature-container-inner-major">
-                    <a href="#">
+                <a href="#" class="feature-major">
+                    <!-- <a href="#">
                     <div>
                         <span class="text-shadow">Assassin's Creed: Unity</span>
                         <h4>Bravely Second is More of The Bravely Default We Love - TGS 2014</h4>
                         <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
                     </div>
-                    </a>
-                </div>
-                <div class="feature-container-inner-minor feature-container-inner-minor-top"></div> 
-                <div class="feature-container-inner-minor feature-container-inner-minor-bottom"></div>
-            </div> 
+                    </a> -->
+                </a>
+                <a href="#" class="feature-minor minor-top"></a> 
+                <a href="#" class="feature-minor minor-bottom"></a>
+            <!-- </div> --> 
         </div>
 
         @include('ads.leaderboard')

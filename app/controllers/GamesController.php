@@ -53,7 +53,7 @@ class GamesController extends BaseController {
 		if( ! $game_id = $this->game->saveNewGame(Input::all())) {
 			
 			//log error to logger
-			$this->errorNum =  $this->logger->createLog('GamesController', 'store', 'Failed to add game to DB.', Request::url(), Request::path(), 8);
+			$errorNum =  $this->logger->createLog('GamesController', 'store', 'Failed to add game to DB.', Request::url(), Request::path(), 8);
 			Session::put('adminDangerAlert', 'Error #'. $errorNum . ' - Something went wrong attempting to save the game to the database. Contact an administrator if this continues.');
 			return Redirect::back();
 		}
@@ -145,14 +145,7 @@ class GamesController extends BaseController {
 	public function destroy($game_id) {
 
 		if(Request::ajax())	{
-			
-			if($game = $this->game->find($game_id)) {
-				$title = $game->title;
-				$game->delete();
-				Session::put('adminSuccessAlert', '<b>'.$title.'</b> has successfully been deleted.');
-			} else {
-				Session::put('adminDangerAlert', 'Something went wrong attempting to delete <b>'.$title.'</b>.');	
-			}
+			$this->game->deleteGame($game_id);
 			return;
 		}
 	}

@@ -9,7 +9,7 @@
 <table class="table table-bordered datatable" id="table-1">
 	<thead>
 		<tr>
-			<th>Company Name</th>
+			<th width="300">Company Name</th>
 			<th>Description</th>
 			<th>Website</th>
 			<th>Facebook</th>			
@@ -21,10 +21,10 @@
 		@foreach($companies as $company)
 		<tr>
 			<td><a href="/companies/{{ $company->name_slug }}">{{ $company->name }}</a></td>
-			<td>{{ $company->description }}</td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>{{ ($company->description === null)? ' - ': $company->description }}</td>
+			<td>{{ ($company->website === null)? ' - ': '<a target="_blank" href="'.$company->website.'">Website Link</a>'; }}</td>
+			<td>{{ ($company->facebook === null)? ' - ': '<a target="_blank" href="'.$company->facebook.'">Facebook Link</a>'; }}</td>
+			<td>{{ ($company->twitter === null)? ' - ': '<a target="_blank" href="'.$company->twitter.'">Twitter Link</a>'; }}</td>
 			<td>
 				<a style="float:left" href="companies/{{ $company->id }}/edit" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
 				<button style="float:left; margin-left: 5px;" data-id="{{ $company->id }}" class="delete-btn btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</button>

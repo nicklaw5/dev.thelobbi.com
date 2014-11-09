@@ -14,7 +14,7 @@
 			<!-- PLATFORM NAME -->
 			<div class="form-group row">
 				<div class="col-lg-6">
-					<label for="title" class="control-label">Platform Name (required)</label>
+					<label for="name" class="control-label">Platform Name (required)</label>
 					<?php echo Form::text('name', $platform->name, ['class' => 'form-control', 'required', 'placeholder' => 'eg. PlayStation 4']); ?>
 
 				</div>
@@ -65,8 +65,6 @@
 
 	
 	</div>
-
-	<?php echo $__env->make('modals.filemanager-modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin.layouts.admin-default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

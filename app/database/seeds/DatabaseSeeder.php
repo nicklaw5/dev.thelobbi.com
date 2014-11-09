@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder {
         $this->call('GenresTableSeeder');
         $this->call('VideoCategoriesTableSeeder');
         $this->call('ArticleCategoriesTableSeeder');
+        $this->call('EventsTableSeeder');
+        $this->call('TagTypesTableSeeder');
         $this->call('SettingsTableSeeder');
         $this->call('GamesTableSeeder');
         $this->call('GameDevelopersTableSeeder');
@@ -26,7 +28,32 @@ class DatabaseSeeder extends Seeder {
         $this->call('GamePlatformsTableSeeder');
         $this->call('GameGenresTableSeeder');
 
+        $tag = App::make('Tag');
         
+        //create game tags        
+        $games = DB::table('games')->get();
+		foreach ($games as $game) {
+		    $tag->createNewTag('games', $game->id);
+		}
+
+		//create platform tags
+        $platforms = DB::table('platforms')->get();
+		foreach ($platforms as $platform) {
+		    $tag->createNewTag('platforms', $platform->id);
+		}
+
+		//create company tags
+        $companies = DB::table('companies')->get();
+		foreach ($companies as $company) {
+		    $tag->createNewTag('companies', $company->id);
+		}
+
+		//create event tags
+        $events = DB::table('events')->get();
+		foreach ($events as $event) {
+		    $tag->createNewTag('events', $event->id);
+		}
+
    	}
 }
 
@@ -248,16 +275,61 @@ class ArticleCategoriesTableSeeder extends Seeder {
 
         // Create groups
 		$categories = [
-			[	'category' 	=> 	'News', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'category' 	=> 	'Reviews',  'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'category' 	=> 	'Interviews', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'category' 	=> 	'Features', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'category' 	=> 	'Opinions', 'created_at'	=> 	$now, 'updated_at'	=> 	$now]
+			[	'category' 	=> 	'News', 'created_at'		=> 	$now, 'updated_at'	=> 	$now ],
+			[	'category' 	=> 	'Review',  'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'category' 	=> 	'Interview', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'category' 	=> 	'Feature', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'category' 	=> 	'Opinion', 'created_at'	=> 	$now, 'updated_at'	=> 	$now],
+			[	'category' 	=> 	'Other', 'created_at'	=> 	$now, 'updated_at'	=> 	$now]
 		];
 
 		// Insert group date
 		foreach($categories as $category){
 			DB::table('article_categories')->insert($category);
+		}         
+    }
+}
+
+class EventsTableSeeder extends Seeder {
+
+    public function run() {
+
+    	$now = date('Y-m-d H:i:s');
+        //DB::table('platforms')->delete();
+
+        // Create groups
+		$events = [
+			[	'event' 	=> 	'PAX Prime', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'event' 	=> 	'PAX East',  'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'event' 	=> 	'E3 2014', 'created_at'		=> 	$now, 'updated_at'	=> 	$now ],
+			[	'event' 	=> 	'GDC 2015', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'event' 	=> 	'GamesCon', 'created_at'	=> 	$now, 'updated_at'	=> 	$now]
+		];
+
+		// Insert group date
+		foreach($events as $event){
+			DB::table('events')->insert($event);
+		}         
+    }
+}
+
+class TagTypesTableSeeder extends Seeder {
+
+    public function run() {
+    	
+    	$now = date('Y-m-d H:i:s');
+
+        // Create groups
+		$tag_types = [
+			[	'id' 	=> 	1, 'type' => 'games' ],
+			[	'id' 	=> 	2, 'type' => 'platforms' ],
+			[	'id' 	=> 	3, 'type' => 'companies' ],
+			[	'id' 	=> 	4, 'type' => 'events' ]
+		];
+
+		// Insert group date
+		foreach($tag_types as $tag_type){
+			DB::table('tag_types')->insert($tag_type);
 		}         
     }
 }

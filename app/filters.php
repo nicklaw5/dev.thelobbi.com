@@ -73,7 +73,7 @@ Route::filter('admin', function()
 
 	//user is not an admin
 	if(Auth::user()->group_id < 3)
-		return 'You must be an admin to access this page.';
+		return Response::make('Unauthorized', 401);
 	
 });
 

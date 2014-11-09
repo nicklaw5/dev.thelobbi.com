@@ -9,8 +9,7 @@ Route::resource('companies', 	  'CompaniesController');
 Route::resource('platforms', 	  'PlatformsController');
 Route::resource('genres', 		  'GenresController');
 Route::resource('videos', 		  'VideosController');
-
-//Route::resource('admin/games', 'AdminGamesController');
+Route::resource('events',       'GamingEventsController');
 
 Route::get('/', 'HomeController@index');
 
@@ -76,7 +75,7 @@ Route::group(array('prefix' => 'admin' , 'before' => 'admin' ), function() {
     Route::post('/videos/{video_id}/unpublish', 'VideosController@unpublish');
 
     // Articles
-    Route::get('/articles', 'ArticlesController@listVideos');
+    Route::get('/articles', 'ArticlesController@listArticles');
     Route::get('/articles/create', 'ArticlesController@create');
     Route::get('/articles/{article_id}/edit', 'ArticlesController@edit');
     Route::post('/articles/{article_id}/publish', 'ArticlesController@publish');

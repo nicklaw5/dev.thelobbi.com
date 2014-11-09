@@ -9,9 +9,11 @@ class VideosController extends BaseController {
 	protected $company;
 	protected $logger;
 	protected $setting;
+	protected $event;
+	protected $tag;
 
-	public function __construct(Logger $logger, Video $video, Game $game, VideoCategory $videoCategory, 
-								Platform $platform, Company $company, Setting $setting) {
+	public function __construct(Logger $logger, Video $video, Game $game, VideoCategory $videoCategory, Tag $tag, 
+								Platform $platform, Company $company, Setting $setting, GamingEvent $event) {
 
 		$this->beforeFilter('admin', array('only' => array('create', 'store', 'edit', 'destroy',
 														   'listplatforms', 'publish', 'unpublish')));
@@ -22,6 +24,8 @@ class VideosController extends BaseController {
 		$this->game = $game;
 		$this->company = $company;
 		$this->setting = $setting;
+		$this->event = $event;
+		$this->tag = $tag;
 	}
 
 	public function index() {
@@ -32,9 +36,7 @@ class VideosController extends BaseController {
 
 		$uVideos = $this->video->returnVideosList(null, false);
 		$pVideos = $this->video->returnVideosList(null, true);
-
-		//dd($pVideos);
-
+		
 		return View::make('videos.list')->with('uVideos', $uVideos)
 										->with('pVideos', $pVideos);
 	}
@@ -76,10 +78,12 @@ class VideosController extends BaseController {
 	public function create() {
 
 		return View::make('videos.create')
-					->with('companies', $this->returnModelList($this->company, 'name', 'id', 'name'))
-					->with('platforms', $this->returnModelList($this->platform, 'name', 'id', 'id'))
-					->with('games', $this->returnModelList($this->game, 'title', 'id', 'title'))
-					->with('video_categories', $this->returnModelList($this->videoCategory, 'category', 'id', 'id'));
+					->with('companies', 		$this->returnModelList($this->company, 'name', 'id', 'name'))
+					->with('platforms', 		$this->returnModelList($this->platform, 'name', 'id', 'id'))
+					->with('games', 			$this->returnModelList($this->game, 'title', 'id', 'title'))
+					->with('events', 			$this->returnModelList($this->event, 'event', 'id', 'id'))
+					->with('video_categories', 	$this->returnModelList($this->videoCategory, 'category', 'id', 'id'));
+
 	}
 
 	//POST 		games 					games.store
@@ -97,6 +101,34 @@ class VideosController extends BaseController {
 			return Redirect::back();
 		}
 
+		//insert game tags
+		if( ! empty($games = Input::get('games'))) {
+			foreach($games as $game_id) {
+				$this->tag->insertTagReference('video', $video_id, 'game', $game_id);
+			}
+		}
+
+		//insert platform tags
+		if( ! empty($platforms = Input::get('platforms'))) {
+			foreach($platforms as $platform_id) {
+				$this->tag->insertTagReference('video', $video_id, 'platform', $platform_id);
+			}
+		}
+
+		//insert company tags
+		if( ! empty($companies = Input::get('companies'))) {
+			foreach($companies as $company_id) {
+				$this->tag->insertTagReference('video', $video_id, 'company', $company_id);
+			}
+		}
+
+		//insert event tags
+		if( ! empty($events = Input::get('events'))) {
+			foreach($events as $event_id) {
+				$this->tag->insertTagReference('video', $video_id, 'event', $event_id);
+			}
+		}
+
 		// return successful insertion
 		Session::put('adminSuccessAlert', 'New video added.');
 		return Redirect::to('/admin/videos');
@@ -110,19 +142,80 @@ class VideosController extends BaseController {
 
 		return View::make('videos.edit')
 					->with('video', $video)
-					->with('games', $this->returnModelList($this->game, 'title', 'id', 'title'))
+					->with('companies', 		$this->returnModelList($this->company, 'name', 'id', 'name'))
+					->with('company_tags',		$this->tag->getMediaTags('video', $video_id, 'company'))
+					->with('platforms', 		$this->returnModelList($this->platform, 'name', 'id', 'id'))
+					->with('platform_tags',		$this->tag->getMediaTags('video', $video_id, 'platform'))
+					->with('games', 			$this->returnModelList($this->game, 'title', 'id', 'title'))
+					->with('game_tags',			$this->tag->getMediaTags('video', $video_id, 'game'))
+					->with('events', 			$this->returnModelList($this->event, 'event', 'id', 'id'))
+					->with('event_tags',		$this->tag->getMediaTags('video', $video_id, 'event'))
 					->with('video_categories', $this->returnModelList($this->videoCategory, 'category', 'id', 'id'));
 	}
 
 	public function update($video_id) {
 
+		$video_id = intval($video_id);
+
 		//attempt to save video to DB
-		if( ! $video_id = $this->video->updateVideo($video_id, Input::all())) {
+		if( ! $this->video->updateVideo($video_id, Input::all())) {
 
 			//log error to logger
 			$errorNum =  $this->logger->createLog('VideosController', 'update', 'Failed to add video to DB.', Request::url(), Request::path(), 8);
 			Session::put('adminDangerAlert', 'Error #'. $errorNum . ' - Something went wrong attempting to add the video to the database. Contact an administrator if this continues.');
 			return Redirect::back();
+		}
+
+		//update game tags
+		if( ! empty($games = Input::get('games'))) {
+			//delete existing tags
+			$this->tag->deleteTagReference('video', $video_id, 'game');
+			foreach($games as $game_id) {
+				$this->tag->insertTagReference('video', $video_id, 'game', $game_id);
+			}
+		}
+		else {
+			//delete tag references if games is empty
+			$this->tag->deleteTagReference('video', $video_id, 'game');
+		}
+
+		//update platform tags
+		if( ! empty($platforms = Input::get('platforms'))) {
+			//delete existing tags
+			$this->tag->deleteTagReference('video', $video_id, 'platform');
+			foreach($platforms as $platform_id) {
+				$this->tag->insertTagReference('video', $video_id, 'platform', $platform_id);
+			}
+		}
+		else {
+			//delete tag references if games is empty
+			$this->tag->deleteTagReference('video', $video_id, 'platform');
+		}
+
+		//update company tags
+		if( ! empty($companies = Input::get('companies'))) {
+			//delete existing tags
+			$this->tag->deleteTagReference('video', $video_id, 'company');
+			foreach($companies as $company_id) {
+				$this->tag->insertTagReference('video', $video_id, 'company', $company_id);
+			}
+		}
+		else {
+			//delete tag references if games is empty
+			$this->tag->deleteTagReference('video', $video_id, 'company');
+		}
+
+		//update event tags
+		if( ! empty($events = Input::get('events'))) {
+			//delete existing tags
+			$this->tag->deleteTagReference('video', $video_id, 'event');
+			foreach($events as $event_id) {
+				$this->tag->insertTagReference('video', $video_id, 'event', $event_id);
+			}
+		}
+		else {
+			//delete tag references if events is empty
+			$this->tag->deleteTagReference('video', $video_id, 'event');
 		}
 
 		// return successful insertion
@@ -137,11 +230,13 @@ class VideosController extends BaseController {
 
 			if($video = $this->video->find($video_id)) {
 
+				$date = App::make('DateClass');
+
 				$title = $video->title;
 
 				$video->is_published = true;
 				if($video->published_at === null)
-					$video->published_at = date('Y-m-d H:i:s');
+					$video->published_at = $date->newDate();
 				$video->save();
 
 				Session::put('adminSuccessAlert', '<b>'.$title.'</b> has been published.');

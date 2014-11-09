@@ -23,6 +23,9 @@
 	<script src="{{ URL::asset('assets/js/neon-demo.js') }}"></script>
 
 	<!-- Additional Scripts -->
+	<script src="{{ URL::asset('assets/js/ckeditor/ckeditor.js') }}"></script>
+	<script src="{{ URL::asset('assets/js/ckeditor/adapters/jquery.js') }}"></script>
+	
 	<script src="{{ URL::asset('assets/js/select2/select2.min.js') }}"></script>
 	<script src="{{ URL::asset('assets/js/bootstrap-tagsinput.min.js') }}"></script>
 	<script src="{{ URL::asset('assets/js/typeahead.min.js') }}"></script>

@@ -2,7 +2,7 @@
 <?php $__env->startSection('content'); ?>
 
 <div style="clear:both">
-	<h2><b>Add News Article</b></h2>
+	<h2><b>Add New Article</b></h2>
 </div>
 
 	<div class="panel-body">
@@ -15,9 +15,7 @@
 			<div class="form-group row">
 				<div class="col-lg-6">
 					<label for="article_category" class="control-label">Article Category (required)</label>
-					<?php echo Form::select('article_category', $article_categories, null, ['class' => 'select2', 'required', 'data-allow-clear' => 'true', 'data-placeholder' => 'Select a category...']);; ?>
-
-					
+					<?php echo Form::select('article_category', $article_categories, null, ['id' => 'article_category', 'class' => 'select2', 'required', 'data-allow-clear' => 'true', 'data-placeholder' => 'Select a category...']);; ?>					
 				</div>
 			</div>
 
@@ -34,7 +32,7 @@
 			<div class="form-group row">
 				<div class="col-lg-6">
 					<label for="description" class="control-label">Article Description (required)</label>	
-					<?php echo Form::textarea('description', '', ['required', 'rows' => '3', 'class' => 'form-control autogrow', 'placeholder' => 'eg. Revolution is in the air in Assassin\'s Creed: Unity. Are you ready to write history?']); ?>
+					<?php echo Form::textarea('description', '', ['id' => 'description', 'required', 'rows' => '3', 'class' => 'form-control autogrow', 'placeholder' => 'eg. Revolution is in the air in Assassin\'s Creed: Unity. Are you ready to write history?']); ?>
 
 				</div>
 			</div>
@@ -43,52 +41,104 @@
 			<div class="form-group row">
 				<div class="col-lg-6">
 					<label for="body" class="control-label">Article Body (required)</label>
-					<?php echo Form::textarea('body', '', ['required', 'rows' => '3', 'class' => 'form-control autogrow', 'placeholder' => 'eg. Revolution is in the air in Assassin\'s Creed: Unity. Are you ready to write history?']); ?>
+					<?php echo Form::textarea('body', '', ['id' => 'body', 'required', 'rows' => '3', 'class' => 'form-control autogrow ckeditor', 'placeholder' => 'eg. Revolution is in the air in Assassin\'s Creed: Unity. Are you ready to write history?']); ?>
 
+					<script type="text/javascript">
+						$(document).ready(function() {
+    	
+							CKEDITOR.replace( 'description', {
+							        customConfig: "<?php echo URL::asset('assets/js/ckeditor/config-limited.js'); ?>",
+							});
+
+							CKEDITOR.replace( 'body', {
+							        customConfig: "<?php echo URL::asset('assets/js/ckeditor/config-main.js'); ?>",
+							});
+						});
+					</script>
 				</div>
 			</div>			
 
-			<!-- REVIEW VIDEO (can be Youtube or own video from CDN) -->
-			<div class="form-group row">
+			<!-- REVIEW SCORE -->
+			<div class="form-group row review-score-container">
 				<div class="col-lg-6">
-					<label for="review_video" class="control-label">Review Video (optional)</label>
-					<?php echo Form::select('review_video', $videos, null, ['class' => 'select2', 'required', 'data-allow-clear' => 'true', 'data-placeholder' => 'Select a game...']);; ?>
+					<label for="review_score" class="control-label">Review Score (required) (must be between 0-10)</label>
+					<?php echo Form::text('review_score', '', ['id' => 'review_score', 'class' => 'form-control', 'placeholder' => 'eg. 7.8']); ?>
 
 				</div>
 			</div>
 
-			<!-- REVIEW VIDEO SHORT (can be Youtube or own video from CDN) -->
-			<div class="form-group row">
+			<!-- VIDEO CHECKBOX -->
+			<div class="form-group row video-checkbox">
 				<div class="col-lg-6">
-					<label for="review_video_short" class="control-label">Article Short URL Location (optional)</label>
-					<?php echo Form::text('review_video_short', '', ['class' => 'form-control', 'placeholder' => 'eg. http://static.thelobbi.com/Articles/short-Article.mp4']); ?>
+					<div class="checkbox">
+						<label>
+							<?php echo Form::checkbox('chkbox-video', 'value', false, ['id' => 'chkbox-video']); ?>
+
+							<h4>This article relates to a video.</h4>
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<!-- ARTICLE VIDEO (can be Youtube or own video from CDN) -->
+			<div class="form-group row video-container">
+				<div class="col-lg-6">
+					<label for="video" class="control-label">Article Video (required)</label>
+					<?php echo Form::select('video', $videos, null, ['id' => 'video', 'class' => 'select2', 'data-allow-clear' => 'true', 'data-placeholder' => 'Select a video...']);; ?>
 
 				</div>
 			</div>
 
-			<!-- ARTICLE MAIN IMAGE -->
+			<!-- MAIN IMAGE -->
 			<div class="form-group row">
 				<div class="col-lg-6">
-					<label for="main_image" class="control-label">Cover Image URL Location (required)</label>
-					<?php echo Form::text('main_image', '', ['class' => 'form-control', 'placeholder' => 'eg. http://static.thelobbi.com/images/Articles/my-image.jpg']); ?>
+					<label for="image" class="control-label">Main Image URL (required)</label>
+					<?php echo Form::text('main_image', '', ['class' => 'form-control', 'required', 'placeholder' => 'eg. http://static.thelobbi.com/images/uploads/1415082277/my-image.jpg']); ?>
 
 				</div>
 			</div>
 
-			<!-- ARTICLE COVER IMAGE -->
-			<div class="form-group row">
+			<!-- FEATURE IMAGE -->
+			<div class="form-group row feature-image-container">
 				<div class="col-lg-6">
-					<label for="cover_image" class="control-label">Cover Image URL Location (required)</label>
-					<?php echo Form::text('main_image', '', ['class' => 'form-control', 'placeholder' => 'eg. http://static.thelobbi.com/images/Articles/my-image.jpg']); ?>
+					<label for="image" class="control-label">Cover Image URL (required)</label>
+					<?php echo Form::text('feature_image', '', ['id' => 'feature_image', 'class' => 'form-control', 'placeholder' => 'eg. http://static.thelobbi.com/images/uploads/1415082277/my-image.jpg']); ?>
 
 				</div>
 			</div>
 
-			<!-- TAG GAME IN THIS ARTICLE -->
+			<!-- TAG GAMES -->
 			<div class="form-group row">
 				<div class="col-lg-6">
-					<label for="game" class="control-label">Game this artcile related to (required)</label>
-					<?php echo Form::select('game', $games, null, ['class' => 'select2', 'required', 'data-allow-clear' => 'true', 'data-placeholder' => 'Select a game...']);; ?>
+					<label for="games" class="control-label">Tag Game(s) (optional)</label>
+					<?php echo Form::select('games[]', $games, null, ['class' => 'select2', 'multiple']);; ?>
+
+				</div>
+			</div>
+
+			<!-- TAG PLATFORMS -->
+			<div class="form-group row">
+				<div class="col-lg-6">
+					<label for="platforms" class="control-label">Tag Platform(s) (optional)</label>
+					<?php echo Form::select('platforms[]', $platforms, null, ['class' => 'select2', 'multiple']);; ?>
+
+				</div>
+			</div>
+
+			<!-- TAG COMPANIES -->
+			<div class="form-group row">
+				<div class="col-lg-6">
+					<label for="companies" class="control-label">Tag Company(s) (optional)</label>
+					<?php echo Form::select('companies[]', $companies, null, ['class' => 'select2', 'multiple']);; ?>
+
+				</div>
+			</div>
+
+			<!-- TAG GAMING EVENTS -->
+			<div class="form-group row">
+				<div class="col-lg-6">
+					<label for="events" class="control-label">Tag Event(s) (optional)</label>
+					<?php echo Form::select('events[]', $events, null, ['class' => 'select2', 'multiple']);; ?>
 
 				</div>
 			</div>
@@ -105,6 +155,8 @@
 
 <!-- Modals -->
 <?php echo $__env->make('admin.alerts.on-back-alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<script src="<?php echo URL::asset('assets/js/article-create.js'); ?>"></script>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin.layouts.admin-default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
