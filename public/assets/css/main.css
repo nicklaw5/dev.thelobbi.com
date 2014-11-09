@@ -57,6 +57,10 @@ body {
 	margin: 0 auto;
 	background: #080808;
 }
+.feature-container h3,
+.feature-container h4 {
+	margin : 10px 0;
+}
 .feature-major {
 	float: left;
 	background: url('/assets/images/Assassins-Creed-Unity-assassination.jpg') no-repeat center center;
@@ -73,16 +77,47 @@ body {
 	margin: 0 auto;
 	border-left: 1px #080808 solid;
 }
-.minor-top {
+.minor-top, 
+.minor-bottom {
 	background: url('/assets/images/bman420x236.jpg') no-repeat center center;
 	background-size:cover;
 	border-bottom: 1px #080808 solid;
 }
-.minor-bottom {
-	background: url('/assets/images/bman420x236.jpg') no-repeat center center;
-	background-size:cover;
-	border-top: 1px #080808 solid;
+.feature-overlay {
+	position: relative;
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 20%, rgba(0,0,0,0.65) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65)));
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 20%,rgba(0,0,0,0.65) 100%);
+	background: -o-linear-gradient(top, rgba(0,0,0,0) 20%,rgba(0,0,0,0.65) 100%);
+	background: -ms-linear-gradient(top, rgba(0,0,0,0) 20%,rgba(0,0,0,0.65) 100%);
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 20%,rgba(0,0,0,0.65) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+	width: 100%;
+	height: 100%;
+	float: right;
+	overflow: hidden;
 }
+.feature-major-meta {
+	position: absolute;
+	float: right;
+	width: 70%;
+	right: 15px;
+	left: auto;
+	bottom:0;
+}
+.feature-minor-meta {
+	position: absolute;
+	float: left;
+	width: 100%;
+	bottom:0;
+	padding: 15px;
+}
+.feature-container h3,
+.feature-container h4,
+.feature-container span {
+	text-shadow: 3px 1px 2px rgba(0, 0, 0, 1);
+}
+
 
 @media all and (max-width: 992px) {
 	.feature-container,
@@ -91,6 +126,20 @@ body {
 	}
 	.feature-minor {
 		height: 160px;
+	}
+	.feature-major-meta {
+		position: absolute;
+		float: right;
+		width: 100%;
+		bottom:0;
+		padding: 15px;
+		padding-left: 30px;
+	}
+	.feature-container h3 {
+		font-size: 24px;
+	}
+	.feature-container h4 {
+		font-size: 18px;
 	}
 }
 
@@ -107,9 +156,19 @@ body {
 		border-right: none;
 		border-bottom: 2px solid #000;
 	}
-	/*.feature-minor {
-		height: 160px;
-	}*/
+	.feature-major-meta {
+		position: absolute;
+		float: right;
+		width: 100%;
+		bottom:0;
+		padding: 15px;
+		padding-left: 30px;
+	}
+	.feature-container h3,
+	.feature-container h4 {
+		font-size: 14px;
+	}
+	
 }
 
 

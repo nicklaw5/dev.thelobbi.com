@@ -5,16 +5,29 @@
                 <!--<div class="overlay-left"></div>
                 <div class="overlay-right"></div>-->
                 <a href="#" class="feature-major">
-                    <!-- <a href="#">
-                    <div>
-                        <span class="text-shadow">Assassin's Creed: Unity</span>
-                        <h4>Bravely Second is More of The Bravely Default We Love - TGS 2014</h4>
-                        <p>Mary talks to Peter about the sequel to the popular Bravely Default. Even with a new town, characters and story, its very similar to the original game we enjoyed.</p>
+                    <div class="feature-overlay">
+                        <div class="feature-major-meta">
+                            <span><strong>Assassin's Creed: Unity</strong></span>
+                            <h3>Assassin's Creed Unity and Rogue plots revealed, release date set for Nov. 11</h3>    
+                        </div>
                     </div>
-                    </a> -->
                 </a>
-                <a href="#" class="feature-minor minor-top"></a> 
-                <a href="#" class="feature-minor minor-bottom"></a>
+                <a href="#" class="feature-minor minor-top">
+                    <div class="feature-overlay">
+                        <div class="feature-minor-meta">
+                            <span><strong>Assassin's Creed: Unity</strong></span>
+                            <h4>Assassin's Creed Unity and Rogue plots revealed, release date set for Nov. 11</h4>    
+                        </div>
+                    </div>
+                </a> 
+                <a href="#" class="feature-minor minor-bottom">
+                    <div class="feature-overlay">
+                        <div class="feature-minor-meta">
+                            <span><strong>Assassin's Creed: Unity</strong></span>
+                            <h4>Assassin's Creed Unity and Rogue plots revealed, release date set for Nov. 11</h4>    
+                        </div>
+                    </div>
+                </a>
             <!-- </div> --> 
         </div>
 
