@@ -1,3 +1,7 @@
+#previewModal .modal-content {
+	padding: 0;
+}
+
 .mailbox-env .mail-compose .form-group label {
 	position: relative;
 	padding-left: 0;

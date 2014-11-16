@@ -310,13 +310,13 @@
 
 					<li>
 						<a href="{{ url('admin') }}">
-							<i class="linecons-megaphone"></i>
+							<i class="fa-flag-o"></i>
 							<span class="title">Advertising</span>
 						</a>
 					</li>
 					<li>
 						<a href="{{ url('admin') }}">
-							<i class="linecons-megaphone"></i>
+							<i class="fa-cogs"></i>
 							<span class="title">Settings</span>
 						</a>
 					</li>

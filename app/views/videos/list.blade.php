@@ -72,7 +72,7 @@
 			<tbody class="middle-align">
 				@foreach($pVideos as $video)
 				<tr>
-					<td><a href="javascript:;" onclick="jQuery('#previewModal').appendTo(body).modal('show');jQuery('#frame').attr('src', '{{ $video->url }}');">{{ $video->title }}</a></td>
+					<td><a target="_blank" href="{{ $video->url }}">{{ $video->title }}</a></td>
 					<td>{{ $video->category }}</td>
 					<td>{{ $video->first_name . ' ' . $video->last_name }}</td>
 					<td>{{ $video->posted_at }}</td>

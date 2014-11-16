@@ -70,7 +70,7 @@
 			<tbody class="middle-align">
 				<?php foreach($pVideos as $video): ?>
 				<tr>
-					<td><a href="javascript:;" onclick="jQuery('#previewModal').appendTo(body).modal('show');jQuery('#frame').attr('src', '<?php echo $video->url; ?>');"><?php echo $video->title; ?></a></td>
+					<td><a target="_blank" href="<?php echo $video->url; ?>"><?php echo $video->title; ?></a></td>
 					<td><?php echo $video->category; ?></td>
 					<td><?php echo $video->first_name . ' ' . $video->last_name; ?></td>
 					<td><?php echo $video->posted_at; ?></td>
