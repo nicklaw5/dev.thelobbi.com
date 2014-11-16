@@ -4,23 +4,18 @@
 
 .label {
   display: inline;
-  //padding: .2em .6em .3em;
-  padding: 5px 10px;
+  padding: .2em .6em .3em;
   font-size: 75%;
-  font-weight: @font_weight_bold;
+  font-weight: bold;
   line-height: 1;
-  background-color: @default;
   color: @label-color;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  border-radius: @border_radius;
-  
-  &.medium { font-size: @font-size-base; }
-  &.large { font-size: @font-size-large; }
+  border-radius: .25em;
 
   // Add hover effects, but only for links
-  &[href] {
+  a& {
     &:hover,
     &:focus {
       color: @label-link-hover-color;
@@ -33,26 +28,23 @@
   &:empty {
     display: none;
   }
-}
 
-div.label {
-	padding-left: 20px;
-	padding-right: 20px;
+  // Quick fix for labels in buttons
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
 }
 
 // Colors
 // Contextual variations (linked labels get darker on :hover)
 
 .label-default {
-  .label-variant(@default; @main_color);
+  .label-variant(@label-default-bg);
 }
 
 .label-primary {
-  .label-variant(@label-primary-bg; @main_text_acitve_color);
-}
-
-.label-secondary {
-  .label-variant(@secondary_color);
+  .label-variant(@label-primary-bg);
 }
 
 .label-success {

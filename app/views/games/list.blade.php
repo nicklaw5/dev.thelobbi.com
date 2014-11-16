@@ -1,42 +1,58 @@
-@extends('admin.layouts.admin-default')
+@extends('admin.layouts-new.admin-template')
 
 @section('content')
-<div style="clear:both">
-	<h2><strong>Games List</strong></h2>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">All Games</h3>
+		<div class="panel-options">
+			<a href="{{ url('admin/games/create') }}">
+				<button type="button" class="btn btn-primary" style="margin: 0">New Game</button>
+			</a>
+		</div>
+	</div>
+	<div class="panel-body">
+		
+		<table class="table table-bordered table-striped" id="exampl-2">
+			<thead>
+				<tr>
+					<th>Game Title</th>
+					<th>Developer(s)</th>
+					<th>Publisher(s)</th>
+					<th>Platform(s)</th>			
+					<th>Genre(s)</th>
+					<th>Release Date(s)</th>
+					<th width="137">Actions</th>
+				</tr>
+			</thead>
+			
+			<tbody class="middle-align">
+				@foreach($games as $game)
+				<tr>
+					<td><a target="_blank" href="/games/{{ $game->title_slug }}">{{ $game->title }}</a></td>
+					<td>{{ $game->developers }}</td>
+					<td>{{ $game->publishers }}</td>
+					<td>{{ $game->platforms }}</td>
+					<td>{{ $game->genres }}</td>
+					<td>{{ $game->release_date }}</td>
+					<td>
+						<a style="float:left" href="games/{{ $game->id }}/edit" class="btn btn-secondary btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+						<button style="float:left; margin-left: 5px;" data-id="{{ $game->id }}" class="delete-btn btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</button>
+						
+					</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
+			
+	</div>
 </div>
 
-<table class="table table-bordered datatable" id="table-1">
-	<thead>
-		<tr>
-			<th>Game Title</th>
-			<th>Developer(s)</th>
-			<th>Publisher(s)</th>
-			<th>Platform(s)</th>			
-			<th>Genre(s)</th>
-			<th>Release Date(s)</th>
-			<th width="165">Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-	@foreach($games as $game)
-		<tr>
-			<td><a target="_blank" href="/games/{{ $game->title_slug }}">{{ $game->title }}</a></td>
-			<td>{{ $game->developers }}</td>
-			<td>{{ $game->publishers }}</td>
-			<td>{{ $game->platforms }}</td>
-			<td>{{ $game->genres }}</td>
-			<td>{{ $game->release_date }}</td>
-			<td>
-				<a style="float:left" href="games/{{ $game->id }}/edit" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
-				<button style="float:left; margin-left: 5px;" data-id="{{ $game->id }}" class="delete-btn btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</button>
-				
-			</td>
-		</tr>
-		@endforeach
-	</tbody>
-</table>
+<!-- Imported scripts on this page -->
+<script src="{{ URL::asset('assets/js/bootbox.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/datatables/js/jquery.dataTables.min.js') }}"></script>
 
-<script src="{{ URL::asset('assets/js/custom/list-functions.js') }}"></script>
+
 
 <script type="text/javascript">	
 	$(document).ready(function() {
@@ -48,7 +64,7 @@
 			  buttons: {
 			    danger: {
 			      label: "Cancel",
-			      className: "btn-default",
+			      className: "btn-primary",
 			      callback: function() {
 			    	// do nothing
 			      }

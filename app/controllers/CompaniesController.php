@@ -39,7 +39,7 @@ class CompaniesController extends BaseController {
 		}
 
 		Session::put('adminSuccessAlert', '<b>'. Input::get('name') .'</b> has successfully been added.');
-		return Redirect::back();
+		return Redirect::to('admin/companies');
 	}
 
 	//GET 		companies/{company} 			companies.show
@@ -57,7 +57,7 @@ class CompaniesController extends BaseController {
 		if( ! $this->company->updateCompany($company_id, Input::all())) {
 			$errorNum = $this->logger->createLog('CompaniesController', 'update', 'Failed to edit the copmany with an ID of "'.$company_id.'"', Request::url(), Request::path(), 8);
 			Session::put('adminDangerAlert', '<b>Error #'. $errorNum . '</b> - Something went wrong attempting to edit the game. Contact an administrator if this continues.');
-			return Redirect::back();
+			return Redirect::back()->withInput();
 		}
 
 		//return successful update
@@ -68,12 +68,21 @@ class CompaniesController extends BaseController {
 	//DELETE 	companies/{company_id}			companies.destroy
 	public function destroy($company_id) {
 
+		//get tag_id
+		if( ! $tag_id = DB::table('company_tags')->where('company_id', '=', $company_id)->pluck($tag_id)) {
+			Session::put('adminDangerAlert', 'Unable to find tag ID. Contact an administrator.');
+			return;
+		}
+
 		//Check if company is not assigned to any game/plaform before deleting
 		if(Request::ajax())	{
 			if(DB::table('game_developers')->where('developer_id', '=', $company_id)->get()
 					|| 	DB::table('game_publishers')->where('publisher_id', '=', $company_id)->get()
-					|| 	DB::table('platforms')->where('developer_id', '=', $company_id)->get()) {
-				Session::put('adminInfoAlert', 'You cannot delete this company because it is currently assigned to a game or platform.');
+					|| 	DB::table('platforms')->where('developer_id', '=', $company_id)->get()
+					||	DB::table('article_tags')->where('tag_id', '=', $tag_id)->get()
+					||	DB::table('video_tags')->where('tag_id', '=', $tag_id)->get()) {
+				Session::put('adminInfoAlert', 'You cannot delete this company because it is currently assigned to a game, platform, article or video.');
+				return;
 			}
 			else {
 				if($company = $this->company->find($company_id)) {

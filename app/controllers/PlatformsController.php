@@ -70,10 +70,20 @@ class PlatformsController extends BaseController {
 	//DELETE 	platforms/{platform_id}			platforms.destroy
 	public function destroy($platform_id) {
 
-		//Check if platform is not assigned to any game before deleting
+		
 		if(Request::ajax())	{
-			if(DB::table('game_platforms')->where('platform_id', '=', $platform_id)->get()) {
-				Session::put('adminInfoAlert', 'You cannot delete this platform because it is currently assigned to games.');
+
+			//get tag_id
+			if( ! $tag_id = DB::table('platform_tags')->where('platform_id', '=', $platform_id)->pluck('tag_id')) {
+				Session::put('adminDangerAlert', 'Unable to find tag ID. Contact an administrator.');
+				return;
+			}
+
+			//Check if platform is not assigned to any game, article or video before deleting
+			if(DB::table('game_platforms')->where('platform_id', '=', $platform_id)->get()
+					||	DB::table('article_tags')->where('tag_id', '=', $tag_id)->get()
+					||	DB::table('video_tags')->where('tag_id', '=', $tag_id)->get()) {
+				Session::put('adminInfoAlert', 'You cannot delete this platform because it is currently assigned to either a game, article or video.');
 			}
 			else {
 				if($platform = $this->platform->find($platform_id)) {

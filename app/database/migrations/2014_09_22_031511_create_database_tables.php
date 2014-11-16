@@ -144,8 +144,13 @@ class CreateDatabaseTables extends Migration {
 		Schema::create('events', function($t) {
 			$t->engine = 'InnoDB';
 			$t->increments('id');
-			$t->string('event')->unique();
-			$t->string('description', 250)->nullable();
+			$t->string('event', 100)->unique();
+			$t->string('event_slug', 150)->unique();
+			$t->string('description', 300)->nullable();
+			$t->string('website', 150)->nullable();
+			$t->date('start_date');
+			$t->date('end_date');
+			$t->integer('created_by');
 			$t->timestamps();
 		});
 

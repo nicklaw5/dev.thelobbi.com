@@ -22,52 +22,41 @@ function resizable(breakpoint)
 {
 	var sb_with_animation;
 	
-	
 	// Large Screen Specific Script
 	if(is('largescreen'))
 	{
-		sb_with_animation = public_vars.$sidebarMenu.find(".sidebar-collapse-icon").hasClass('with-animation') || public_vars.$sidebarMenu.hasClass('with-animation');
 		
-		if(public_vars.$sidebarMenu.data('initial-state') == 'open')
-		{
-			show_sidebar_menu(sb_with_animation);
-		}
-		else
-		{
-			hide_sidebar_menu(sb_with_animation);
-		}
 	}
 	
 	
 	// Tablet or larger screen
 	if(ismdxl())
 	{
-		public_vars.$mainMenu.attr('style', '');
 	}
 	
 	
 	// Tablet Screen Specific Script
 	if(is('tabletscreen'))
 	{
-		sb_with_animation = public_vars.$sidebarMenu.find(".sidebar-collapse-icon").hasClass('with-animation') || public_vars.$sidebarMenu.hasClass('with-animation');
-		
-		hide_sidebar_menu(sb_with_animation);
+	}
+	
+	
+	// Tablet device screen
+	if(is('tabletscreen'))
+	{
+		public_vars.$sidebarMenu.addClass('collapsed');
+		ps_destroy();
 	}
 	
 	
 	// Tablet Screen Specific Script
 	if(isxs())
 	{
-		public_vars.$pageContainer.removeClass('sidebar-collapsed');
 	}
 	
 	
 	// Trigger Event
-	jQuery(window).trigger('neon.resize');
-	
-	
-	// Fit main content height
-	fit_main_content_height();
+	jQuery(window).trigger('xenon.resize');
 }
 
 
@@ -127,4 +116,8 @@ function trigger_resizable()
 		public_vars.lastBreakpoint = get_current_breakpoint();
 		resizable(public_vars.lastBreakpoint);
 	}
+	
+	
+	// Trigger Event (Repeated)
+	jQuery(window).trigger('xenon.resized');
 }

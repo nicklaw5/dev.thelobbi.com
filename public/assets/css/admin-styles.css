@@ -1,0 +1,9 @@
+.mailbox-env .mail-compose .form-group label {
+	position: relative;
+	padding-left: 0;
+	line-height: 0;
+}
+.mailbox-env .mail-compose .form-group input.form-control {
+	height: 30px;
+	padding-left: 5px;
+}

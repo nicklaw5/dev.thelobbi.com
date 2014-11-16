@@ -1,99 +1,122 @@
 	
 <?php $__env->startSection('content'); ?>
 
-<div style="clear:both">
-	<h2><b>Edit Company</b></h2>
-</div>
+<div class="row">
 
-	<div class="panel-body">
-		<?php echo Form::open(['method' => 'PUT', 'action' => array('CompaniesController@update', $company->id) ]); ?>
+	<div class="col-sm-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h6 class="panel-title">Edit Company</h6>
+			</div>
+			<div class="panel-body">
+				<?php echo Form::open(['method' => 'PUT', 'action' => array('CompaniesController@update', $company->id) ]); ?>
+
+					
+					<?php echo $__env->make('admin.alerts.admin-form-errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+					<!-- COMPANY NAME -->
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="title" class="control-label">Company Name (required)</label>
+							<?php echo Form::text('name', $company->name, ['class' => 'form-control', 'required', 'placeholder' => 'eg. Electronic Arts (EA)']); ?>
+
+						</div>
+					</div>
+
+					<!-- DESCRIPTION -->
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="description" class="control-label">Company Description (optional)</label>
+							<?php echo Form::textarea('description', $company->description, ['id' => 'description', 'rows' => '4', 'class' => 'form-control autogrow']); ?>
+
+							<script type="text/javascript">
+								$(document).ready(function() {
+									CKEDITOR.replace( 'description', {
+									        customConfig: "<?php echo URL::asset('assets/js/ckeditor/config-limited.js'); ?>",
+									});
+								});
+							</script>	
+						</div>
+					</div>
+
+					<!-- COMPANY SOCIAL LINKS -->
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="website" class="control-label">Webiste (optional)</label>
+							<?php echo Form::text('website', $company->website, ['class' => 'form-control', 'placeholder' => 'eg. http://assassinscreed.ubi.com/']); ?>
+
+						</div>
+						<div class="col-sm-6">
+							<label for="facebook" class="control-label">Facebook (optional)</label>
+							<?php echo Form::text('facebook', $company->facebook, ['class' => 'form-control', 'placeholder' => 'eg. https://www.facebook.com/assassinscreed']); ?>
+
+						</div>
+					</div>
+
+					<div class="form-group row">
+
+						<div class="col-sm-6">
+							<label for="twitter" class="control-label">Twitter (optional)</label>
+							<?php echo Form::text('twitter', $company->twitter, ['class' => 'form-control', 'placeholder' => 'eg. https://twitter.com/assassinscreed']); ?>
+
+						</div>
+						<div class="col-sm-6">
+							<label for="twitch" class="control-label">Twitch (optional)</label>
+							<?php echo Form::text('twitch', $company->twitch, ['class' => 'form-control', 'placeholder' => "eg. http://www.twitch.tv/directory/game/Assassin's%20Creed%3A%20Unity"]); ?>
+
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="google_plus" class="control-label">Google Plus (optional)</label>
+							<?php echo Form::text('google_plus', $company->google_plus, ['class' => 'form-control', 'placeholder' => 'eg. https://plus.google.com/u/0/+AssassinsCreed/posts']); ?>
+
+						</div>
+						<div class="col-sm-6">
+							<label for="youtube" class="control-label">Youtube (optional)</label>
+							<?php echo Form::text('youtube', $company->youtube, ['class' => 'form-control', 'placeholder' => 'eg. https://www.youtube.com/user/AssassinsCreed']); ?>
+
+						</div>
+					</div>
+
+					<!-- COPMANY LOGO -->
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="box_art" class="control-label">Company Logo (optional)</label>
+							<?php echo Form::text('logo', $company->logo, ['id' => 'logo', 'class' => 'form-control', 'placeholder' => 'eg. http://static.thelobbi.com/uploads/companies/ea-sports-logo.jpg']); ?>
+
+						</div>
+					</div>
+								
+					<!-- SUBMIT -->
+					<div class="form-group row col-sm-12">
+						<button type="submit" class="btn btn-secondary">Update Company</button>
+						<a href="<?php echo url('admin/companies'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
+					</div>
+				
+				<?php echo Form::close(); ?>
 
 			
-			<?php echo $__env->make('admin.alerts.admin-form-errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
-			<!-- COMPANY NAME -->
-			<div class="form-group row">
-				<div class="col-lg-6">
-					<label for="title" class="control-label">Company Name (required)</label>
-					<?php echo Form::text('name', $company->name, ['class' => 'form-control', 'required', 'placeholder' => 'eg. Electronic Arts (EA)']); ?>
-
-				</div>
 			</div>
-
-			<!-- DESCRIPTION -->
-			<div class="form-group row">
-				<div class="col-lg-6">
-					
-					<label for="description" class="control-label">Company Description (optional)</label>	
-					<?php echo Form::textarea('description', $company->description, ['rows' => '4', 'class' => 'form-control autogrow', 'placeholder' => 'eg. Electronic Arts is a leading global interactive entertainment software company. EA delivers games, content and online services for Internet-connected consoles, personal computers, mobile phones and tablets.']); ?>
-
-				</div>
-			</div>
-
-			<!-- COMPANY SOCIAL LINKS -->
-			<div class="form-group row">
-				<div class="col-lg-3">
-					<label for="website" class="control-label">Webiste (optional)</label>
-					<?php echo Form::text('website', $company->website, ['class' => 'form-control', 'placeholder' => 'eg. http://assassinscreed.ubi.com/']); ?>
-
-				</div>
-				<div class="col-lg-3">
-					<label for="facebook" class="control-label">Facebook (optional)</label>
-					<?php echo Form::text('facebook', $company->facebook, ['class' => 'form-control', 'placeholder' => 'eg. https://www.facebook.com/assassinscreed']); ?>
-
-				</div>
-			</div>
-
-			<div class="form-group row">
-
-				<div class="col-lg-3">
-					<label for="twitter" class="control-label">Twitter (optional)</label>
-					<?php echo Form::text('twitter', $company->twitter, ['class' => 'form-control', 'placeholder' => 'eg. https://twitter.com/assassinscreed']); ?>
-
-				</div>
-				<div class="col-lg-3">
-					<label for="twitch" class="control-label">Twitch (optional)</label>
-					<?php echo Form::text('twitch', $company->twitch, ['class' => 'form-control', 'placeholder' => "eg. http://www.twitch.tv/directory/game/Assassin's%20Creed%3A%20Unity"]); ?>
-
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<div class="col-lg-3">
-					<label for="google_plus" class="control-label">Google Plus (optional)</label>
-					<?php echo Form::text('google_plus', $company->google_plus, ['class' => 'form-control', 'placeholder' => 'eg. https://plus.google.com/u/0/+AssassinsCreed/posts']); ?>
-
-				</div>
-				<div class="col-lg-3">
-					<label for="youtube" class="control-label">Youtube (optional)</label>
-					<?php echo Form::text('youtube', $company->youtube, ['class' => 'form-control', 'placeholder' => 'eg. https://www.youtube.com/user/AssassinsCreed']); ?>
-
-				</div>
-			</div>
-
-			<!-- COPMANY LOGO -->
-			<div class="form-group row">
-				<div class="col-lg-5">
-					<label for="logo" class="control-label">Company Logo (optional)</label>
-					<?php echo Form::text('logo', $company->logo, ['id' => 'logo', 'class' => 'form-control', 'placeholder' => 'Click the button to add some box art.']); ?>
-
-				</div>
-				<div class="col-lg-1">
-					<a style="margin-top:22px;" href="javascript:;" onclick="jQuery('#filemanagerModal').appendTo(body).modal('show');jQuery('#filemanager').attr('src', '/assets/filemanager/dialog.blade.php?type=0&field_id=logo');" class="btn btn-blue">Add Logo</a>
-				</div>
-			</div>
-						
-			<!-- SUBMIT -->
-			<div style="margin-top:50px;" class="form-group row col-lg-3">
-				<button type="submit" class="btn btn-green">Update Company</button>
-			</div>
-		
-		<?php echo Form::close(); ?>
-
-	
+		</div>
 	</div>
+	<!-- END .col-sm-6 -->
 
-	<?php echo $__env->make('modals.filemanager-modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<!-- FILE UPLOAD -->
+	<div class="col-sm-6">
+		<?php echo $__env->make('admin.layouts.admin-file-upload', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	</div>
+	<!-- END .col-sm-6 -->
+
+</div>
+<!-- END .row -->
+
+<?php echo $__env->make('modals.filemanager-modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<!-- Imported scripts on this page -->
+<script src="<?php echo URL::asset('assets/js/ckeditor/ckeditor.js'); ?>"></script>
+<script src="<?php echo URL::asset('assets/js/ckeditor/adapters/jquery.js'); ?>"></script>
 
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('admin.layouts.admin-default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.layouts-new.admin-template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

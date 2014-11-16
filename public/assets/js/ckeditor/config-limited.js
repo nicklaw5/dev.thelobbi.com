@@ -31,7 +31,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// need to have in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
 
-	//config.extraPlugins = 'youtube';
+	config.extraPlugins = 'autogrow';
 	//config.skin = 'bootstrapck';
 	config.height = 100;
 

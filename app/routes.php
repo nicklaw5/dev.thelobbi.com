@@ -10,6 +10,7 @@ Route::resource('platforms', 	  'PlatformsController');
 Route::resource('genres', 		  'GenresController');
 Route::resource('videos', 		  'VideosController');
 Route::resource('events',       'GamingEventsController');
+Route::resource('messages',     'MessagesController');
 
 Route::get('/', 'HomeController@index');
 
@@ -37,7 +38,6 @@ Route::group(array('before' => 'guest'), function() {
 
 //signined in only routes
 Route::group(array('before' => 'auth'), function() {
-	
 
 });
 
@@ -67,6 +67,12 @@ Route::group(array('prefix' => 'admin' , 'before' => 'admin' ), function() {
   	Route::get('/genres/create', 'GenresController@create');
   	Route::get('/genres/{genre_id}/edit', 'GenresController@edit');
 
+    // Events & Calendar
+    Route::get('/events', 'GamingEventsController@listEvents');
+    Route::get('/events/create', 'GamingEventsController@create');
+    Route::get('/events/{event_id}/edit', 'GamingEventsController@edit');
+    Route::get('/calendar', 'GamingEventsController@calendar');
+
   	// Videos
   	Route::get('/videos', 'VideosController@listVideos');
   	Route::get('/videos/create', 'VideosController@create');
@@ -80,4 +86,10 @@ Route::group(array('prefix' => 'admin' , 'before' => 'admin' ), function() {
     Route::get('/articles/{article_id}/edit', 'ArticlesController@edit');
     Route::post('/articles/{article_id}/publish', 'ArticlesController@publish');
     Route::post('/articles/{article_id}/unpublish', 'ArticlesController@unpublish');
+
+    // Messages
+    Route::get('/messages', 'MessagesController@index');
+    Route::get('/messages/create', 'MessagesController@create');
+    Route::get('/messages/inbox', 'MessagesController@inbox');
+
 });

@@ -1,37 +1,45 @@
 	
 <?php $__env->startSection('content'); ?>
 
-<div style="clear:both">
-	<h2><b>Platforms List</b></h2>
-</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">All Platforms</h3>
+		<div class="panel-options">
+			<a href="<?php echo url('admin/platforms/create'); ?>">
+				<button type="button" class="btn btn-primary" style="margin: 0">New Platform</button>
+			</a>
+		</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-bordered datatable" id="table-1">
+			<thead>
+				<tr>
+					<th>Platform Name</th>
+					<th>Platform Abbreviation</th>
+					<th>Developed By</th>
+					<th>Description</th>			
+					<th width="165">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($platforms as $platform): ?>
+				<tr>
+					<td><a href="/platforms/<?php echo $platform->abbreviation_slug; ?>"><?php echo $platform->name; ?></a></td>
+					<td><?php echo $platform->abbreviation; ?></td>
+					<td><?php echo $platform->developer; ?></td>
+					<td><?php echo $platform->description; ?></td>
+					<td>
+						<a style="float:left" href="platforms/<?php echo $platform->id; ?>/edit" class="btn btn-secondary btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+						<button style="float:left; margin-left: 5px;" data-id="<?php echo $platform->id; ?>" class="delete-btn btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</button>
+					</td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
 
-<table class="table table-bordered datatable" id="table-1">
-	<thead>
-		<tr>
-			<th>Platform Name</th>
-			<th>Platform Abbreviation</th>
-			<th>Developed By</th>
-			<th>Description</th>			
-			<th width="165">Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php foreach($platforms as $platform): ?>
-		<tr>
-			<td><a href="/platforms/<?php echo $platform->abbreviation_slug; ?>"><?php echo $platform->name; ?></a></td>
-			<td><?php echo $platform->abbreviation; ?></td>
-			<td><?php echo $platform->developer; ?></td>
-			<td><?php echo $platform->description; ?></td>
-			<td>
-				<a style="float:left" href="platforms/<?php echo $platform->id; ?>/edit" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
-				<button style="float:left; margin-left: 5px;" data-id="<?php echo $platform->id; ?>" class="delete-btn btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</button>
-			</td>
-		</tr>
-		<?php endforeach; ?>
-	</tbody>
-</table>
-
-<script src="<?php echo URL::asset('assets/js/custom/list-functions.js'); ?>"></script>
+<!-- Imported scripts on this page -->
+<script src="<?php echo URL::asset('assets/js/bootbox.min.js'); ?>"></script>
+<script src="<?php echo URL::asset('assets/js/datatables/js/jquery.dataTables.min.js'); ?>"></script>
 
 <script type="text/javascript">	
 	$(document).ready(function() {
@@ -43,7 +51,7 @@
 			  buttons: {
 			    danger: {
 			      label: "Cancel",
-			      className: "btn-default",
+			      className: "btn-primary",
 			      callback: function() {
 			    	// do nothing
 			      }
@@ -69,4 +77,4 @@
 </script>
 
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('admin.layouts.admin-default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.layouts-new.admin-template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -77,7 +77,7 @@ class GamesController extends BaseController {
 
 		// return successful insertion
 		Session::put('adminSuccessAlert', '<b>'. Input::get('title') .'</b> has successfully been added.');
-		return Redirect::back();
+		return Redirect::to('admin/games');
 	}
 
 	//GET 		games/{game_slug} 			games.show

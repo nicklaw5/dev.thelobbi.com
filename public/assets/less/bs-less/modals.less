@@ -10,18 +10,12 @@
 // Kill the scroll on the body
 .modal-open {
   overflow: hidden;
-  
-  .page-container {
-	  padding-right: 15px;
-  }
 }
 
 // Container that the modal scrolls within
 .modal {
   display: none;
-  overflow: auto;
-  overflow-y: scroll;
-  overflow-y: auto;
+  overflow: hidden;
   position: fixed;
   top: 0;
   right: 0;
@@ -33,153 +27,24 @@
   // Prevent Chrome on Windows from adding a focus outline. For details, see
   // https://github.com/twbs/bootstrap/pull/10951.
   outline: 0;
-  
-  &.custom-width {
-  	margin-left: auto;
-  	margin-right: auto;
-  	.bs;
-	  
-	  .modal-dialog {
-		  width: 100%;
-		  .bs;
-	  }
-  }
- 
-  
-  .modal-header {
-	  
-	  .close {
-		  background: @secondary_background_color;
-		  display: inline-block;
-		  padding: 0px 5px;
-		  line-height: 1;
-		  color: #787878;
-		  .opacity(.7);
-		  text-shadow: none;
-		  font-weight: 300;
-		  .rounded;
-		  .transall;
-		  
-		  &:hover {
-			  .opacity(1);
-		  }
-	  }
-	  
-	  h4 {
-		  text-shadow: none;
-	  }
-  }
-	
-  .modal-body {
-		
-	  > p:last-child {
-		  margin-bottom: 0;
-	  }
-  }
-  
-  &.inline {
-	  display: block;
-	  .opacity(1);
-	  position: relative;
-	  left: 0;
-	  top: 0;
-	  right: auto;
-	  bottom: auto;
-	  overflow: hidden;
-	  z-index: 0 !important;
-	  
-	  .modal-dialog {
-		  margin: 0;
-		  width: auto;
-	  }
-  }
-  
-  
-	// Modal skin 2
-	&.invert {
-	
-		.modal-dialog {
-		
-			.modal-content {
-				background-color: @main_color;
-				color: @main_text_color;
-				border-color: @main_border_color;
-				
-				.modal-header {
-					border-bottom-color: @main_border_color;
-					
-					.close {
-						background-color: @main_border_color;
-						color: lighten(@main_border_color, 50%);
-					}
-					
-					h4 {
-						color: @main_text_acitve_color;
-					}
-				}
-				
-				
-				.modal-footer {
-					border-top-color: @main_border_color;
-				}
-			}
-		}
-	}
-	
-	// Modal skin 3
-	&.gray {
-	
-		.modal-dialog {
-		
-			.modal-content {
-				@border_color: #FFF;
-				
-				background-color: @secondary_background_color;
-				//color: @main_text_color;
-				border-color: @border_color;
-				
-				.modal-header {
-					border-bottom-color: @border_color;
-					
-					.close {
-						background-color: @border_color;
-						color: darken(@border_color, 50%);
-					}
-					
-					h4 {
-						color: darken(@default, 50%);
-					}
-				}
-				
-				
-				.modal-footer {
-					border-top-color: @border_color;
-				}
-			}
-		}
-	}
-	
 
   // When fading in the modal, animate it to slide down
   &.fade .modal-dialog {
-  	.transform(~"translateY(-400px) scale(1.1)");
-  	.opacity(0);
-    .transition-transform(~"0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275)");
-    //.transition-delay(150ms);
+    .translate3d(0, -25%, 0);
+    .transition-transform(~"0.3s ease-out");
   }
-  &.in .modal-dialog { .translate(0, 0); .opacity(1); }
+  &.in .modal-dialog { .translate3d(0, 0, 0) }
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 // Shell div to position the modal with bottom padding
 .modal-dialog {
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
   width: auto;
-  padding: 10px;
-  // Fade for backdrop
-  &.fade { .opacity(0); }
-  &.in { .opacity(@modal-backdrop-opacity); }
+  margin: 10px;
 }
 
 // Actual modal
@@ -189,10 +54,10 @@
   border: 1px solid @modal-content-fallback-border-color; //old browsers fallback (ie8 etc)
   border: 1px solid @modal-content-border-color;
   border-radius: @border-radius-large;
-  .box-shadow(none);
+  .box-shadow(0 3px 9px rgba(0,0,0,.5));
   background-clip: padding-box;
   // Remove focus outline from opened modal
-  outline: none;
+  outline: 0;
 }
 
 // Modal background
@@ -206,7 +71,7 @@
   background-color: @modal-backdrop-bg;
   // Fade for backdrop
   &.fade { .opacity(0); }
-  &.in { .opacity(.5); }
+  &.in { .opacity(@modal-backdrop-opacity); }
 }
 
 // Modal header
@@ -236,11 +101,10 @@
 
 // Footer (for actions)
 .modal-footer {
-  margin-top: 15px;
-  padding: (@modal-inner-padding - 1) @modal-inner-padding @modal-inner-padding;
+  padding: @modal-inner-padding;
   text-align: right; // right align buttons
   border-top: 1px solid @modal-footer-border-color;
-  .clearfix(); // clear it in case folks use .pull-* classes on buttons
+  &:extend(.clearfix all); // clear it in case folks use .pull-* classes on buttons
 
   // Properly space out buttons
   .btn + .btn {
@@ -257,24 +121,30 @@
   }
 }
 
-// Scale up the modal
-@media screen and (min-width: @screen-sm-min) {
+// Measure scrollbar width for padding body during modal show/hide
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
 
+// Scale up the modal
+@media (min-width: @screen-sm-min) {
+  // Automatically set modal's width for larger viewports
   .modal-dialog {
     width: @modal-md;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    // Define large size for the modal
-    &.modal-lg{
-      width: @modal-lg;
-    }
-    // Define small size for the modal
-    &.modal-sm{
-      width: @modal-sm;
-    }
+    margin: 30px auto;
   }
   .modal-content {
-    //.box-shadow(0 5px 15px rgba(0,0,0,.5));
+    .box-shadow(0 5px 15px rgba(0,0,0,.5));
   }
 
+  // Modal sizes
+  .modal-sm { width: @modal-sm; }
+}
+
+@media (min-width: @screen-md-min) {
+  .modal-lg { width: @modal-lg; }
 }

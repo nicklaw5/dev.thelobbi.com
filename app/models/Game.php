@@ -49,10 +49,7 @@ class Game extends Eloquent {
 		//add game as a tag
 		$tag = App::make('Tag');
 		if($tag->createNewTag($this->table, $game_id))
-
-			//return 'game_id'
 			return $game_id;
-
 		return false;
 	}
 

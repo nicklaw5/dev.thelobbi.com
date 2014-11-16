@@ -1,38 +1,46 @@
-@extends('admin.layouts.admin-default')
+@extends('admin.layouts-new.admin-template')
 	
 @section('content')
 
-<div style="clear:both">
-	<h2><b>Platforms List</b></h2>
-</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">All Platforms</h3>
+		<div class="panel-options">
+			<a href="{{ url('admin/platforms/create') }}">
+				<button type="button" class="btn btn-primary" style="margin: 0">New Platform</button>
+			</a>
+		</div>
+	</div>
+	<div class="panel-body">
+		<table class="table table-bordered datatable" id="table-1">
+			<thead>
+				<tr>
+					<th>Platform Name</th>
+					<th>Platform Abbreviation</th>
+					<th>Developed By</th>
+					<th>Description</th>			
+					<th width="165">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach($platforms as $platform)
+				<tr>
+					<td><a href="/platforms/{{ $platform->abbreviation_slug }}">{{ $platform->name }}</a></td>
+					<td>{{ $platform->abbreviation }}</td>
+					<td>{{ $platform->developer }}</td>
+					<td>{{ $platform->description }}</td>
+					<td>
+						<a style="float:left" href="platforms/{{ $platform->id }}/edit" class="btn btn-secondary btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+						<button style="float:left; margin-left: 5px;" data-id="{{ $platform->id }}" class="delete-btn btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</button>
+					</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
 
-<table class="table table-bordered datatable" id="table-1">
-	<thead>
-		<tr>
-			<th>Platform Name</th>
-			<th>Platform Abbreviation</th>
-			<th>Developed By</th>
-			<th>Description</th>			
-			<th width="165">Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach($platforms as $platform)
-		<tr>
-			<td><a href="/platforms/{{ $platform->abbreviation_slug }}">{{ $platform->name }}</a></td>
-			<td>{{ $platform->abbreviation }}</td>
-			<td>{{ $platform->developer }}</td>
-			<td>{{ $platform->description }}</td>
-			<td>
-				<a style="float:left" href="platforms/{{ $platform->id }}/edit" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
-				<button style="float:left; margin-left: 5px;" data-id="{{ $platform->id }}" class="delete-btn btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</button>
-			</td>
-		</tr>
-		@endforeach
-	</tbody>
-</table>
-
-<script src="{{ URL::asset('assets/js/custom/list-functions.js') }}"></script>
+<!-- Imported scripts on this page -->
+<script src="{{ URL::asset('assets/js/bootbox.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/datatables/js/jquery.dataTables.min.js') }}"></script>
 
 <script type="text/javascript">	
 	$(document).ready(function() {
@@ -44,7 +52,7 @@
 			  buttons: {
 			    danger: {
 			      label: "Cancel",
-			      className: "btn-default",
+			      className: "btn-primary",
 			      callback: function() {
 			    	// do nothing
 			      }

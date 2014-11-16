@@ -29,7 +29,17 @@ class Platform extends Eloquent {
 		$this->website 			  = $string->nullifyAndStripTags($input['website']);
 		$this->save();
 
-		return true;
+		$platform_id = $this->returnGameData('id', 'name', $this->name);
+
+		//add event as a tag
+		$tag = App::make('Tag');
+		if($tag->createNewTag($this->table, $platform_id))
+			return true;
+		return false;
+	}
+
+	public function returnGameData($want, $field, $value) {
+		return DB::table($this->table)->where($field, $value)->pluck($want);
 	}
 
 	public function updatePlatform($platform_id, $input) {

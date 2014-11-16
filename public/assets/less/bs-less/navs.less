@@ -10,7 +10,7 @@
   margin-bottom: 0;
   padding-left: 0; // Override default ul/ol
   list-style: none;
-  .clearfix();
+  &:extend(.clearfix all);
 
   > li {
     position: relative;
@@ -48,11 +48,6 @@
     &:focus {
       background-color: @nav-link-hover-bg;
       border-color: @link-color;
-
-      .caret {
-        border-top-color: @link-hover-color;
-        border-bottom-color: @link-hover-color;
-      }
     }
   }
 
@@ -79,21 +74,15 @@
 
 // Give the tabs something to sit on
 .nav-tabs {
-  @tab_distance: 4px;
-  
   border-bottom: 1px solid @nav-tabs-border-color;
-  margin-top: @base_padding * 2;
-  margin-bottom: @base_padding;
-  
   > li {
-    //float: left;
-    display: inline-block;
+    float: left;
     // Make the list-items overlay the bottom border
     margin-bottom: -1px;
 
     // Actual tabs (as links)
     > a {
-      margin-right: @tab_distance;
+      margin-right: 2px;
       line-height: @line-height-base;
       border: 1px solid transparent;
       border-radius: @border-radius-base @border-radius-base 0 0;
@@ -101,12 +90,8 @@
         border-color: @nav-tabs-link-hover-border-color @nav-tabs-link-hover-border-color @nav-tabs-border-color;
       }
     }
-    
-    &:first-child > a {
-	    margin-left: @base_padding;
-    }
 
-    // Active state, and it's :hover to override normal :hover
+    // Active state, and its :hover to override normal :hover
     &.active > a {
       &,
       &:hover,
@@ -123,47 +108,6 @@
   &.nav-justified {
     .nav-justified();
     .nav-tabs-justified();
-  }
-  
-  &.right-aligned {
-	  text-align: right;
-	  
-	  > li {
-		  
-		  > a {
-			  margin-left: @tab_distance;
-			  margin-right: 0;
-		  }
-	  }
-  	  
-  	  > li:last-child > a {
-	  	  margin-right: @base_padding;
-  	  }
-  }
-  
-  // Bordered
-  &.bordered {
-  	  margin-bottom: 0;
-  	  
-  	  > li:first-child > a {
-  	  	  margin-left: 0;
-  	  }
-  	  
-  	  > li:last-child > a {
-  	  	  margin-right: 0;
-  	  }
-	  
-	  + .tab-content {
-		  border: 1px solid @nav-tabs-border-color;
-		  border-top: 0;
-		  .border-radius(0 0 @border-radius-base @border-radius-base);
-		  padding: @base_padding @base_margin/2;
-		  margin-bottom: @base_padding * 2;
-		  
-		  > p:last-child {
-			  margin-bottom: 0;
-		  }
-	  }
   }
 }
 
@@ -189,11 +133,6 @@
       &:focus {
         color: @nav-pills-active-link-hover-color;
         background-color: @nav-pills-active-link-hover-bg;
-
-        .caret {
-          border-top-color: @nav-pills-active-link-hover-color;
-          border-bottom-color: @nav-pills-active-link-hover-color;
-        }
       }
     }
   }
@@ -223,7 +162,7 @@
 
   > li {
     float: none;
-     > a {
+    > a {
       text-align: center;
       margin-bottom: 5px;
     }
@@ -293,16 +232,6 @@
 
 // Dropdowns
 // -------------------------
-
-// Make dropdown carets use link color in navs
-.nav .caret {
-  border-top-color: @link-color;
-  border-bottom-color: @link-color;
-}
-.nav a:hover .caret {
-  border-top-color: @link-hover-color;
-  border-bottom-color: @link-hover-color;
-}
 
 // Specific dropdowns
 .nav-tabs .dropdown-menu {

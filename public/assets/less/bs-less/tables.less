@@ -4,19 +4,18 @@
 
 
 table {
-  max-width: 100%;
   background-color: @table-bg;
 }
 th {
   text-align: left;
-  font-weight: @font_weight_bold;
-  color: @main_color;
 }
 
 
 // Baseline styles
+
 .table {
   width: 100%;
+  max-width: 100%;
   margin-bottom: @line-height-computed;
   // Cells
   > thead,
@@ -29,19 +28,6 @@ th {
         line-height: @line-height-base;
         vertical-align: top;
         border-top: 1px solid @table-border-color;
-        
-        // Progress bars
-        .progress {
-	        margin-bottom: 0;
-        }
-        
-        .label {
-        	@m: 5px;
-	        margin-left: @m;
-	        margin-right: @m;
-	        padding-left: 10px;
-	        padding-right: 10px;
-        }
       }
     }
   }
@@ -95,7 +81,6 @@ th {
 
 .table-bordered {
   border: 1px solid @table-border-color;
-  
   > thead,
   > tbody,
   > tfoot {
@@ -109,17 +94,7 @@ th {
   > thead > tr {
     > th,
     > td {
-	  background-color: @hover_bg;
-	  border-bottom-width: 1px;
-	  color: #a6a7aa;
-    }
-  }
-  > tfoot > tr {
-    > th,
-    > td {
-	  background-color: @hover_bg;
-	  border-top-width: 1px;
-	  color: #a6a7aa;
+      border-bottom-width: 2px;
     }
   }
 }
@@ -158,6 +133,7 @@ th {
 // Reset default table behavior
 
 table col[class*="col-"] {
+  position: static; // Prevent border hiding in Firefox and IE9/10 (see https://github.com/twbs/bootstrap/issues/11623)
   float: none;
   display: table-column;
 }
@@ -165,29 +141,9 @@ table {
   td,
   th {
     &[class*="col-"] {
+      position: static; // Prevent border hiding in Firefox and IE9/10 (see https://github.com/twbs/bootstrap/issues/11623)
       float: none;
       display: table-cell;
-    }
-  }
-}
-
-
-// Table backgrounds
-//
-// Exact selectors below required to override `.table-striped` and prevent
-// inheritance to nested tables.
-
-.table {
-  > thead,
-  > tbody,
-  > tfoot {
-    > tr {
-      > td.active,
-      > th.active,
-      &.active > td,
-      &.active > th  {
-        background-color: @table-bg-active;
-      }
     }
   }
 }
@@ -212,12 +168,12 @@ table {
 // by enabling horizontal scrolling. Only applies <768px. Everything above that
 // will display normally.
 
-@media (max-width: @screen-xs-max) {
-  .table-responsive {
+.table-responsive {
+  @media screen and (max-width: @screen-xs-max) {
     width: 100%;
     margin-bottom: (@line-height-computed * 0.75);
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     border: 1px solid @table-border-color;
     -webkit-overflow-scrolling: touch;
@@ -273,30 +229,5 @@ table {
       }
 
     }
-  }
-}
-
-
-table {
-  > tbody > tr.highlight {
-	  > td,
-	  > th {
-		  background-color: darken(#f4f5f6, 1%) !important;
-		  color: @main_color;
-	  }
-  }
-}
-
-
-.table {
-  // Cells
-  > thead,
-  > tbody,
-  > tfoot {
-    > tr {
-      > .middle-align {
-      	vertical-align: middle;
-      }
-   }
   }
 }

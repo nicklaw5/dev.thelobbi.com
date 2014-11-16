@@ -1,153 +1,183 @@
-@extends('admin.layouts.admin-default')
+@extends('admin.layouts-new.admin-template')
 	
 @section('content')
 
-<div style="clear:both">
-	<h2><b>Add New Game</b></h2>
-</div>
-
-	<div class="panel-body">
-		{{ Form::open(['action' => 'GamesController@store']) }}
-			
-			@include('admin.alerts.admin-form-errors')
-
-			<!-- TITLE -->
-			<div class="form-group row">
-				<div class="col-lg-6">
-					<label for="title" class="control-label">Game Title (required)</label>
-					{{ Form::text('title', '', ['class' => 'form-control', 'required', 'placeholder' => 'eg. Assassin\'s Creed: Unity']) }}
-				</div>
+<div class="row">
+	<div class="col-sm-6">
+					
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h6 class="panel-title">New Game</h6>
 			</div>
+			<div class="panel-body">
+				{{ Form::open(['action' => 'GamesController@store']) }}
+					
+					@include('admin.alerts.admin-form-errors')
 
-			<!-- DESCRIPTION -->
-			<div class="form-group row">
-				<div class="col-lg-6">
-					<label for="description" class="control-label">Game Description (optional)</label>	
-					{{ Form::textarea('description', '', ['rows' => '4', 'class' => 'form-control autogrow', 'placeholder' => 'eg. Assassin’s Creed Unity is the next-gen evolution of the blockbuster franchise powered by an all-new game engine. From the storming of the Bastille to the execution of King Louis XVI, experience the French Revolution as never before, and help the people of France carve an entirely new destiny.']) }}
-				</div>
-			</div>
-
-			<!-- Social Links -->
-			<div class="form-group row">
-				<div class="col-lg-3">
-					<label for="website" class="control-label">Webiste (optional)</label>
-					{{ Form::text('website', '', ['class' => 'form-control', 'placeholder' => 'eg. http://assassinscreed.ubi.com/']) }}
-				</div>
-				<div class="col-lg-3">
-					<label for="facebook" class="control-label">Facebook (optional)</label>
-					{{ Form::text('facebook', '', ['class' => 'form-control', 'placeholder' => 'eg. https://www.facebook.com/assassinscreed']) }}
-				</div>
-			</div>
-
-			<div class="form-group row">
-
-				<div class="col-lg-3">
-					<label for="twitter" class="control-label">Twitter (optional)</label>
-					{{ Form::text('twitter', '', ['class' => 'form-control', 'placeholder' => 'eg. https://twitter.com/assassinscreed']) }}
-				</div>
-				<div class="col-lg-3">
-					<label for="twitch" class="control-label">Twitch (optional)</label>
-					{{ Form::text('twitch', '', ['class' => 'form-control', 'placeholder' => "eg. http://www.twitch.tv/directory/game/Assassin's%20Creed%3A%20Unity"]) }}
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<div class="col-lg-3">
-					<label for="google_plus" class="control-label">Google Plus (optional)</label>
-					{{ Form::text('google_plus', '', ['class' => 'form-control', 'placeholder' => 'eg. https://plus.google.com/u/0/+AssassinsCreed/posts']) }}
-				</div>
-				<div class="col-lg-3">
-					<label for="youtube" class="control-label">Youtube (optional)</label>
-					{{ Form::text('youtube', '', ['class' => 'form-control', 'placeholder' => 'eg. https://www.youtube.com/user/AssassinsCreed']) }}
-				</div>
-			</div>
-
-
-			<!-- DEVELOPER(S) -->
-			<div class="form-group row">
-				<div class="col-lg-6">
-					<label for="developer" class="control-label">Developer(s) (required)</label>
-					{{ Form::select('developers[]', $companies, null, ['class' => 'select2', 'multiple', 'required']); }}
-				</div>
-			</div>
-
-			<!-- PUBLISHER(S) -->
-			<div class="form-group row">
-				<div class="col-lg-6">
-					<label for="publisher" class="control-label">Publisher(s) (optional)</label>							
-					{{ Form::select('publishers[]', $companies, null, ['class' => 'select2', 'multiple']); }}
-				</div>
-			</div>
-
-			<!-- GENRE(S) -->
-			<div class="form-group row">
-				<div class="col-lg-6">
-					<label for="genres" class="control-label">Genre(s) (optional)</label>							
-					{{ Form::select('genres[]', $genres, null, ['class' => 'select2', 'multiple']); }}
-				</div>
-			</div>
-
-			<!-- PLATFORM(S) -->
-			<div class="form-group row">
-				<div class="col-lg-6">
-					<label for="platforms" class="control-label">Platform(s) (optional)</label>
-					{{ Form::select('platforms[]', $platforms, null, ['class' => 'select2', 'multiple']); }}
-				</div>
-			</div>
-
-			<!-- RELEASE DATE(S) -->
-			<div class="form-group row">	
-				<div class="form-group col-lg-3">
-					<label class="control-label">Release Date (optional)</label>					
-					<div class="input-group">
-						{{ Form::text('release_date', '', ['class' => 'form-control datepicker', 'data-format' => 'D, dd MM yyyy']) }}
-						<div class="input-group-addon">
-							<a href="#"><i class="entypo-calendar"></i></a>
+					<!-- TITLE -->
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="title" class="control-label">Game Title (required)</label>
+							{{ Form::text('title', '', ['class' => 'form-control', 'required', 'placeholder' => 'eg. Assassin\'s Creed: Unity']) }}
 						</div>
 					</div>
-				</div>
 
-				<!-- PRICE -->
-				<div class="form-group col-lg-3">
-					<label for="price_at_launch" class="control-label">Price At Launch (optional)</label>
-					{{ Form::text('price_at_launch', '', ['class' => 'form-control', 'data-mask' => 'currency', 'data-sign' => '$']) }}
-				</div>
+					<!-- DESCRIPTION -->
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="description" class="control-label">Game Description (optional)</label>	
+							{{ Form::textarea('description', '', ['id' => 'description', 'rows' => '4', 'class' => 'form-control autogrow']) }}
+							<script type="text/javascript">
+								$(document).ready(function() {
+									CKEDITOR.replace( 'description', {
+									        customConfig: "{{ URL::asset('assets/js/ckeditor/config-limited.js') }}",
+									});
+								});
+							</script>
+						</div>
+					</div>
 
-			</div>
+					<!-- Social Links -->
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="website" class="control-label">Webiste (optional)</label>
+							{{ Form::text('website', '', ['class' => 'form-control', 'placeholder' => 'eg. http://assassinscreed.ubi.com/']) }}
+						</div>
+						<div class="col-sm-6">
+							<label for="facebook" class="control-label">Facebook (optional)</label>
+							{{ Form::text('facebook', '', ['class' => 'form-control', 'placeholder' => 'eg. https://www.facebook.com/assassinscreed']) }}
+						</div>
+					</div>
 
-			<!-- BOX ART -->
-			<div class="form-group row">
-				<div class="col-lg-5">
-					<label for="box_art" class="control-label">Box Art (272 x 380) (optional)</label>
-					{{ Form::text('box_art', '', ['id' => 'box_art', 'class' => 'form-control', 'placeholder' => 'Click the button to add some box art.']) }}
-				</div>
-				<div class="col-lg-1">
-					<a style="margin-top:22px;" href="javascript:;" onclick="jQuery('#filemanagerModal').appendTo(body).modal('show');jQuery('#filemanager').attr('src', '/assets/filemanager/dialog.blade.php?type=0&field_id=box_art');" class="btn btn-blue">Add Box Art</a>
-				</div>
-			</div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="twitter" class="control-label">Twitter (optional)</label>
+							{{ Form::text('twitter', '', ['class' => 'form-control', 'placeholder' => 'eg. https://twitter.com/assassinscreed']) }}
+						</div>
+						<div class="col-sm-6">
+							<label for="twitch" class="control-label">Twitch (optional)</label>
+							{{ Form::text('twitch', '', ['class' => 'form-control', 'placeholder' => "eg. http://www.twitch.tv/directory/game/Assassin's%20Creed%6A%20Unity"]) }}
+						</div>
+					</div>
 
-			<!-- Title Image -->
-			<div class="form-group row">
-				<div class="col-lg-5">
-					<label for="title_image" class="control-label">Title Image (optional)</label>
-					{{ Form::text('title_image', '', ['id' => 'title_image', 'class' => 'form-control', 'placeholder' => 'Click the button to add some box art.']) }}
-				</div>
-				<div class="col-lg-1">
-					<a style="margin-top:22px;" href="javascript:;" onclick="jQuery('#filemanagerModal').appendTo(body).modal('show');jQuery('#filemanager').attr('src', '/assets/filemanager/dialog.blade.php?type=0&field_id=title_image');" class="btn btn-blue">Add Title Image</a>
-				</div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<label for="google_plus" class="control-label">Google Plus (optional)</label>
+							{{ Form::text('google_plus', '', ['class' => 'form-control', 'placeholder' => 'eg. https://plus.google.com/u/0/+AssassinsCreed/posts']) }}
+						</div>
+						<div class="col-sm-6">
+							<label for="youtube" class="control-label">Youtube (optional)</label>
+							{{ Form::text('youtube', '', ['class' => 'form-control', 'placeholder' => 'eg. https://www.youtube.com/user/AssassinsCreed']) }}
+						</div>
+					</div>
+
+
+					<!-- DEVELOPER(S) -->
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="developer" class="control-label">Developer(s) (required)</label>
+							{{ Form::select('developers[]', $companies, null, ['class' => 'select2', 'multiple', 'required']); }}
+						</div>
+					</div>
+
+					<!-- PUBLISHER(S) -->
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="publisher" class="control-label">Publisher(s) (optional)</label>							
+							{{ Form::select('publishers[]', $companies, null, ['class' => 'select2', 'multiple']); }}
+						</div>
+					</div>
+
+					<!-- GENRE(S) -->
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="genres" class="control-label">Genre(s) (optional)</label>							
+							{{ Form::select('genres[]', $genres, null, ['class' => 'select2', 'multiple']); }}
+						</div>
+					</div>
+
+					<!-- PLATFORM(S) -->
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="platforms" class="control-label">Platform(s) (optional)</label>
+							{{ Form::select('platforms[]', $platforms, null, ['class' => 'select2', 'multiple']); }}
+						</div>
+					</div>
+
+					<!-- RELEASE DATE(S) -->
+					<div class="form-group row">	
+						<div class="form-group col-sm-6">
+							<label class="control-label">Release Date (optional)</label>					
+							<div class="input-group">
+								{{ Form::text('release_date', '', ['class' => 'form-control datepicker', 'data-start-view' => '1', 'data-format' => 'dd MM yyyy']) }}
+								<div class="input-group-addon">
+									<a href="#"><i class="linecons-calendar"></i></a>
+								</div>
+							</div>
+						</div>
+
+						<!-- PRICE -->
+						<div class="form-group col-sm-6">
+							<label for="price_at_launch" class="control-label">Price At Launch (optional)</label>
+							{{ Form::text('price_at_launch', '', ['class' => 'form-control', 'data-mask' => 'currency', 'data-sign' => '$']) }}
+						</div>
+
+					</div>
+
+					<!-- BOX ART -->
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="box_art" class="control-label">Box Art (272 x 680) (optional)</label>
+							{{ Form::text('box_art', '', ['id' => 'box_art', 'class' => 'form-control', 'placeholder' => 'Click the button to add some box art.']) }}
+						</div>
+					</div>
+
+					<!-- Title Image -->
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="title_image" class="control-label">Title Image (optional)</label>
+							{{ Form::text('title_image', '', ['id' => 'title_image', 'class' => 'form-control', 'placeholder' => 'Click the button to add some box art.']) }}
+						</div>
+					</div>
+								
+					<!-- SUBMIT -->
+					<div class="form-group row col-sm-6">
+						<button type="submit" class="btn btn-secondary">Add New Game</button>
+						<a href="{{ url('admin/games') }}"><button type="button" class="btn btn-danger">Cancel</button></a>
+					</div>
+				
+				{{ Form::close() }}
 			</div>
-						
-			<!-- SUBMIT -->
-			<div style="margin-top:50px;" class="form-group row col-lg-3">
-				<button type="submit" class="btn btn-green">Save New Game</button>
-			</div>
-		
-		{{ Form::close() }}
-	
+		</div>		
 	</div>
+	<!-- END .col-sm-6 -->
 
+	<!-- FILE UPLOAD -->
+	<div class="col-sm-6">
+		@include('admin.layouts.admin-file-upload')
+	</div>
+	<!-- END .col-sm-6 -->
+	
+</div>
+<!-- END .row -->
+	
 <!-- Modals -->
-@include('modals.filemanager-modal')
 @include('admin.alerts.on-back-alert')
+
+<!-- Imported styles on this page -->
+<link rel="stylesheet" href="{{ URL::asset('assets/js/daterangepicker/daterangepicker-bs3.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('assets/js/select2/select2.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('assets/js/select2/select2-bootstrap.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('assets/js/multiselect/css/multi-select.css') }}">
+
+<!-- Imported scripts on this page -->
+<script src="{{ URL::asset('assets/js/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ URL::asset('assets/js/ckeditor/adapters/jquery.js') }}"></script>
+<script src="{{ URL::asset('assets/js/daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ URL::asset('assets/js/datepicker/bootstrap-datepicker.js') }}"></script>
+<script src="{{ URL::asset('assets/js/select2/select2.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/selectboxit/jquery.selectBoxIt.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/multiselect/js/jquery.multi-select.js') }}"></script>
 
 @stop

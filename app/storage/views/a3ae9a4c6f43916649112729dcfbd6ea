@@ -1,34 +1,32 @@
     <?php $__env->startSection('content'); ?>
         <div class="feature-container">
-
-            <!-- <div class="feature-container-inner"> -->
-                <!--<div class="overlay-left"></div>
-                <div class="overlay-right"></div>-->
-                <a href="http://google.com.au/" class="feature-major" style="background: url('http://static9.cdn.ubi.com/resource/en-DK/game/assassins-creed/ac/acu-gi-04_147188.jpg') no-repeat center center;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;">
-                    <div class="feature-overlay">
-                        <div class="feature-major-meta">
-                            <span><strong>Assassin's Creed: Unity</strong></span>
-                            <h3>Assassin's Creed Unity and Rogue plots revealed, release date set for Nov. 11</h3>    
-                        </div>
+            <a href="http://google.com.au/" class="feature-major" style="background: url('http://static9.cdn.ubi.com/resource/en-DK/game/assassins-creed/ac/acu-gi-04_147188.jpg') no-repeat center center;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;">
+                <div class="feature-overlay">
+                    <div class="feature-major-play fa fa-play-circle-o"></div>
+                    <div class="feature-major-meta">
+                        <span><strong>Assassin's Creed: Unity</strong></span>
+                        <h3>Assassin's Creed Unity and Rogue plots revealed, release date set for Nov. 11</h3>    
                     </div>
-                </a>
-                <a href="http://google.com.au/" class="feature-minor minor-top" style="background: url('http://thelobbi.com/images/2014/10/BrokenAge_feature.jpg') no-repeat center center;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;">
-                    <div class="feature-overlay">
-                        <div class="feature-minor-meta">
-                            <span><strong>Broken Age</strong></span>
-                            <h4>Double Fine nears deadline for Broken Age’s second act</h4>    
-                        </div>
+                </div>
+            </a>
+            <a href="http://google.com.au/" class="feature-minor minor-top" style="background: url('http://thelobbi.com/images/2014/10/BrokenAge_feature.jpg') no-repeat center center;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;">
+                <div class="feature-overlay">
+                    <div class="feature-minor-play fa fa-play-circle-o"></div>
+                    <div class="feature-minor-meta">
+                        <span><strong>Broken Age</strong></span>
+                        <h4>Double Fine nears deadline for Broken Age’s second act</h4>    
                     </div>
-                </a> 
-                <a href="http://google.com.au/" class="feature-minor minor-bottom" style="background: url('http://images.gamenguide.com/data/images/full/12347/batman-arkham-knight.png?w=720') no-repeat center center;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;">
-                    <div class="feature-overlay">
-                        <div class="feature-minor-meta">
-                            <span><strong>Batman: Arkham Knight</strong></span>
-                            <h4>10 Mind-Blowing Theories About Batman: Arkham Knight</h4>    
-                        </div>
+                </div>
+            </a> 
+            <a href="http://google.com.au/" class="feature-minor minor-bottom" style="background: url('http://images.gamenguide.com/data/images/full/12347/batman-arkham-knight.png?w=720') no-repeat center center;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;">
+                <div class="feature-overlay">
+                    <div class="feature-minor-play fa fa-play-circle-o"></div>
+                    <div class="feature-minor-meta">
+                        <span><strong>Batman: Arkham Knight</strong></span>
+                        <h4>10 Mind-Blowing Theories About Batman: Arkham Knight</h4>    
                     </div>
-                </a>
-            <!-- </div> --> 
+                </div>
+            </a>
         </div>
 
         <?php echo $__env->make('ads.leaderboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

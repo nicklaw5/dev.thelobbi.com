@@ -48,7 +48,18 @@ class Company extends Eloquent {
 		$this->logo 			= $string->nullifyAndStripTags($input['logo']);
 		$this->save();
 
-		return true;
+
+		$company_id = $this->returnGameData('id', 'name', $this->name);
+
+		//add event as a tag
+		$tag = App::make('Tag');
+		if($tag->createNewTag($this->table, $company_id))
+			return true;
+		return false;
+	}
+
+	public function returnGameData($want, $field, $value) {
+		return DB::table($this->table)->where($field, $value)->pluck($want);
 	}
 
 	public function updateCompany($company_id, $input) {

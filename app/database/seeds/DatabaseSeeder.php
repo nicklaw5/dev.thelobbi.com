@@ -191,17 +191,17 @@ class PlatformsTableSeeder extends Seeder {
 
         // Create groups
 		$platforms = [
-			[	'name' 	=> 	'PC', 'abbreviation'  =>  'PC', 'developer_id' => 8, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'name' 	=> 	'Mactintosh', 'abbreviation'  =>  'Mac', 'developer_id' => 15, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'name' 	=> 	'PlayStation 4', 'abbreviation'  =>  'PS4', 'developer_id' => 14, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'name' 	=> 	'PlayStation 3', 'abbreviation'  =>  'PS3', 'developer_id' => 14, 'created_at'	=> 	$now, 'updated_at'	=> 	$now],
-			[	'name' 	=> 	'PlayStation Vita', 'abbreviation'  =>  'PS Vita', 'developer_id' => 14, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'name' 	=> 	'Xbox One', 'abbreviation'  =>  'Xbox One', 'developer_id' => 8, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'name' 	=> 	'Xbox 360', 'abbreviation'  =>  'Xbox 360', 'developer_id' => 8, 'created_at'	=> 	$now, 'updated_at'	=> 	$now  ],
-			[	'name' 	=> 	'Nintendo Wii U', 'abbreviation'  =>  'Wii U', 'developer_id' => 17, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'name' 	=> 	'Nintendo 3DS', 'abbreviation'  =>  '3DS', 'developer_id' => 17, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'name' 	=> 	'Android', 'abbreviation'  =>  'Android', 'developer_id' => 16, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'name' 	=> 	'iOS', 'abbreviation'  =>  'iOS', 'developer_id' => 15, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ]
+			[	'name' 	=> 	'PC', 'abbreviation'  =>  'PC', 'abbreviation_slug' => 'pc', 'developer_id' => 8, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'Mactintosh', 'abbreviation'  =>  'Mac', 'abbreviation_slug' => 'mac', 'developer_id' => 15, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'PlayStation 4', 'abbreviation'  =>  'PS4', 'abbreviation_slug' => 'ps4', 'developer_id' => 14, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'PlayStation 3', 'abbreviation'  =>  'PS3', 'abbreviation_slug' => 'ps3', 'developer_id' => 14, 'created_at'	=> 	$now, 'updated_at'	=> 	$now],
+			[	'name' 	=> 	'PlayStation Vita', 'abbreviation'  =>  'PS Vita', 'abbreviation_slug' => 'ps-vita', 'developer_id' => 14, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'Xbox One', 'abbreviation'  =>  'Xbox One', 'abbreviation_slug' => 'xbox-one', 'developer_id' => 8, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'Xbox 360', 'abbreviation'  =>  'Xbox 360', 'abbreviation_slug' => 'xbox-360', 'developer_id' => 8, 'created_at'	=> 	$now, 'updated_at'	=> 	$now  ],
+			[	'name' 	=> 	'Nintendo Wii U', 'abbreviation'  =>  'Wii U', 'abbreviation_slug' => 'wii-u', 'developer_id' => 17, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'Nintendo 3DS', 'abbreviation'  =>  '3DS', 'abbreviation_slug' => '3ds', 'developer_id' => 17, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'Android', 'abbreviation'  =>  'Android', 'abbreviation_slug' => 'android', 'developer_id' => 16, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'name' 	=> 	'iOS', 'abbreviation'  =>  'iOS', 'abbreviation_slug' => 'ios', 'developer_id' => 15, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ]
 		];
 
 		// Insert group date
@@ -294,16 +294,32 @@ class EventsTableSeeder extends Seeder {
 
     public function run() {
 
+    	$pax_primeS = date_format(date_create("2014-09-07"),"Y-m-d");
+    	$pax_primeE = date_format(date_create("2014-09-11"),"Y-m-d");
+    	
+    	$pax_eastS = date_format(date_create("2014-09-15"),"Y-m-d");
+    	$pax_eastE = date_format(date_create("2014-09-16"),"Y-m-d");
+
+    	$e3_2014S = date_format(date_create("2014-09-19"),"Y-m-d");
+    	$e3_2014E = date_format(date_create("2014-09-20"),"Y-m-d");
+
+		$gdcS = date_format(date_create("2014-09-02"),"Y-m-d");    	
+		$gdcE = date_format(date_create("2014-09-04"),"Y-m-d");
+
+		$gconS = date_format(date_create("2014-09-27"),"Y-m-d");
+		$gconE = date_format(date_create("2014-09-27"),"Y-m-d");
+
+
     	$now = date('Y-m-d H:i:s');
         //DB::table('platforms')->delete();
 
         // Create groups
 		$events = [
-			[	'event' 	=> 	'PAX Prime', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'event' 	=> 	'PAX East',  'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'event' 	=> 	'E3 2014', 'created_at'		=> 	$now, 'updated_at'	=> 	$now ],
-			[	'event' 	=> 	'GDC 2015', 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
-			[	'event' 	=> 	'GamesCon', 'created_at'	=> 	$now, 'updated_at'	=> 	$now]
+			[	'event' 	=> 	'PAX Prime 2014', 'event_slug' 	=> 	'pax-prime-2014', 'start_date' => $pax_primeS, 'end_date' => $pax_primeE, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'event' 	=> 	'PAX East 2014', 'event_slug' =>	'pax-east-2014', 'start_date' => $pax_eastS, 'end_date' => $pax_eastE, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'event' 	=> 	'E3 2014', 'event_slug' => 	'e3-2014', 'start_date' => $e3_2014S, 'end_date' => $e3_2014E, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'event' 	=> 	'GDC 2015', 'event_slug' => 	'gdc-2015', 'start_date' => $gdcS, 'end_date' => $gdcE, 'created_at'	=> 	$now, 'updated_at'	=> 	$now ],
+			[	'event' 	=> 	'GamesCon 2014', 'event_slug' => 	'gamescon-2014', 'start_date' => $gconS, 'end_date' => $gconE, 'created_at'	=> 	$now, 'updated_at'	=> 	$now]
 		];
 
 		// Insert group date
