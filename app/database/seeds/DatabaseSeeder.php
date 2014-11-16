@@ -138,6 +138,21 @@ class UsersTableSeeder extends Seeder {
 	            'country'			=>	'Australia',
 	            'created_at'		=> 	$now,            
 	            'updated_at'		=> 	$now
+	        ],
+	        [
+	        	'group_id' 			=>	5,
+	            'username' 			=> 	'demo',
+	            'first_name'		=> 	'Test',
+	            'last_name'			=>	'Account',
+	            'active'			=> 	1,
+	            'email' 			=>	'admin@thelobbi.com',
+	            'email_verified'	=>	1,
+	            'password'			=> 	Hash::make('demo'),
+	            'ip_address'		=> 	Request::getClientIp(),
+	            'gender'			=>	'male',
+	            'country'			=>	'United States',
+	            'created_at'		=> 	$now,            
+	            'updated_at'		=> 	$now
 	        ]
 	    ];
 
