@@ -9,25 +9,27 @@
 
 			<div class="mailbox-sidebar">
 				
-				<a href="{{ url('admin/messages/create') }}" class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
+				<a href="{{ url('admin/messages/create') }}" {{ (Request::is('admin/messages/create'))? 'disabled' : '' }} class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
 					<i class="linecons-mail"></i>
 					<span>New Message</span>
 				</a>
 				
 				
 				<ul class="list-unstyled mailbox-list">
-					<li class="active">
-						<a href="{{ url('admin/messages/inbox') }}">
+					<li {{ (Request::is('admin/messages'))? 'class="active"' : '' }}>
+						<a href="{{ url('admin/messages') }}">
 							Inbox
-							<span class="badge badge-success pull-right">5</span>
+							@if($numUnreadMessages)
+							<span class="badge badge-success pull-right">{{ $numUnreadMessages }}</span>
+							@endif
 						</a>
 					</li>
-					<li>
+					<li {{ (Request::is('admin/messages/sent'))? 'class="active"' : '' }}>
 						<a href="{{ url('admin/messages/sent') }}">
 							Sent
 						</a>
 					</li>
-					<li>
+					<li {{ (Request::is('admin/messages/trash'))? 'class="active"' : '' }}>
 						<a href="{{ url('admin/messages/trash') }}">
 							Trash
 						</a>

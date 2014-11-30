@@ -56,7 +56,7 @@
 						<div class="user-details">
 							
 							<h3>
-								<a href="extra-profile.html">{{ Auth::user()->first_name." ".Auth::user()->last_name }}</a>
+								<a href="extra-profile.html">{{ Auth::user()->fullname }}</a>
 								
 								<!-- Available statuses: is-online, is-idle, is-busy and is-offline -->
 								<span class="user-status is-online"></span>

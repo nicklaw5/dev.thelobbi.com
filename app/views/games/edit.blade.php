@@ -26,7 +26,7 @@
 					<div class="form-group row">
 						<div class="col-sm-12">
 							<label for="description" class="control-label">Game Description (optional)</label>	
-							{{ Form::textarea('description', '', ['id' => 'description', 'rows' => '4', 'class' => 'form-control autogrow']) }}
+							{{ Form::textarea('description', $game->description, ['id' => 'description', 'rows' => '4', 'class' => 'form-control autogrow']) }}
 							<script type="text/javascript">
 								$(document).ready(function() {
 									CKEDITOR.replace( 'description', {

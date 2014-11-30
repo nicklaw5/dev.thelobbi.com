@@ -32,7 +32,7 @@ class Video extends Eloquent {
 		$this->author_id		= intval(Auth::id());
 		$this->title 			= $string->nullifyAndStripTags($input['title']);
 		$this->title_slug		= $string->slugify($this->title);
-		$this->description		= $string->nullifyAndStripTags($input['description'], '<em><strong><b><a><s>');
+		$this->description		= $string->nullifyAndStripTags($input['description'], '<b><em><s><br><a><strong>');
 		$this->video 			= $string->nullifyAndStripTags($input['video']);
 		$this->video_short		= $string->nullifyAndStripTags($input['video_short']);
 		$this->image			= $string->nullifyAndStripTags($input['image']);
@@ -54,7 +54,7 @@ class Video extends Eloquent {
             	'video_category'	=> intval($input['video_category']),
             	'title' 			=> $string->nullifyAndStripTags($input['title']),
             	'title_slug'		=> $string->slugify($input['title']),
-            	'description'		=> $string->nullifyAndStripTags($input['description'], '<em><strong><b><a><s>'),
+            	'description'		=> $string->nullifyAndStripTags($input['description'], '<b><em><s><br><a><strong>'),
 				'video' 			=> $string->nullifyAndStripTags($input['video']),
 				'video_short'		=> $string->nullifyAndStripTags($input['video_short']),
 				'image'				=> $string->nullifyAndStripTags($input['image']),				

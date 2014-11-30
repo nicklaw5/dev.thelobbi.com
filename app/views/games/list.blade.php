@@ -27,13 +27,13 @@
 			</thead>
 			
 			<tbody class="middle-align">
-				@foreach($games as $game)
+				@foreach($games->getCollection() as $game)
 				<tr>
 					<td><a target="_blank" href="/games/{{ $game->title_slug }}">{{ $game->title }}</a></td>
 					<td>{{ $game->developers }}</td>
-					<td>{{ $game->publishers }}</td>
-					<td>{{ $game->platforms }}</td>
-					<td>{{ $game->genres }}</td>
+					<td>{{ ( ! empty($game->publishers))? $game->publishers : '-' }}</td>
+					<td>{{ ( ! empty($game->platforms))? $game->platforms : '-' }}</td>
+					<td>{{ ( ! empty($game->genres))? $game->genres : '-' }}</td>
 					<td>{{ $game->release_date }}</td>
 					<td>
 						<a style="float:left" href="games/{{ $game->id }}/edit" class="btn btn-secondary btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
@@ -44,7 +44,7 @@
 				@endforeach
 			</tbody>
 		</table>
-			
+		{{ $games->links() }}
 	</div>
 </div>
 
@@ -58,6 +58,7 @@
 	$(document).ready(function() {
 		$('.delete-btn').click(function() {
 			$game_id = $(this).attr('data-id');
+			
 			bootbox.dialog({
 			  message: "Are you sure you want to delete this game?",
 			  title: "Confirmation",

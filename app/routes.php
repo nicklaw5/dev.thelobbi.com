@@ -22,7 +22,7 @@ Route::get('/reviews/{year}/{month}/{day}/{title_slug}', 'ArticlesController@sho
 Route::get('/interviews/{year}/{month}/{day}/{title_slug}', 'ArticlesController@showInterviewArticle');
 Route::get('/features/{year}/{month}/{day}/{title_slug}', 'ArticlesController@showFeatureArticle');
 Route::get('/opinions/{year}/{month}/{day}/{title_slug}', 'ArticlesController@showOpinionArticle');
-Route::get('/videos/{year}/{month}/{day}/{title_slug}', 'VideosController@showVideo');
+Route::get('/videos/{year}/{month}/{day}/{title_slug}', 'VideosController@showVideo');  
 
 //guest only routes
 Route::group(array('before' => 'guest'), function() {
@@ -89,7 +89,15 @@ Route::group(array('prefix' => 'admin' , 'before' => 'admin' ), function() {
 
     // Messages
     Route::get('/messages', 'MessagesController@index');
+    Route::post('/messages/sender-delete', 'MessagesController@senderDelete');
+    Route::post('/messages/recipient-delete', 'MessagesController@recipientDelete');
+    Route::get('/messages/sent', 'MessagesController@sent');
+    Route::get('/messages/trash', 'MessagesController@trash');
+    Route::post('/messages/trash', 'MessagesController@trashMessages');
+    Route::post('/messages/return', 'MessagesController@returnMessages');
     Route::get('/messages/create', 'MessagesController@create');
-    Route::get('/messages/inbox', 'MessagesController@inbox');
+    Route::get('/messages/{message_id}', 'MessagesController@show');
+    Route::get('/messages/{message_id}/sent', 'MessagesController@showSent');
+    Route::get('/messages/{message_id}/received', 'MessagesController@showReceived');
 
 });

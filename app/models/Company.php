@@ -22,12 +22,11 @@ class Company extends Eloquent {
 		'logo'					=>	'max:200'
 	];
 
-	public function returnCompaniesList($numberOfCompanies = null) {
+	public function returnCompaniesList() {
 		$companies = DB::table($this->table)
 				//->select(DB::raw('companies.id, companies.name, companies.name_slug, companies.description'))
-	            ->orderBy('companies.created_at', 'desc')
-	            ->limit($numberOfCompanies)
-	            ->get();
+	            ->orderBy('companies.name', 'asc')
+	            ->paginate(10);
 
 		return $companies;
 	}
@@ -38,7 +37,7 @@ class Company extends Eloquent {
 
 		$this->name 			= $string->nullifyAndStripTags($input['name']);
 		$this->name_slug		= $string->slugify($this->name);
-		$this->description 		= $string->nullifyAndStripTags($input['description']);
+		$this->description 		= $string->nullifyAndStripTags($input['description'], '<b><em><s><br><a><strong>');
 		$this->website 			= $string->nullifyAndStripTags($input['website']);
 		$this->facebook 		= $string->nullifyAndStripTags($input['facebook']);
 		$this->twitter 			= $string->nullifyAndStripTags($input['twitter']);
@@ -72,7 +71,7 @@ class Company extends Eloquent {
             ->update(array(
             	'name'				=> $name = $string->nullifyAndStripTags($input['name']),
             	'name_slug'			=> $string->slugify($name),
-				'description' 		=> $string->nullifyAndStripTags($input['description']),
+				'description' 		=> $string->nullifyAndStripTags($input['description'], '<b><em><s><br><a><strong>'),
 				'website' 			=> $string->nullifyAndStripTags($input['website']),
 				'facebook' 			=> $string->nullifyAndStripTags($input['facebook']),
 				'twitter' 			=> $string->nullifyAndStripTags($input['twitter']),

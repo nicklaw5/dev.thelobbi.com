@@ -1,4 +1,9 @@
-<!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->			
+{{
+	$Messages =  App::make('Message');
+	$numUnreadMessages = $Messages->getNumUnreadMessages();
+
+}}		
+		<!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->			
 		<!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
 		<!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
 		<!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
@@ -10,7 +15,7 @@
 					
 					<!-- logo -->
 					<div class="logo">
-						<a href="{{ url('admin') }}" class="logo-expanded">
+						<a target="_blank" href="{{ url('/') }}" class="logo-expanded">
 							<img src="{{ URL::asset('assets/images/logos/thelobbi-logo-181x30.png') }}" width="80" alt="" />
 						</a>
 						
@@ -46,13 +51,13 @@
 				<ul id="main-menu" class="main-menu">
 					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-					<li class="active">
+					<li {{ (Request::is('admin'))? 'class="active"' : '' }}>
 						<a href="{{ url('admin') }}">
 							<i class="fa-home"></i>
 							<span class="title">Dashboard</span>
 						</a>
 					</li>
-					<li class="">
+					<li>
 						<a href="{{ url('admin/statistics') }}">
 							<i class="fa-pie-chart"></i>
 							<span class="title">Site Statistics</span>
@@ -65,19 +70,34 @@
 						<a href="{{ url('admin/messages') }}">
 							<i class="linecons-mail"></i>
 							<span class="title">Messages</span>
-							<span class="label label-success pull-right">5</span>
+							@if($numUnreadMessages)
+							<span class=" label label-success pull-right">{{ $numUnreadMessages }}</span>
+							@endif
 						</a>
 						<ul>
-							<li>
-								<a href="{{ url('admin/messages/inbox') }}">
-									<span class="title">Inbox</span>
-								</a>
-							</li>
 							<li>
 								<a href="{{ url('admin/messages/create') }}">
 									<span class="title">New Message</span>
 								</a>
-							</li>							
+							</li>
+							<li>
+								<a href="{{ url('admin/messages') }}">
+									<span class="title">Inbox</span>
+									@if($numUnreadMessages)
+									<span class="label label-success pull-right">{{ $numUnreadMessages }}</span>
+									@endif
+								</a>
+							</li>
+							<li>
+								<a href="{{ url('admin/messages/sent') }}">
+									<span class="title">Sent</span>
+								</a>
+							</li>
+							<li>
+								<a href="{{ url('admin/messages/trash') }}">
+									<span class="title">Trash</span>
+								</a>
+							</li>
 						</ul>
 					</li>
 					<li>
@@ -342,9 +362,11 @@
 					
 					<!-- MESSAGES -->
 					<li class="dropdown hover-line">
-						<a href="#" title="Messages" class="dropdown-toggle" data-toggle="dropdown">
+						<a href="{{ url('admin/messages') }}" title="Messages" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="fa-envelope-o"></i>
-							<span class="badge badge-green">15</span>
+							@if($numUnreadMessages)
+							<span class="badge badge-green">{{ $numUnreadMessages }}</span>
+							@endif
 						</a>
 						
 
@@ -464,7 +486,7 @@
 							</li>
 							
 							<li class="external">
-								<a href="blank-sidebar.html">
+								<a href="{{ url('admin/messages') }}">
 									<span>All Messages</span>
 									<i class="fa-link-ext"></i>
 								</a>
@@ -614,7 +636,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<img src="{{ URL::asset('assets/images/user-4.png') }}" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
 							<span>
-								{{ Auth::user()->first_name . " " . Auth::user()->last_name }}
+								{{ Auth::user()->fullname }}
 								<i class="fa-angle-down"></i>
 							</span>
 						</a>
@@ -645,7 +667,7 @@
 								</a>
 							</li>
 							<li class="last">
-								<a href="signout">
+								<a href="{{ url('signout') }}">
 									<i class="fa-lock"></i>
 									Logout
 								</a>

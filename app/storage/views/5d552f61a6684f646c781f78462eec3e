@@ -27,7 +27,7 @@
 					<div class="form-group row">
 						<div class="col-sm-12">
 							<label for="description" class="control-label">Game Description (optional)</label>	
-							<?php echo Form::textarea('description', '', ['id' => 'description', 'rows' => '4', 'class' => 'form-control autogrow']); ?>
+							<?php echo Form::textarea('description', $game->description, ['id' => 'description', 'rows' => '4', 'class' => 'form-control autogrow']); ?>
 
 							<script type="text/javascript">
 								$(document).ready(function() {
@@ -158,7 +158,7 @@
 								
 					<!-- SUBMIT -->
 					<div class="form-group row col-sm-6">
-						<button type="submit" class="btn btn-secondary">Create New Game</button>
+						<button type="submit" class="btn btn-secondary">Update Game</button>
 						<a href="<?php echo url('admin/games'); ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
 					</div>
 					

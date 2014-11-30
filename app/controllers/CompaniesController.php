@@ -13,10 +13,7 @@ class CompaniesController extends BaseController {
 	public function index() {}
 
 	public function listCompanies() {
-		$numRows = null;
-		$companies = $this->company->returnCompaniesList($numRows);
-
-		//dd($companies);
+		$companies = $this->company->returnCompaniesList();
 		return View::make('companies.list')->with('companies', $companies);
 	}
 
@@ -33,9 +30,9 @@ class CompaniesController extends BaseController {
 
 		if( ! $this->company->saveNewCompany(Input::all())) {
 			//log error to logger
-			$this->errorNum =  $this->logger->createLog('GamesController', 'store', 'Failed to add company to DB.', Request::url(), Request::path(), 8);
+			$errorNum =  $this->logger->createLog('GamesController', 'store', 'Failed to add company to DB.', Request::url(), Request::path(), 8);
 			Session::put('adminDangerAlert', 'Error #'. $errorNum . ' - Something went wrong attempting to save the company to the database. Contact an administrator if this continues.');
-			return Redirect::back();
+			return Redirect::back()->withInput();
 		}
 
 		Session::put('adminSuccessAlert', '<b>'. Input::get('name') .'</b> has successfully been added.');

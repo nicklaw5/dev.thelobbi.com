@@ -32,7 +32,7 @@ class Game extends Eloquent {
 		//save new game to DB
 		$this->title 			= $string->nullifyAndStripTags($input['title']);
 		$this->title_slug		= $string->slugify($this->title);
-		$this->description 		= $string->nullifyAndStripTags($input['description']);
+		$this->description 		= $string->nullifyAndStripTags($input['description'], '<b><em><s><br><a><strong>');
 		$this->website 			= $string->nullifyAndStripTags($input['website']);
 		$this->facebook 		= $string->nullifyAndStripTags($input['facebook']);
 		$this->twitter 			= $string->nullifyAndStripTags($input['twitter']);
@@ -83,7 +83,7 @@ class Game extends Eloquent {
             ->update(array(
             	'title'				=> $title = $string->nullifyAndStripTags($input['title']),
             	'title_slug'		=> $string->slugify($title),
-				'description' 		=> $string->nullifyAndStripTags($input['description']),
+				'description' 		=> $string->nullifyAndStripTags($input['description'], '<b><em><s><br><a><strong>'),
 				'website' 			=> $string->nullifyAndStripTags($input['website']),
 				'facebook' 			=> $string->nullifyAndStripTags($input['facebook']),
 				'twitter' 			=> $string->nullifyAndStripTags($input['twitter']),
@@ -104,7 +104,7 @@ class Game extends Eloquent {
    		return true;
 	}
 
-	public function returnGamesList($numberOfGames) {
+	public function returnGamesList() {
 		$games = DB::table($this->table)
                 ->select(
                 	DB::raw(
@@ -129,8 +129,9 @@ class Game extends Eloquent {
 
 		        ->groupBy('games.id')
 	            ->orderBy('games.created_at', 'desc')
-	            ->limit($numberOfGames)
-	            ->get();
+	            ->paginate(10);
+	            // ->limit($numberOfGames)
+	            // ->get();
 
 		foreach($games as $game) {
 

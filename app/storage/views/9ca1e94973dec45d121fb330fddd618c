@@ -14,22 +14,30 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th width="300">Company Name</th>
-					<th>Description</th>
-					<th>Website</th>
-					<th>Facebook</th>			
-					<th>Twitter</th>
-					<th width="165">Actions</th>
+					<th>Company Name</th>
+					<th width="225">Links</th>
+					<th width="140">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach($companies as $company): ?>
+				<?php foreach($companies->getCollection() as $company): ?>
 				<tr>
 					<td><a href="/companies/<?php echo $company->name_slug; ?>"><?php echo $company->name; ?></a></td>
-					<td><?php echo ($company->description === null)? ' - ': $company->description; ?></td>
-					<td><?php echo ($company->website === null)? ' - ': '<a target="_blank" href="'.$company->website.'">Website Link</a>';; ?></td>
-					<td><?php echo ($company->facebook === null)? ' - ': '<a target="_blank" href="'.$company->facebook.'">Facebook Link</a>';; ?></td>
-					<td><?php echo ($company->twitter === null)? ' - ': '<a target="_blank" href="'.$company->twitter.'">Twitter Link</a>';; ?></td>
+					<td>
+						<ul class="social-quick-links">
+							<?php echo ($company->website === null)? '': '<li><a title="Company Website" target="_blank" href="'.$company->website.'"><i class="fa-globe"></i></a></li>';; ?>
+
+							<?php echo ($company->twitter === null)? '': '<li><a title="Twitter" target="_blank" href="'.$company->twitter.'"><i class="fa-twitter"></i></a></li>';; ?>							
+							<?php echo ($company->facebook === null)? '': '<li><a title="Facebook" target="_blank" href="'.$company->facebook.'"><i class="fa-facebook"></i></a></li>';; ?>
+
+							<?php echo ($company->google_plus === null)? '': '<li><a title="Google Plus" target="_blank" href="'.$company->google_plus.'"><i class="fa-google-plus"></i></a></li>';; ?>
+
+							<?php echo ($company->youtube === null)? '': '<li><a title="Youtube" target="_blank" href="'.$company->youtube.'"><i class="fa-youtube"></i></a></li>';; ?>
+
+							<?php echo ($company->twitch === null)? '': '<li><a title="Twitch" target="_blank" href="'.$company->twitch.'"><i class="fa-twitch"></i></a></li>';; ?>
+
+						</ul>
+					</td>
 					<td>
 						<a style="float:left" href="companies/<?php echo $company->id; ?>/edit" class="btn btn-secondary btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
 						<button style="float:left; margin-left: 5px;" data-id="<?php echo $company->id; ?>" class="delete-btn btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</button>
@@ -38,6 +46,8 @@
 				<?php endforeach; ?>
 			</tbody>
 		</table>
+		<?php echo $companies->links(); ?>
+
 	</div>
 </div>
 
@@ -55,7 +65,7 @@
 			  buttons: {
 			    danger: {
 			      label: "Cancel",
-			      className: "btn-default",
+			      className: "btn-primary",
 			      callback: function() {
 			    	// do nothing
 			      }

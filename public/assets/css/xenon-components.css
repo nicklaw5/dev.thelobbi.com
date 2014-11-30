@@ -171,9 +171,17 @@
 .mailbox-env .mail-env .mail-table > tbody > tr a:hover {
   color: #646565;
 }
-.mailbox-env .mail-env .mail-table > tbody > tr.unread .col-name {
+.mailbox-env .mail-env .mail-table > tbody > tr.unread .col-name,
+.mailbox-env .mail-env .mail-table > tbody > tr.unread .col-subject,
+.mailbox-env .mail-env .mail-table > tbody > tr.unread .col-time {
   font-weight: bold;
 }
+.mailbox-env .mail-env .mail-table > tbody > tr .col-name,
+.mailbox-env .mail-env .mail-table > tbody > tr .col-subject,
+.mailbox-env .mail-env .mail-table > tbody > tr .col-time {
+  width: 200px;
+}
+
 .mailbox-env .mail-env .mail-table > tbody > tr.unread .col-name a {
   color: #646565;
 }

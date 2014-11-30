@@ -2,6 +2,7 @@
 	padding: 0;
 }
 
+/*** Messages ***/
 .mailbox-env .mail-compose .form-group label {
 	position: relative;
 	padding-left: 0;
@@ -10,4 +11,19 @@
 .mailbox-env .mail-compose .form-group input.form-control {
 	height: 30px;
 	padding-left: 5px;
+}
+.pagination {
+	float: right;
+}
+.social-quick-links {
+	padding: 0;
+	margin: 0;
+}
+.social-quick-links li {
+	font-size: 24px;
+	display: inline-block;
+	margin-left: 10px;
+}
+.social-quick-links li:first-child {
+	margin-left: 0;
 }

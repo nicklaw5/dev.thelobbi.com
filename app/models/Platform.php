@@ -25,7 +25,7 @@ class Platform extends Eloquent {
 		$this->name 			  = $string->nullifyAndStripTags($input['name']);
 		$this->abbreviation		  = $string->nullifyAndStripTags($input['abbreviation']);
 		$this->abbreviation_slug  = $string->slugify($this->abbreviation);
-		$this->description 		  = $string->nullifyAndStripTags($input['description']);
+		$this->description 		  = $string->nullifyAndStripTags($input['description'], '<b><em><s><br><a><strong>');
 		$this->website 			  = $string->nullifyAndStripTags($input['website']);
 		$this->save();
 
@@ -53,7 +53,7 @@ class Platform extends Eloquent {
             	'name'				=> $string->nullifyAndStripTags($input['name']),
             	'abbreviation'		=> $abbreviation = $string->nullifyAndStripTags($input['abbreviation']),
             	'abbreviation_slug' => $string->slugify($abbreviation),
-            	'description'		=> $string->nullifyAndStripTags($input['description']),
+            	'description'		=> $string->nullifyAndStripTags($input['description'], '<b><em><s><br><a><strong>'),
             	'website'			=> $string->nullifyAndStripTags($input['website'])
             ));
             

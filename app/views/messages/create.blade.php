@@ -6,12 +6,13 @@
 				
 	<div class="row">
 		
+		@include('admin.layouts.admin-mail-sidebar')
+		
 		<!-- Compose Email Form -->
 		<div class="col-sm-9 mailbox-right">
 			
 			<div class="mail-compose">
 				
-				<form method="post" role="form">
 				{{ Form::open(['action' => 'MessagesController@store']) }}
 				
 					<!-- Header Title and Button Options -->
@@ -20,7 +21,7 @@
 							<div class="col-sm-6">							
 								<h3>
 									<i class="linecons-pencil"></i>
-									Compose Mail
+									New Message
 								</h3>
 							</div>
 						</div>
@@ -33,13 +34,12 @@
 					
 					<div class="form-group">
 						<label for="subject">Subject:</label>
-						<!-- <input type="text" class="form-control" id="subject" tabindex="1" /> -->
-						{{ Form::text('subject', '', ['class' => 'form-control', 'tabindex' => '1', 'required', 'autocomplete' => 'off']) }}
+						{{ Form::text('subject', null, ['class' => 'form-control', 'tabindex' => '1', 'required', 'autocomplete' => 'on']) }}
 					</div>
 					
 					
 					<div class="compose-message-editor">
-						<textarea class="form-control wysihtml5" data-html="false" data-color="false" data-stylesheet-url="assets/css/other/wysihtml5-color.css" name="sample_wysiwyg" id="sample_wysiwyg"></textarea>
+						{{ Form::textarea('body', null, ['required', 'tabindex' => '1', 'class' => 'form-control wysihtml5', 'data-html' => 'false', 'data-color' => 'false', 'data-stylesheet-url' => URL::asset('assets/css/other/wysihtml5-color.css') ]) }}
 					</div>
 				
 					<div class="row">
@@ -57,7 +57,7 @@
 			
 		</div>
 		
-		@include('admin.layouts.admin-mail-sidebar')
+		
 		
 	</div>
 	

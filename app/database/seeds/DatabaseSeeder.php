@@ -123,12 +123,11 @@ class UsersTableSeeder extends Seeder {
     	$now = date('Y-m-d H:i:s');
         //DB::table('users')->delete();
 
-        $users = [
+        $users = [	
 			[
 	        	'group_id' 			=>	5,
 	            'username' 			=> 	'nick',
-	            'first_name'		=> 	'Nicholas',
-	            'last_name'			=>	'Law',
+	            'fullname'			=> 	'Nicholas Law',
 	            'active'			=> 	1,
 	            'email' 			=>	'nick_law@tpg.com.au',
 	            'email_verified'	=>	1,
@@ -142,12 +141,25 @@ class UsersTableSeeder extends Seeder {
 	        [
 	        	'group_id' 			=>	5,
 	            'username' 			=> 	'demo',
-	            'first_name'		=> 	'Test',
-	            'last_name'			=>	'Account',
+	            'fullname'			=>	'Demo Account',
 	            'active'			=> 	1,
 	            'email' 			=>	'admin@thelobbi.com',
 	            'email_verified'	=>	1,
 	            'password'			=> 	Hash::make('demo'),
+	            'ip_address'		=> 	Request::getClientIp(),
+	            'gender'			=>	'male',
+	            'country'			=>	'United States',
+	            'created_at'		=> 	$now,            
+	            'updated_at'		=> 	$now
+	        ],
+	        [
+	        	'group_id' 			=>	5,
+	            'username' 			=> 	'test',
+	            'fullname'			=> 	'John Doe',
+	            'active'			=> 	1,
+	            'email' 			=>	'n.law@thelobbi.com',
+	            'email_verified'	=>	1,
+	            'password'			=> 	Hash::make('test'),
 	            'ip_address'		=> 	Request::getClientIp(),
 	            'gender'			=>	'male',
 	            'country'			=>	'United States',

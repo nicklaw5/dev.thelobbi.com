@@ -38,11 +38,10 @@ class CreateDatabaseTables extends Migration {
 			$t->string('twitch_id', 60)->unique()->nullable();
 			$t->boolean('active')->default(false);
 			$t->string('username', 20)->unique();
+			$t->string('fullname', 50)->nullable();
 			$t->string('email', 150)->unique()->nullable();
 			$t->boolean('email_verified')->default(false);
 			$t->string('email_code', 60)->nullable();
-			$t->string('first_name', 15)->nullable();
-			$t->string('last_name', 15)->nullable();
 			$t->string('password', 60);
 			$t->string('password_temp', 60)->nullable();
 			$t->string('ip_address', 20)->nullable();
@@ -51,6 +50,24 @@ class CreateDatabaseTables extends Migration {
 			$t->string('gender', 6)->nullable();
 			$t->string('country')->nullable();
 			$t->rememberToken();
+			$t->timestamps();
+		});
+
+		// Create 'messages' table
+		Schema::create('messages', function($t) {	
+			$t->engine = 'InnoDB';
+			$t->increments('id');
+			$t->integer('message_parent')->nullable();
+			$t->integer('sender')->unsigned();
+			$t->foreign('sender')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
+			$t->integer('recipient')->unsigned();
+			$t->foreign('recipient')->references('id')->on('users')->onDelete('no action')->onUpdate('cascade');
+			$t->string('subject', 150);
+			$t->text('body');
+			$t->integer('message_read')->default(0);					// 0 = no, 1 = yes
+			$t->integer('trashed')->default(0);							
+			$t->integer('recipient_deleted')->default(0);				
+			$t->integer('sender_deleted')->default(0);							
 			$t->timestamps();
 		});
 		
@@ -92,7 +109,7 @@ class CreateDatabaseTables extends Migration {
 			$t->foreign('author_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
 			$t->string('title', 150)->unique();
 			$t->string('title_slug', 160)->unique();
-			$t->string('description', 350);
+			$t->string('description', 500	);
 			$t->string('video', 250)->unique();
 			$t->string('video_short', 250)->nullable();
 			$t->string('image', 250);			
@@ -372,6 +389,8 @@ class CreateDatabaseTables extends Migration {
 			$t->dateTime('created_at');
 		});
 
+
+
 	}
 
 	/**
@@ -435,6 +454,7 @@ class CreateDatabaseTables extends Migration {
 		// Drop all above tables
 		Schema::drop('groups');
 		Schema::drop('users');	
+		Schema::drop('messages');
 		Schema::drop('news');
 		Schema::drop('videos');
 		Schema::drop('video_categories');

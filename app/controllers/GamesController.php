@@ -25,8 +25,8 @@ class GamesController extends BaseController {
 	}
 
 	public function listGames() {
-		$numGames = 50;
-		$games = $this->game->returnGamesList($numGames);
+		//$numGames = 50;
+		$games = $this->game->returnGamesList();
 		return View::make('games.list')->with('games', $games);
 	}
 

@@ -18,7 +18,7 @@ class Genre extends Eloquent {
 	public function returnGenresList() {
 		$genres = DB::table($this->table)
 				->select(DB::raw('genres.id, genres.name, genres.name_slug, genres.description'))
-	            ->orderBy('genres.name', 'desc')
+	            ->orderBy('genres.name', 'asc')
 	            ->get();
 
 		return $genres;
@@ -30,7 +30,7 @@ class Genre extends Eloquent {
 
 		$this->name 			  = $string->nullifyAndStripTags($input['name']);
 		$this->name_slug  		  = $string->slugify($this->name);
-		$this->description 		  = $string->nullifyAndStripTags($input['description']);
+		$this->description 		  = $string->nullifyAndStripTags($input['description'], '<b><em><s><br><a><strong>');
 		$this->save();
 
 		return true;
@@ -45,7 +45,7 @@ class Genre extends Eloquent {
             ->update(array(
             	'name'				=> $name = $string->nullifyAndStripTags($input['name']),
             	'name_slug' 		=> $string->slugify($name),
-            	'description'		=> $string->nullifyAndStripTags($input['description'])
+            	'description'		=> $string->nullifyAndStripTags($input['description'], '<b><em><s><br><a><strong>')
             ));
             
         return true;

@@ -15,22 +15,25 @@
 		<table class="table table-bordered datatable" id="table-1">
 			<thead>
 				<tr>
-					<th width="300">Company Name</th>
-					<th>Description</th>
-					<th>Website</th>
-					<th>Facebook</th>			
-					<th>Twitter</th>
-					<th width="165">Actions</th>
+					<th>Company Name</th>
+					<th width="225">Links</th>
+					<th width="140">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($companies as $company)
+				@foreach($companies->getCollection() as $company)
 				<tr>
 					<td><a href="/companies/{{ $company->name_slug }}">{{ $company->name }}</a></td>
-					<td>{{ ($company->description === null)? ' - ': $company->description }}</td>
-					<td>{{ ($company->website === null)? ' - ': '<a target="_blank" href="'.$company->website.'">Website Link</a>'; }}</td>
-					<td>{{ ($company->facebook === null)? ' - ': '<a target="_blank" href="'.$company->facebook.'">Facebook Link</a>'; }}</td>
-					<td>{{ ($company->twitter === null)? ' - ': '<a target="_blank" href="'.$company->twitter.'">Twitter Link</a>'; }}</td>
+					<td>
+						<ul class="social-quick-links">
+							{{ ($company->website === null)? '': '<li><a title="Company Website" target="_blank" href="'.$company->website.'"><i class="fa-globe"></i></a></li>'; }}
+							{{ ($company->twitter === null)? '': '<li><a title="Twitter" target="_blank" href="'.$company->twitter.'"><i class="fa-twitter"></i></a></li>'; }}							
+							{{ ($company->facebook === null)? '': '<li><a title="Facebook" target="_blank" href="'.$company->facebook.'"><i class="fa-facebook"></i></a></li>'; }}
+							{{ ($company->google_plus === null)? '': '<li><a title="Google Plus" target="_blank" href="'.$company->google_plus.'"><i class="fa-google-plus"></i></a></li>'; }}
+							{{ ($company->youtube === null)? '': '<li><a title="Youtube" target="_blank" href="'.$company->youtube.'"><i class="fa-youtube"></i></a></li>'; }}
+							{{ ($company->twitch === null)? '': '<li><a title="Twitch" target="_blank" href="'.$company->twitch.'"><i class="fa-twitch"></i></a></li>'; }}
+						</ul>
+					</td>
 					<td>
 						<a style="float:left" href="companies/{{ $company->id }}/edit" class="btn btn-secondary btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
 						<button style="float:left; margin-left: 5px;" data-id="{{ $company->id }}" class="delete-btn btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</button>
@@ -39,6 +42,7 @@
 				@endforeach
 			</tbody>
 		</table>
+		{{ $companies->links() }}
 	</div>
 </div>
 
@@ -56,7 +60,7 @@
 			  buttons: {
 			    danger: {
 			      label: "Cancel",
-			      className: "btn-default",
+			      className: "btn-primary",
 			      callback: function() {
 			    	// do nothing
 			      }

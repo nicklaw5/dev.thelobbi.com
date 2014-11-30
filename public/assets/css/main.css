@@ -130,6 +130,11 @@ body {
 	bottom:0;
 	padding: 15px;
 }
+.feature-comments {
+	float: right;
+	padding: 10px;
+	color: #fff;
+}
 .feature-container h3,
 .feature-container h4,
 .feature-container span {

@@ -1,26 +1,29 @@
 @extends('layouts.default')
     @section('content')
         <div class="feature-container">
-            <a href="http://google.com.au/" class="feature-major" style="background: url('http://static9.cdn.ubi.com/resource/en-DK/game/assassins-creed/ac/acu-gi-04_147188.jpg') no-repeat center center;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;">
+            <a href="#" class="feature-major" style="background: url({{ url('/assets/images/HK_at_rest-3.jpg') }}) no-repeat center center;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;">
                 <div class="feature-overlay">
+                    <p class="feature-comments text-shadow"><strong>34 Comments</strong></p>
                     <div class="feature-major-play fa fa-play-circle-o"></div>
                     <div class="feature-major-meta">
-                        <span><strong>Assassin's Creed: Unity</strong></span>
-                        <h3>Assassin's Creed Unity and Rogue plots revealed, release date set for Nov. 11</h3>    
+                        <span><strong>Hollow Knight</strong></span>
+                        <h3>Hollow Knight shows a strong opening week on Kickstarter</h3>    
                     </div>
                 </div>
             </a>
-            <a href="http://google.com.au/" class="feature-minor minor-top" style="background: url('http://thelobbi.com/images/2014/10/BrokenAge_feature.jpg') no-repeat center center;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;">
+            <a href="#" class="feature-minor minor-top" style="background: url('http://thelobbi.com/images/2014/10/BrokenAge_feature.jpg') no-repeat center center;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;">
                 <div class="feature-overlay">
+                    <p class="feature-comments text-shadow"><strong>16 Comments</strong></p>
                     <div class="feature-minor-play fa fa-play-circle-o"></div>
                     <div class="feature-minor-meta">
-                        <span><strong>Broken Age</strong></span>
+                        <span ><strong>Broken Age</strong></span>
                         <h4>Double Fine nears deadline for Broken Age’s second act</h4>    
                     </div>
                 </div>
             </a> 
-            <a href="http://google.com.au/" class="feature-minor minor-bottom" style="background: url('http://images.gamenguide.com/data/images/full/12347/batman-arkham-knight.png?w=720') no-repeat center center;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;">
+            <a href="#" class="feature-minor minor-bottom" style="background: url('http://images.gamenguide.com/data/images/full/12347/batman-arkham-knight.png?w=720') no-repeat center center;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;">
                 <div class="feature-overlay">
+                    <p class="feature-comments text-shadow"><strong>11 Comments</strong></p>
                     <div class="feature-minor-play fa fa-play-circle-o"></div>
                     <div class="feature-minor-meta">
                         <span><strong>Batman: Arkham Knight</strong></span>

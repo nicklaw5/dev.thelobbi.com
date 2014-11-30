@@ -36,7 +36,7 @@ class GenresController extends BaseController {
 
 		// Platform has been added successfully
 		Session::put('adminSuccessAlert', '<b>'. Input::get('name') .'</b> has successfully been added.');
-		return Redirect::back();
+		return Redirect::to('/admin/genres');
 	}
 
 	public function edit($genre_id) {
