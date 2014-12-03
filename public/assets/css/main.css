@@ -29,11 +29,18 @@ body {
 .br-none 		{ border-radius: 0; }
 .pr-none 		{ padding-right: 0; }
 .p-none 		{ padding: 0; }
+.pt-20			{ padding-top: 20px; }
 .img-b 			{ border: 3px solid #080808; }
 .text-shadow 	{ text-shadow: 2px 1px #080808; }
 .box-shadow 	{ 
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); 
 	-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+.bg-img-center {
+	background-size: cover !important;
+	-webkit-background-size: cover !important;
+	-moz-background-size: cover !important;
+	-o-background-size: cover !important;
 }
 
 .text-link {
@@ -88,7 +95,7 @@ body {
 .feature-overlay {
 	position: relative;
 	background: -moz-linear-gradient(top, rgba(0,0,0,0) 20%, rgba(0,0,0,0.65) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65)));
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65)));
 	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 20%,rgba(0,0,0,0.65) 100%);
 	background: -o-linear-gradient(top, rgba(0,0,0,0) 20%,rgba(0,0,0,0.65) 100%);
 	background: -ms-linear-gradient(top, rgba(0,0,0,0) 20%,rgba(0,0,0,0.65) 100%);
@@ -96,7 +103,7 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
 	width: 100%;
 	height: 100%;
-	float: right;
+	/*float: right;*/
 	overflow: hidden;
 }
 .feature-minor-play,
@@ -130,8 +137,16 @@ body {
 	bottom:0;
 	padding: 15px;
 }
+.feautre-topic {
+	position: absolute;
+	color: #fff;
+	padding: 10px;
+	text-transform: uppercase;
+}
+
 .feature-comments {
-	float: right;
+	position: absolute;
+	right: 0;
 	padding: 10px;
 	color: #fff;
 }
@@ -300,9 +315,9 @@ body {
 	transition: background-color .3s ease-out;
 }*/
 
-/**
+/***
 * ADS
-*/
+**/
 .ad-leaderboard-top {							/* Ad 970x90 */
 	margin-top: 20px;
 	width: 970px;
@@ -337,14 +352,150 @@ body {
 }
 
 .ad-medium-rectangle {
-	width: 300px;
 	margin: 0 auto;
+	border: 2px solid #080808;
+	background: #222222;
+	height: 250px;
+	 width: 300px;
 }
+.ad-medium-rectangle p {
+	padding-top: 105px;
+	text-align: center;
+}
+
+/***
+* HOME LEFT
+**/
+.main-wrapper {
+	padding-top: 20px;
+}
+.home-left {		
+	float: left;
+	width: 810px;
+}
+.home-left hr {
+	margin: 20px 0;
+	height: 2px;
+	border: none;
+	background-color: #5a5a5a;
+}
+.home-left .most-recent ul {
+	padding: 0;
+	margin: 0;
+}
+.home-left .most-recent ul > li {
+	display: inline;
+	margin-top: 30px;
+}
+.home-left .most-recent ul > li:first-child {
+	margin-top: 0;
+}
+.home-left .most-recent ul > li > article {
+	position: relative;
+	height: 150px;
+	overflow: hidden;
+}
+/*.home-left .most-recent ul > li > article > video {
+	float: left;
+	margin-right: 15px;
+	width:330px;
+	height:186px;
+}*/
+.home-left .most-recent ul > li > article .bg-img {
+	position: relative;
+	float: left;
+	margin-right: 15px;
+	width: 267px;
+	height: 150px;
+}
+.home-left .most-recent ul > li > article .bg-img .play-overlay {
+	position: absolute;
+	top: 50%;
+	color: #fff;
+	font-size: 60px;
+	text-align: center;
+	width: 100%;
+	margin-top: -30px;
+	text-shadow: 3px 1px 2px rgba(0, 0, 0, 1);
+}
+.home-left .most-recent ul > li > article .bg-img .topic {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 5px;
+	text-transform: uppercase;
+	color: #fff;
+}
+.home-left .most-recent ul > li > article .bg-img .comments {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 5px;
+	text-transform: uppercase;
+	color: #fff;
+}
+.home-left .most-recent ul > li > article .article-links {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+.home-left .most-recent ul > li > article .article-links > a {
+	margin-right: 15px;
+	border-radius: 0;
+	font-weight: bold;
+	background-color: #2a9fd6;
+	transition: background-color 0.5 ease;
+	transition: color 0.2s ease;
+}
+.home-left .most-recent ul > li > article .article-links > a:hover {
+	background-color: #fff;
+	color: #2a9fd6;
+
+}
+.home-left .most-recent ul > li > article > div > h1 {
+	margin-top: 0;
+	font-size: 20px;
+}
+.home-left .most-recent ul > li > article > div > .author {
+	font-size: 12px;
+}
+.home-left .most-recent ul > li > article > div > h1 > a {
+	color: #fff;
+}
+.home-left .most-recent ul > li > article > div > h1 > a:hover {
+	color: #fff;
+}
+.home-right {
+	float: right;
+	height: 350px;
+	width: 330px;
+	padding-left: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * HERO-UNIT
  */
-.hero-unit {
+/*.hero-unit {
 	 margin-bottom:40px;
 	 margin-left: 0;
 	 margin-right: 0;
@@ -378,7 +529,7 @@ body {
 	margin-right: 0;
 }
 @media all and (max-width: 992px) {     /*display ad at 992px+*/
-	.ad-skyscraper {
+	/*.ad-skyscraper {
 		display: none;
 	}
 	.hero-unit {
@@ -392,7 +543,7 @@ body {
 	}
 }
 @media all and (max-width: 768px) {     /*display at 768px+*/
-	.hero-unit img {
+	/*.hero-unit img {
 		display: none;
 	}
 	.hero-unit h4 {
@@ -402,8 +553,8 @@ body {
 @media all and (max-width: 420px) {
 	.hero-unit h4 {
 		font-size: 16px;
-	}
-}
+	}*/
+/*}
 
 /**
 /* NAVBAR
@@ -479,10 +630,25 @@ body {
 	text-decoration: none;
 }
 
+
+/***
+* FOOTER
+**/
+footer {
+	height: 200px;
+	width:100%;
+	margin-top: 20px;
+	background: #202020;
+	border-top: 2px solid #5a5a5a;
+}
+
+
+
+
 /**
 * TOP GAMES LIST
 */
-.top-games-list {
+/*.top-games-list {
 	padding: 0;
 	margin: 0;
 }
@@ -500,11 +666,11 @@ body {
 .top-games-list-tr {
 	margin-bottom: 5px;
 }
-/*.top-games .media {
+.top-games .media {
 	padding-left: 10px;
 	padding-right: 0;
 	margin: 0 0 20px 0;
-}*/
+}
 .top-games .media-img {
 	width: 350px;
 }
@@ -518,7 +684,7 @@ body {
 	margin-top: 0;
 	padding-right: 0;
 }
-
+*/
 /**
 * VIDEO
 */
