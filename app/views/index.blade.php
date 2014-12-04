@@ -3,7 +3,7 @@
 
         @include('sections.home-feature-items')        
 
-        @include('ads.leaderboard')
+        <!-- @include('ads.leaderboard') -->
 
         <div class="main-wrapper container">
 
@@ -127,7 +127,8 @@
             </section>
 
             <section class="home-right">
-                <iframe frameborder="0" height="370" style="margin-top: 0" scrolling="no" target="_blank" src="https://www.kickstarter.com/projects/1601737664/melee-battlegrounds-spiritual-successor-to-the-crp/widget/card.html?v=2" width="300"></iframe>
+                <!-- <iframe frameborder="0" height="420" scrolling="no" src="https://www.kickstarter.com/projects/11662585/hollow-knight/widget/card.html?v=2" width="220"></iframe> -->
+                <iframe style="float:right" src="https://www.indiegogo.com/project/planet-centauri-2d-procedural-sandbox-game--2/embedded" width="222px" height="445px" frameborder="0" scrolling="no"></iframe>
 
                 <!-- @include('ads.medium-rectangle') -->
 
