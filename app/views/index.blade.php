@@ -3,7 +3,7 @@
 
         @include('sections.home-feature-items')        
 
-        <!-- @include('ads.leaderboard') -->
+        @include('ads.leaderboard')
 
         <div class="main-wrapper container">
 
