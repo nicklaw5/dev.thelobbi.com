@@ -1,4 +1,4 @@
-<section>
+<section class="feature-section">
 <div class="feature-container">
     <a href="#" class="feature-major bg-img-center" style="background: url({{ url('/assets/images/HK_at_rest-3.jpg') }}) no-repeat center center;">
         <div class="feature-overlay">

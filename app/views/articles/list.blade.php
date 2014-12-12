@@ -32,7 +32,7 @@
 				<tr>
 					<td><a href="javascript:;" onclick="jQuery('#previewModal').appendTo(body).modal('show');jQuery('#frame').attr('src', '{{ $article->url }}');">{{ $article->title }}</a></td>
 					<td>{{ $article->category }}</td>
-					<td>{{ $article->first_name . ' ' . $article->last_name }}</td>
+					<td>{{ $article->fullname }}</td>
 					<td>{{ $article->posted_at }}</td>
 					<td>{{ $article->views }}</td>
 					<td>
@@ -74,7 +74,7 @@
 				<tr>
 					<td><a target="_blank" href="{{ $article->url }}">{{ $article->title }}</a></td>
 					<td>{{ $article->category }}</td>
-					<td>{{ $article->first_name . ' ' . $article->last_name }}</td>
+					<td>{{ $article->fullname }}</td>
 					<td>{{ $article->posted_at }}</td>
 					<td>{{ $article->views }}</td>
 					<td>

@@ -125,6 +125,12 @@ return array(
 		//OAuth for Laravel 4
 		'Artdarek\OAuth\OAuthServiceProvider',
 
+		//AWS for Laravel 4
+		'Aws\Laravel\AwsServiceProvider',
+
+		//Image Intervention
+		'Intervention\Image\ImageServiceProvider',
+
 	),
 
 	/*
@@ -194,6 +200,12 @@ return array(
 
 		//OAuth for Laravel 4
 		'OAuth' => 'Artdarek\OAuth\Facade\OAuth',
+
+		//AWS for Laravel 4
+		'AWS' => 'Aws\Laravel\AwsFacade',
+
+		//Image Intervention
+		'Image' => 'Intervention\Image\Facades\Image',
 
 	),
 

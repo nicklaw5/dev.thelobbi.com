@@ -11,9 +11,10 @@ class ArticlesController extends BaseController {
 	protected $event;
 	protected $tag;
 	protected $video;
+	protected $disqus;
 
 	public function __construct(Article $article, ArticleCategory $articleCategory, Game $game, Company $company, GamingEvent $event,
-								Logger $logger, Platform $platform, Tag $tag, Video $video) {
+								Logger $logger, Platform $platform, Tag $tag, Video $video, DisqusClass $disqus) {
 
 		$this->beforeFilter('admin', array('only' => array('create', 'store', 'edit', 'destroy', 
 										   'listGames', 'publish', 'unpublish')));
@@ -27,6 +28,7 @@ class ArticlesController extends BaseController {
 		$this->event 			= $event;
 		$this->tag 				= $tag;
 		$this->video 			= $video;
+		$this->disqus 			= $disqus;
 		$this->articleCategory 	= $articleCategory;
 	}
 
@@ -43,15 +45,36 @@ class ArticlesController extends BaseController {
 
 	public function show($article_id) {} 	
 
-	public function showNewsArticle($article_id) {}
+	public function showNewsArticle($y, $m, $d, $title_slug) {
+		$date = App::make('DateClass');
 
-	public function showReviewArticle($article_id) {}
+		if( ! $article = $this->article->validateSlug($y, $m, $d, $title_slug, $date))
+			App::abort(404);
 
-	public function showInterviewArticle($article_id) {}
+		//increment number of video views
+		$this->incrementViews('articles', 'title_slug', $title_slug);
+		
+		//format published date
+		$article->published_at = $date->formatDate($article->published_at, 'd F Y');
 
-	public function showFeatureArticle($article_id) {}
+		//get author name
+		$article->author_name = $this->article->getAuthorName($article->author_id);
 
-	public function showOpinionArticle($article_id) {}
+		//decode html entities
+		$article->body = html_entity_decode($article->body);
+		
+		return View::make('articles.news')
+					->with('article', $article)
+					->with('disqusPayload', $this->disqus->getPayload());
+	}
+
+	public function showReviewArticle($y, $m, $d, $title_slug) {}
+
+	public function showInterviewArticle($y, $m, $d, $title_slug) {}
+
+	public function showFeatureArticle($y, $m, $d, $title_slug) {}
+
+	public function showOpinionArticle($y, $m, $d, $title_slug) {}
 
 	public function create() {	
 

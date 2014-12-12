@@ -7,7 +7,7 @@
 
         <div class="main-wrapper container">
 
-            <section class="home-left">
+            <section class="section-left home-left">
                 <div class="most-recent">
                     <ul>
                         <li>
@@ -126,11 +126,9 @@
                 </div>
             </section>
 
-            <section class="home-right">
-                <!-- <iframe frameborder="0" height="420" scrolling="no" src="https://www.kickstarter.com/projects/11662585/hollow-knight/widget/card.html?v=2" width="220"></iframe> -->
-                <iframe style="float:right" src="https://www.indiegogo.com/project/planet-centauri-2d-procedural-sandbox-game--2/embedded" width="222px" height="445px" frameborder="0" scrolling="no"></iframe>
-
-                <!-- @include('ads.medium-rectangle') -->
+            <section class="section-right">
+                
+                @include('ads.kickstarter-indiegogo-iframe')
 
             </section>
 

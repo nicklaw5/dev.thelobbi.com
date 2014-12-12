@@ -11,6 +11,7 @@ Route::resource('genres', 		  'GenresController');
 Route::resource('videos', 		  'VideosController');
 Route::resource('events',       'GamingEventsController');
 Route::resource('messages',     'MessagesController');
+Route::resource('images',       'ImagesController');
 
 Route::get('/', 'HomeController@index');
 
@@ -22,7 +23,7 @@ Route::get('/reviews/{year}/{month}/{day}/{title_slug}', 'ArticlesController@sho
 Route::get('/interviews/{year}/{month}/{day}/{title_slug}', 'ArticlesController@showInterviewArticle');
 Route::get('/features/{year}/{month}/{day}/{title_slug}', 'ArticlesController@showFeatureArticle');
 Route::get('/opinions/{year}/{month}/{day}/{title_slug}', 'ArticlesController@showOpinionArticle');
-Route::get('/videos/{year}/{month}/{day}/{title_slug}', 'VideosController@showVideo');  
+Route::get('/videos/{year}/{month}/{day}/{title_slug}', 'VideosController@showVideo');
 
 //guest only routes
 Route::group(array('before' => 'guest'), function() {
@@ -100,4 +101,6 @@ Route::group(array('prefix' => 'admin' , 'before' => 'admin' ), function() {
     Route::get('/messages/{message_id}/sent', 'MessagesController@showSent');
     Route::get('/messages/{message_id}/received', 'MessagesController@showReceived');
 
+    // Images (POST/PUT/DELET)
+    //Route::post('/images/upload', 'ImagesController@trashMessages');
 });

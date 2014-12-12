@@ -77,8 +77,8 @@ class Video extends Eloquent {
 	                	 videos.views, videos.posted_at, videos.published_at,
 
 	                	 GROUP_CONCAT(DISTINCT vc.category) AS category,
-	                	 GROUP_CONCAT(DISTINCT u.first_name) AS first_name,
-	                 	 GROUP_CONCAT(DISTINCT u.last_name) AS last_name'
+	                	 GROUP_CONCAT(DISTINCT u.fullname) AS fullname'
+	                 	 
                 	)
                 )
 

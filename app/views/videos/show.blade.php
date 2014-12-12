@@ -96,8 +96,8 @@
 	                <div id="259353214" class="c-item c-depth-1 recommended">
 					  	<div class="comment comment_inner">						    
 						    <a href="#" class="collapse_toggle"></a>
-						    <div class="by">						      
-						        <a href="http://www.polygon.com/users/The_Hyphenator" class="profile_image">
+						    <div class="profile">						      
+						        <a href="" class="profile_image">
 						          <img src="http://cdn0.vox-cdn.com/profile_images/806917/etrigan_av_small.jpeg" alt="The_Hyphenator">
 						        </a>
 						    	<a href="http://www.polygon.com/users/The_Hyphenator" class="profile_name">The_Hyphenator</a>

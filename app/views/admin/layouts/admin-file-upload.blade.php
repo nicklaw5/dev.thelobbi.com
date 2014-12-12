@@ -14,7 +14,7 @@
 				var i = 1,
 					$example_dropzone_filetable = $("#example-dropzone-filetable"),
 					example_dropzone = $("#advancedDropzone").dropzone({
-					url: 'data/upload-file.php',
+					url: '{{ url("images") }}',
 					
 					// Events
 					addedfile: function(file)
@@ -29,8 +29,7 @@
 						
 						var $entry = $('<tr>\
 										<td class="text-center">'+(i++)+'</td>\
-										<td>'+file.name+'</td>\
-										<td><a href="#" class="copy-url" data-url="http://static.thelobbi.com/upldoads/images/'+file.name+'"><i class="fa-copy"></i></a></td>\
+										<td>http://static.thelobbi.com/uploads/'+file.name+'</td>\
 										<td><div class="progress progress-striped"><div class="progress-bar progress-bar-warning"></div></div></td>\
 										<td>'+size+'</td>\
 										<td>Uploading...</td>\
@@ -50,6 +49,7 @@
 					{
 						file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
 						file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
+						window.prompt("Copy to clipboard: Ctrl+C, Enter", 'http://static.thelobbi.com/uploads/'+file.name);
 					},
 					
 					error: function(file)
@@ -64,6 +64,7 @@
 				});
 
 			});
+		
 		</script>
 		
 		<br />
@@ -80,8 +81,7 @@
 					<thead>
 						<tr>
 							<th width="1%" class="text-center">#</th>
-							<th width="35%">Name</th>
-							<th width="10%">Copy</th>
+							<th width="40%">Name</th>							
 							<th width="25%">Upload Progress</th>
 							<th>Size</th>
 							<th>Status</th>

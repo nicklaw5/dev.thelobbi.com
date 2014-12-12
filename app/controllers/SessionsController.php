@@ -15,6 +15,8 @@ class SessionsController extends BaseController {
 
 	public function store() {
 
+		//TODO: AJAX login method for logging in through Disqus. Return success to close disqus window and reload page.
+		
 		// attempt to sign the user in		
 		if(Auth::attempt(array('username' => Input::get('username'),'password'=> Input::get('password')))) {
 

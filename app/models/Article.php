@@ -82,8 +82,7 @@ class Article extends Eloquent {
 
 		                	 GROUP_CONCAT(DISTINCT ac.category) AS category,
 		                	 GROUP_CONCAT(DISTINCT v.video) AS video,
-		                	 GROUP_CONCAT(DISTINCT u.first_name) AS first_name,
-		                 	 GROUP_CONCAT(DISTINCT u.last_name) AS last_name'
+		                 	 GROUP_CONCAT(DISTINCT u.fullname) AS fullname'
 	                	)
 	                )
 
@@ -114,4 +113,30 @@ class Article extends Eloquent {
 		return DB::table($this->table)->where($have, $value)->pluck($want);
 	}
 
+	public function getArticle($title_slug) {
+		return DB::table($this->table)->where('title_slug', '=', $title_slug)->first();
+	}
+
+	public function getAuthorName($author_id) {
+		return DB::table('users')->where('id', '=', $author_id)->pluck('fullname');
+	}
+
+	public function validateSlug($y, $m, $d, $title_slug, $date) {
+		
+		//check if article exists
+		if( ! $article = $this->getArticle($title_slug))
+			return false;
+
+		//check date matches URL
+		if($y.$m.$d !== $date->formatDate($article->published_at, 'Ymd'))
+			return false;
+
+		//only show article if admin user or if published
+		if(Auth::guest() || ! Auth::user()->group_id > 1) {
+			if ( ! $article->is_published)
+				return false;
+		}
+
+		return $article;
+	}
 }

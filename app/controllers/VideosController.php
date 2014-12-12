@@ -56,7 +56,7 @@ class VideosController extends BaseController {
 		//only show video if admin user or if published
 		if(Auth::guest() || ! Auth::user()->group_id > 1) {
 			if ( ! $video->is_published)
-				App::about(404);
+				App::abort(404);
 		}
 
 		//increment number of video views
